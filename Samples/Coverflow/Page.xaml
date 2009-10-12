@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="Coverflow.Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	xmlns:Balder="clr-namespace:Balder.Core;assembly=Balder.Core"
+	xmlns:BalderObjects="clr-namespace:Balder.Core.Objects;assembly=Balder.Core"
+	xmlns:CF="clr-namespace:Coverflow"
+    Width="640" Height="480">
+
+	<CF:CoverFlow x:Name="_flow"/>
+</UserControl>

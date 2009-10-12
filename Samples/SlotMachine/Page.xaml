@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="SlotMachine.Page"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	xmlns:Balder="clr-namespace:Balder.Core;assembly=Balder.Core"
+    Width="400" Height="400" Background="Black">
+
+	<Canvas x:Name="_rootCanvas" Width="400" Height="400">
+		<Canvas.Clip>
+			<RectangleGeometry Rect="0,0 400,400"/>
+		</Canvas.Clip>
+
+		<Canvas x:Name="_mainCanvas" Opacity="0.0" Background="Black" >
+			<Canvas.Resources>
+				<Storyboard x:Name="_mainCanvas_FadeIn">
+					<DoubleAnimation From="0.0" To="1.0" Duration="0:0:0.5" Storyboard.TargetName="_mainCanvas" Storyboard.TargetProperty="Opacity"/>
+				</Storyboard>
+			</Canvas.Resources>
+
+			<Canvas>
+				<Canvas.Top>128</Canvas.Top>
+				<Canvas.Left>128</Canvas.Left>
+				<Image x:Name="_backgroundLayerA" Opacity="1.0" Canvas.Left="-512" Canvas.Top="-512" Source="Assets/Backgrounds/background_layer_a.png">
+					<Image.RenderTransform>
+						<TransformGroup>
+							<RotateTransform x:Name="_backgroundLayerARotation" CenterX="512" CenterY="512"/>
+							<TranslateTransform x:Name="_backgroundLayerAPosition"/>
+						</TransformGroup>
+					</Image.RenderTransform>
+				</Image>
+				<Image x:Name="_backgroundLayerB" Opacity="0.5" Canvas.Left="-512" Canvas.Top="-512" Source="Assets/Backgrounds/background_layer_b.png">
+					<Image.RenderTransform>
+						<TransformGroup>
+							<RotateTransform x:Name="_backgroundLayerBRotation" CenterX="512" CenterY="512"/>
+							<TranslateTransform x:Name="_backgroundLayerBPosition"/>
+						</TransformGroup>
+					</Image.RenderTransform>
+				</Image>
+				<Image x:Name="_backgroundLayerC" Opacity="0.5" Canvas.Left="-512" Canvas.Top="-512" Source="Assets/Backgrounds/background_layer_c.png">
+					<Image.RenderTransform>
+						<TransformGroup>
+							<RotateTransform x:Name="_backgroundLayerCRotation" CenterX="512" CenterY="512"/>
+							<TranslateTransform x:Name="_backgroundLayerCPosition"/>
+						</TransformGroup>
+					</Image.RenderTransform>
+				</Image>
+			</Canvas>
+
+
+			<Canvas Canvas.Top="72" Canvas.Left="72">
+				<Image x:Name="_slotMachineImage" Source="Assets/SlotMachine/Machine.png"/>
+
+				<Canvas x:Name="_scoreBoardCanvas" Canvas.Top="155" Canvas.Left="41" Width="150" Height="72" Opacity="0.0">
+					<Canvas.Resources>
+						<Storyboard x:Name="_scoreBoardFadeInStoryboard">
+							<DoubleAnimation Storyboard.TargetName="_scoreBoardCanvas" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:0.5"/>
+						</Storyboard>
+						<Storyboard x:Name="_scoreBoardFadeOutStoryboard">
+							<DoubleAnimation Storyboard.TargetName="_scoreBoardCanvas" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:0.5"/>
+						</Storyboard>
+					</Canvas.Resources>
+					<Rectangle Width="150" Height="72" StrokeThickness="2">
+						<Rectangle.Stroke>
+							<SolidColorBrush Color="#ffffff" Opacity="0.65"/>
+						</Rectangle.Stroke>
+						<Rectangle.Fill>
+							<SolidColorBrush Color="#6d6552" Opacity="0.65"/>
+						</Rectangle.Fill>
+					</Rectangle>
+
+					<TextBlock x:Name="_scoreBoardText" Width="150" Height="32" Canvas.Top="5" Foreground="White" FontFamily="Verdana" FontSize="24" Text="0"/>
+				<TextBlock x:Name="_stateInfoText" Width="150" Height="32" Canvas.Top="40" Foreground="White" FontFamily="Verdana" FontSize="8" Text=""/>
+			</Canvas>
+
+				<Balder:Application x:Name="application" Loaded="Application_Loaded" Run="Application_Run" Visibility="Visible">
+				</Balder:Application>
+
+			</Canvas>
+		</Canvas>
+
+		<Canvas x:Name="_loadCanvas" Canvas.Top="180" Canvas.Left="100">
+			<Canvas.Resources>
+				<Storyboard x:Name="_loadCanvas_FadeOut">
+					<DoubleAnimation From="1.0" To="0.0" Duration="0:0:0.5" Storyboard.TargetName="_loadCanvas" Storyboard.TargetProperty="Opacity"/>
+				</Storyboard>
+			</Canvas.Resources>
+			<Rectangle x:Name="_loadBorder" Stroke="White" Width="200" Height="30" StrokeThickness="2"/>
+			<Rectangle x:Name="_loadFill" Stroke="White" Width="0" Height="30" Fill="White"/>
+			<TextBlock x:Name="_loadText" FontFamily="Verdana" FontSize="12" Text="0%" Foreground="White" Canvas.Top="32"/>
+		</Canvas>
+	</Canvas>
+</UserControl>

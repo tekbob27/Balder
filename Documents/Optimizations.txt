@@ -1,0 +1,13 @@
+RawPngBufferStream:
+	Switch from BitConverter to something else to avoid it from using new() - GC predictability
+	Prearrange the main buffer and how it is copied, including block info and lengths for all blocks
+	
+Structs:
+	Use ref for method arguments instead - a lot faster - by value invokes a construction of a new version and copies it all into the new one
+	
+Drawing primitives:
+	Use span rendering - sorted front to back, automatically clip with already drawn spans and skip any pixels
+	that is not needed to draw
+	
+Framebuffer:
+	If possible - use uint framebuffer instead of byte[] - a lot faster having one memory access instead of 4 (RGBA)

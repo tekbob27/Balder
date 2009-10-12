@@ -1,0 +1,114 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{007BDAF7-C7D2-4DDD-A2EB-ADA6E9F1526D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Balder.Core.Tests</RootNamespace>
+    <AssemblyName>Balder.Core.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq, Version=2.6.1014.1, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Core, Version=1.5.0.158, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\Ninject.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssetLoaders\When_registering_loaders.cs" />
+    <Compile Include="Fakes\AssetLoaders\Nested\NestedAssetLoader.cs" />
+    <Compile Include="Fakes\AssetLoaders\RootAssetLoader.cs" />
+    <Compile Include="Fakes\Display.cs" />
+    <Compile Include="Fakes\FileLoader.cs" />
+    <Compile Include="Fakes\GeometryContext.cs" />
+    <Compile Include="Fakes\ImageContext.cs" />
+    <Compile Include="Fakes\MockGame.cs" />
+    <Compile Include="Fakes\MockGeometry.cs" />
+    <Compile Include="Fakes\SpriteFrameContext.cs" />
+    <Compile Include="Fakes\TargetDevice.cs" />
+    <Compile Include="Fakes\Viewport.cs" />
+    <Compile Include="Geometries\Loading ASE Files\AseLoaderUtils.cs" />
+    <Compile Include="Geometries\Loading ASE Files\When_parsing_single_object_no_material.cs" />
+    <Compile Include="Geometries\Loading ASE Files\When_parsing_with_material.cs" />
+    <Compile Include="Geometries\Loading ASE Files\When_parsing_with_multiple_materials.cs" />
+    <Compile Include="Geometries\Loading ASE Files\When_parsing_with_multiple_objects.cs" />
+    <Compile Include="Geometries\When_loading_X_files.cs" />
+    <Compile Include="Geometries\When_working_with_custom_geometries.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Models.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Models.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Runtime\When_initializing_a_game.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Balder.Core\Balder.Core.csproj">
+      <Project>{556B6A97-B0C1-4BA6-A399-F33A56C1BCD7}</Project>
+      <Name>Balder.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Balder.Specifications\Balder.Specifications.csproj">
+      <Project>{B3E688A6-AC3A-4D7F-92CE-B41D18F3FEDB}</Project>
+      <Name>Balder.Specifications</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Models.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Models.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\SingleObjectNoMaterials.ASE" />
+    <None Include="Assets\ThreeObjectsNoMaterials.ASE" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

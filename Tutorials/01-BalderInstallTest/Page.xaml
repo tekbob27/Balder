@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="BalderTestApplication.Page"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	xmlns:Balder="clr-namespace:Balder;assembly=Balder"
+	xmlns:BalderCollections="clr-namespace:Balder.Collections;assembly=Balder"
+	xmlns:BalderObjects="clr-namespace:Balder.Objects;assembly=Balder"
+			 
+    Width="640" Height="480">
+
+	
+	<Balder:Scene>
+		<Balder:Scene.Viewport>
+			<Balder:Viewport3D Width="640" Height="480" Background="Black">
+				<Balder:Viewport3D.Camera>
+					
+					<Balder:Camera x:Name="myCamera">
+						
+					</Balder:Camera>
+				</Balder:Viewport3D.Camera>
+
+				<BalderObjects:Cube x:Name="myCube">
+
+				</BalderObjects:Cube>
+				
+				<Balder:Viewport3D.Resources>
+					<Storyboard x:Name="cubeXStoryboard" Storyboard.TargetName="myCube" Storyboard.TargetProperty="XRotation" RepeatBehavior="Forever">
+						<DoubleAnimation From="0" To="360" Duration="0:0:2"/>
+					</Storyboard>
+					<Storyboard x:Name="cubeStoryboard" Storyboard.TargetName="myCube" Storyboard.TargetProperty="ZRotation" RepeatBehavior="Forever">
+						<DoubleAnimation From="0" To="360" Duration="0:0:3"/>
+					</Storyboard>
+				</Balder:Viewport3D.Resources>
+			</Balder:Viewport3D>
+			
+			
+		</Balder:Scene.Viewport>
+	</Balder:Scene>
+
+</UserControl>

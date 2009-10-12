@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<!-- saved from url=(0014)about:internet -->
+<head>
+    <title>Las Vegas style SlotMachine</title>
+    
+    <style type="text/css">
+    html, body {
+	    height: 100%;
+	    overflow: auto;
+    }
+    body {
+	    padding: 0;
+	    margin: 0;
+    }
+    #silverlightControlHost {
+	    height: 100%;
+    }
+    </style>
+    
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+        
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            } 
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+            
+            var errMsg = "Unhandled Error in Silverlight 2 Application " +  appSource + "\n" ;
+
+            errMsg += "Code: "+ iErrorCode + "    \n";
+            errMsg += "Category: " + errorType + "       \n";
+            errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError")
+            {
+                errMsg += "File: " + args.xamlFile + "     \n";
+                errMsg += "Line: " + args.lineNumber + "     \n";
+                errMsg += "Position: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError")
+            {           
+                if (args.lineNumber != 0)
+                {
+                    errMsg += "Line: " + args.lineNumber + "     \n";
+                    errMsg += "Position: " +  args.charPosition + "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+
+            throw new Error(errMsg);
+        }
+    </script>
+</head>
+
+<body style="padding: 0px; margin: 0px; background-color: Black; color: White; font-family: Verdana;  font-size: 12px;  vertical-align: top">
+	<table>
+		<tr>
+			<td>
+				<!-- Runtime errors from Silverlight will be displayed here.
+				This will contain debugging information and should be removed or hidden when debugging is completed -->
+				<div id='errorLocation' style="font-size: small;color: Gray;"></div>
+
+				<div id="silverlightControlHost">
+					<object data="data:application/x-silverlight," type="application/x-silverlight-2-b2" width="400px" height="400px" style="background-color: Black">
+						<param name="source" value="SlotMachine.xap"/>
+						<param name="onerror" value="onSilverlightError" />
+						<param name="background" value="white" />
+						
+						<a href="http://go.microsoft.com/fwlink/?LinkID=115261" style="text-decoration: none;">
+     						<img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none"/>
+						</a>
+					</object>
+					<iframe style='visibility:hidden;height:0;width:0;border:0px'></iframe>
+				</div>
+			</td>
+			<td valign="top">
+				<div style="width: 400px;">
+					<h3><b>Las Vegas Style SlotMachine</b></h3>
+					My contribution to the <a href="http://norway.silverlightchallenge.eu" target="_blank">Norwegian challenge</a> in the <a href="http://www.silverlightchallenge.eu" target="_blank">European Silverlight Challenge</a><br/><br/>
+					Built using Silverlight 2 <br />
+					<br />
+					If the game doesn't show up or the installation link for Silverlight 2 doesn't show up. Please download the runtime for <a href="http://www.microsoft.com/silverlight/resources/install.aspx?v=2.0" target="_blank">Both Windows and Mac</a> and then refresh the page. 
+					<br />
+					<br />
+					This application is a bit graphic-intense and can take a minute or
+					so to download. Depending on your connection speed.<br />
+					<br />
+					<br />
+					<h3>Usage</h3>
+					Give Silverlight focus by clicking your mouse into the Silverlight portion of the screen.
+					When the slotmachine has been downloaded and the download bar has
+					faded out, you press space to start the slotmachine.<br/>
+					<br/>
+					The purpose of the game is to get the best combination of symbols.<br/>
+					You get 15 rounds to play and have 2 symbol swaps for each round.<br/>
+					Swapping is done by using the keys 1,2 and 3 to toggle holding of a symbol.<br/>
+					<br />
+					<br />
+				</div>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

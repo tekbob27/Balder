@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Coverflow.CoverFlow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	xmlns:Balder="clr-namespace:Balder.Core;assembly=Balder.Core"
+	xmlns:CF="clr-namespace:Coverflow"
+    Width="640" Height="480">
+	<Balder:Scene>
+		<Balder:Scene.Viewport>
+			<Balder:Viewport3D x:Name="_viewport" Width="640" Height="480" Background="Black">
+				<Balder:Viewport3D.Camera>
+					<Balder:Camera x:Name="_camera"></Balder:Camera>
+				</Balder:Viewport3D.Camera>
+			</Balder:Viewport3D>
+		</Balder:Scene.Viewport>
+	</Balder:Scene>
+</UserControl>

@@ -1,0 +1,16 @@
+﻿Readable Regular Expression was originally created by Joshua Flanagan.
+His blog entry about it is located here:
+
+http://flimflan.com/blog/ReadableRegularExpressions.aspx
+
+In addition, the Linq support has been developed by Roy Osherove and is available at:
+http://www.assembla.com/spaces/LinqToRegex/documents
+ 
+Roy Osheroves original introduction post about it:
+http://weblogs.asp.net/rosherove/archive/2008/05/06/introducing-linq-to-regex.aspx
+
+
+he namespaces has been changed to conform better with the library.
+
+The reason for including the sourcecode in this project is to not having to maintain a 
+different project and include the binaries in this. Easier to maintain within the same project.

@@ -37,15 +37,15 @@
   <ItemGroup>
     <Reference Include="Moq, Version=2.6.1014.1, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Moq.dll</HintPath>
+      <HintPath>..\..\Components\Moq.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Core, Version=1.0.0.82, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Ninject.Core.dll</HintPath>
+      <HintPath>..\..\Components\Ninject.Core.dll</HintPath>
     </Reference>
     <Reference Include="SharpZipLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\SharpZipLib.dll</HintPath>
+      <HintPath>..\..\Components\SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

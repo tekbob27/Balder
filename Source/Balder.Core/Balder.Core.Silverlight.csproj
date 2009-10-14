@@ -15,7 +15,7 @@
     <AssemblyName>Balder.Core.Silverlight</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <SilverlightApplication>false</SilverlightApplication>
-    <SccProjectName>%24/Balder/Trunk/Balder.Core</SccProjectName>
+    <SccProjectName>%24/Balder/Trunk/Source/Balder.Core</SccProjectName>
     <SccLocalPath>.</SccLocalPath>
     <SccAuxPath>https://tfs03.codeplex.com</SccAuxPath>
     <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
@@ -68,7 +68,7 @@
     <Reference Include="mscorlib" />
     <Reference Include="Ninject.Core, Version=1.0.0.82, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Siilverlight\Ninject.Core.dll</HintPath>
+      <HintPath>..\..\Components\Siilverlight\Ninject.Core.dll</HintPath>
     </Reference>
     <Reference Include="system" />
     <Reference Include="System.Core" />

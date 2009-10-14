@@ -53,27 +53,27 @@
   <ItemGroup>
     <Reference Include="Castle.Core_SL, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Siilverlight\Castle.Core_SL.dll</HintPath>
+      <HintPath>..\..\Components\Siilverlight\Castle.Core_SL.dll</HintPath>
     </Reference>
     <Reference Include="Castle.DynamicProxy_SL, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Siilverlight\Castle.DynamicProxy_SL.dll</HintPath>
+      <HintPath>..\..\Components\Siilverlight\Castle.DynamicProxy_SL.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Silverlight.Testing, Version=2.0.21103.1925, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Siilverlight\Microsoft.Silverlight.Testing.dll</HintPath>
+      <HintPath>..\..\Components\Siilverlight\Microsoft.Silverlight.Testing.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight, Version=2.0.21024.1838, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Siilverlight\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</HintPath>
+      <HintPath>..\..\Components\Siilverlight\Microsoft.VisualStudio.QualityTools.UnitTesting.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Moq_SL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Siilverlight\Moq_SL.dll</HintPath>
+      <HintPath>..\..\Components\Siilverlight\Moq_SL.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Core, Version=1.0.0.82, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Components\Siilverlight\Ninject.Core.dll</HintPath>
+      <HintPath>..\..\Components\Siilverlight\Ninject.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />

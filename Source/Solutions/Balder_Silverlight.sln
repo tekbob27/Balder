@@ -16,6 +16,33 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balder.Specifications.Silverlight", "..\Balder.Specifications\Balder.Specifications.Silverlight.csproj", "{BC5FFD2C-5E8C-4151-B1C9-E8AC98521A26}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs03.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\Balder.Core\\Balder.Core.Silverlight.csproj
+		SccProjectName1 = ../Balder.Core
+		SccLocalPath1 = ..\\Balder.Core
+		SccProjectUniqueName2 = ..\\Balder.Core.SoftwareRendering\\Balder.Core.SoftwareRendering.Silverlight.csproj
+		SccProjectName2 = ../Balder.Core.SoftwareRendering
+		SccLocalPath2 = ..\\Balder.Core.SoftwareRendering
+		SccProjectUniqueName3 = ..\\Balder.Silverlight\\Balder.Silverlight.csproj
+		SccProjectName3 = ../Balder.Silverlight
+		SccLocalPath3 = ..\\Balder.Silverlight
+		SccProjectUniqueName4 = ..\\Balder.Silverlight.TestApp\\Balder.Silverlight.TestApp.csproj
+		SccProjectName4 = ../Balder.Silverlight.TestApp
+		SccLocalPath4 = ..\\Balder.Silverlight.TestApp
+		SccProjectUniqueName5 = ..\\Balder.Silverlight.TestApp.Web\\Balder.Silverlight.TestApp.Web.csproj
+		SccProjectName5 = ../Balder.Silverlight.TestApp.Web
+		SccLocalPath5 = ..\\Balder.Silverlight.TestApp.Web
+		SccProjectUniqueName6 = ..\\Balder.Core.Tests\\Balder.Core.Tests.Silverlight.csproj
+		SccProjectName6 = ../Balder.Core.Tests
+		SccLocalPath6 = ..\\Balder.Core.Tests
+		SccProjectUniqueName7 = ..\\Balder.Specifications\\Balder.Specifications.Silverlight.csproj
+		SccProjectName7 = ../Balder.Specifications
+		SccLocalPath7 = ..\\Balder.Specifications
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

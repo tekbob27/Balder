@@ -130,6 +130,7 @@ namespace Balder.Core.SoftwareRendering
 
 		public void Render(IViewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
+			
 			for (var vertexIndex = 0; vertexIndex < Vertices.Length; vertexIndex++)
 			{
 				var vertex = Vertices[vertexIndex];
@@ -142,7 +143,7 @@ namespace Balder.Core.SoftwareRendering
 				vertex.Color = viewport.Scene.CalculateColorForVector(viewport, vertex.Vector, vertex.Normal);
 				Vertices[vertexIndex] = vertex;
 			}
-
+			
 			for (var faceIndex = 0; faceIndex < Faces.Length; faceIndex++)
 			{
 				var face = Faces[faceIndex];

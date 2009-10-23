@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Windows;
-using System.Windows.Threading;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using Balder.Core.SoftwareRendering;
@@ -32,7 +30,6 @@ namespace Balder.Silverlight.SoftwareRendering
 		private Thread _clearThread;
 		private Thread _showThread;
 		private Thread _swapThread;
-		private DispatcherTimer _updateTimer;
 
     	private WriteableBitmap _writeableBitmap;
     	private int _length;
@@ -83,9 +80,7 @@ namespace Balder.Silverlight.SoftwareRendering
 
 			Swap();
 
-			_updateTimer = new DispatcherTimer();
-			_updateTimer.Tick += ShowTimer;
-			_updateTimer.Start();
+			CompositionTarget.Rendering += ShowTimer;
 
 			_swapThread = new Thread(SwapThread);
 			_showThread = new Thread(ShowThread);
@@ -101,7 +96,6 @@ namespace Balder.Silverlight.SoftwareRendering
 		public void Stop()
 		{
 			_frameBufferAlive = false;
-			_updateTimer.Stop();
 			
 			_renderEvent.Set();
 			_clearEvent.Set();
@@ -140,13 +134,13 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		private void SwapThread()
 		{
-			var waitEvents = new ManualResetEvent[]
+			var waitEvents = new[]
 			                 	{
 									_showFinishedEvent,
 									_renderFinishedEvent,
 									_clearFinishedEvent
 			                 	};
-			var startEvents = new ManualResetEvent[]
+			var startEvents = new[]
 			                  	{
 			                  		_showEvent,
 			                  		_renderEvent,

@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Balder.Core.Interfaces
+﻿namespace Balder.Core.Assets
 {
 	public interface IAsset
 	{

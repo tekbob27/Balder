@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Balder.Core.Interfaces;
 using Balder.Core.Runtime;
 using Balder.Core.Utils;
-using Balder.Core.Services;
 using Ninject.Core;
 
-namespace Balder.Core
+namespace Balder.Core.Assets
 {
+	[Singleton]
 	public class AssetLoaderService : IAssetLoaderService
 	{
 		private readonly IObjectFactory _objectFactory;
@@ -28,7 +27,7 @@ namespace Balder.Core
 			var shortName = AssemblyHelper.GetAssemblyShortName(assembly.FullName);
 
 			// Todo: Bad bad bad - the name of the assembly should be discovered automatically!
-			var loaderNamespace = string.Format("Balder.Core.AssetLoaders");
+			var loaderNamespace = string.Format("Balder.Core.Assets.AssetLoaders");
 
 			RegisterNamespace(typeof(AssetLoaderService).Assembly, loaderNamespace);
 		}
@@ -46,8 +45,8 @@ namespace Balder.Core
 			var baseType = typeof(AssetLoader<>);
 
 			var query = from t in types
-						where t.BaseType.Name.Equals(baseType.Name)
-						select t;
+			            where t.BaseType.Name.Equals(baseType.Name)
+			            select t;
 
 			foreach (var type in query)
 			{
@@ -77,8 +76,8 @@ namespace Balder.Core
 			}
 
 			var query = from t in types
-						where null != t.Namespace && nsCheck(t) && t.BaseType.Name.Equals(baseType.Name)
-						select t;
+			            where null != t.Namespace && nsCheck(t) && t.BaseType.Name.Equals(baseType.Name)
+			            select t;
 
 			foreach (var type in query)
 			{

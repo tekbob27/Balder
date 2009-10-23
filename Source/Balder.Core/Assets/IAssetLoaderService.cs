@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
-using Balder.Core.Interfaces;
 
-namespace Balder.Core.Services
+namespace Balder.Core.Assets
 {
 	public interface IAssetLoaderService
 	{

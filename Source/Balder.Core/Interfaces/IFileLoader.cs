@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Balder.Core.Services;
+using Balder.Core.Content;
 
 namespace Balder.Core.Interfaces
 {

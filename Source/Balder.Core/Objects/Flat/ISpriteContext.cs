@@ -1,7 +1,7 @@
 ﻿using Balder.Core.Interfaces;
 using Balder.Core.Math;
 
-namespace Balder.Core.FlatObjects
+namespace Balder.Core.Objects.Flat
 {
 	public interface ISpriteContext
 	{

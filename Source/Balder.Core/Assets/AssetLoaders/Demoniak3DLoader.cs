@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+#if(!SILVERLIGHT)
 using System.IO;
+#endif
 using System.Xml.Linq;
+using Balder.Core.Content;
 using Balder.Core.Exceptions;
-using Balder.Core.Geometries;
 using Balder.Core.Imaging;
 using Balder.Core.Interfaces;
 using Balder.Core.Materials;
-using Balder.Core.Services;
+using Balder.Core.Objects.Geometries;
 
-namespace Balder.Core.AssetLoaders
+namespace Balder.Core.Assets.AssetLoaders
 {
 	/// <summary>
 	/// Notes:

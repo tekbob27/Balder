@@ -1,8 +1,8 @@
-﻿using Balder.Core.Interfaces;
+﻿using Balder.Core.Assets;
+using Balder.Core.Interfaces;
 using Balder.Core.Math;
-using Balder.Core.Services;
 
-namespace Balder.Core.Geometries
+namespace Balder.Core.Objects.Geometries
 {
 	public class Mesh : RenderableNode, IAsset
 	{

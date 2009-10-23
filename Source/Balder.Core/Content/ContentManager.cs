@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Balder.Core.Geometries;
-using Balder.Core.Interfaces;
-using Balder.Core.Objects;
+using Balder.Core.Assets;
+using Balder.Core.Objects.Geometries;
 using Balder.Core.Runtime;
-using Balder.Core.Services;
+using Ninject.Core;
 using Ninject.Core.Parameters;
 
-namespace Balder.Core.Implementation
+namespace Balder.Core.Content
 {
+	[Singleton]
 	public class ContentManager : IContentManager
 	{
 		public const string DefaultAssetsRoot = "Assets";
@@ -46,12 +46,12 @@ namespace Balder.Core.Implementation
 		public Cylinder CreateCylinder(float radius, float height, int segments, int heightSegments)
 		{
 			var arguments = new Dictionary<string, object>
-			                                       	{
-			                                       		{"radius", radius},
-			                                       		{"height", height},
-			                                       		{"segments", segments},
-			                                       		{"heightSegments", heightSegments}
-			                                       	};
+			                	{
+			                		{"radius", radius},
+			                		{"height", height},
+			                		{"segments", segments},
+			                		{"heightSegments", heightSegments}
+			                	};
 			
 			var cylinder = EngineRuntime.Instance.Kernel.Get<Cylinder>(
 				With.Parameters.ConstructorArguments(arguments)

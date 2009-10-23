@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using Balder.Core.Content;
 using Balder.Core.Interfaces;
-using Balder.Core.Services;
 
 namespace Balder.Core.Tests.Fakes
 {

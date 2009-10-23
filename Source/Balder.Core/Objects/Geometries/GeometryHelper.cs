@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Balder.Core.Math;
 
-namespace Balder.Core.Geometries
+namespace Balder.Core.Objects.Geometries
 {
 	public static class GeometryHelper
 	{
@@ -16,19 +16,19 @@ namespace Balder.Core.Geometries
 
 			Func<int, Vector, int> addNormal =
 				delegate(int vertex, Vector normal)
-				{
-					if (!vertexNormal.ContainsKey(vertex))
 					{
-						vertexNormal[vertex] = normal;
-						vertexCount[vertex] = 1;
-					}
-					else
-					{
-						vertexNormal[vertex] += normal;
-						vertexCount[vertex]++;
-					}
-					return 0;
-				};
+						if (!vertexNormal.ContainsKey(vertex))
+						{
+							vertexNormal[vertex] = normal;
+							vertexCount[vertex] = 1;
+						}
+						else
+						{
+							vertexNormal[vertex] += normal;
+							vertexCount[vertex]++;
+						}
+						return 0;
+					};
 
 			foreach (var face in faces)
 			{
@@ -43,8 +43,8 @@ namespace Balder.Core.Geometries
 				var count = vertexCount[vertex];
 
 				var normal = new Vector(addedNormals.X / count,
-											addedNormals.Y / count,
-											addedNormals.Z / count);
+				                        addedNormals.Y / count,
+				                        addedNormals.Z / count);
 				vertices[vertex].Normal = normal;
 			}
 		}

@@ -1,8 +1,8 @@
 ﻿using System;
-using Balder.Core.FlatObjects;
 using Balder.Core.Imaging;
 using Balder.Core.Interfaces;
 using Balder.Core.Math;
+using Balder.Core.Objects.Flat;
 
 namespace Balder.Core.SoftwareRendering
 {

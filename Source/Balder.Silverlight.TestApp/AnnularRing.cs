@@ -1,9 +1,9 @@
 ﻿using System;
 using Balder.Core;
-using Balder.Core.Geometries;
+using Balder.Core.Content;
 using Balder.Core.Interfaces;
 using Balder.Core.Math;
-using Balder.Core.Services;
+using Balder.Core.Objects.Geometries;
 
 
 namespace Balder.Silverlight.TestApp

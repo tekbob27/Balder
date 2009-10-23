@@ -1,4 +1,5 @@
 ﻿using System;
+using Balder.Core.Assets;
 
 namespace Balder.Core.Services
 {

@@ -1,4 +1,4 @@
-﻿namespace Balder.Core.Geometries
+﻿namespace Balder.Core.Objects.Geometries
 {
 	public struct TextureCoordinate
 	{

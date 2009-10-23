@@ -1,8 +1,7 @@
-﻿using Balder.Core.Geometries;
-using Balder.Core.Interfaces;
-using Balder.Core.Objects;
+﻿using Balder.Core.Assets;
+using Balder.Core.Objects.Geometries;
 
-namespace Balder.Core.Services
+namespace Balder.Core.Content
 {
 	public interface IContentManager
 	{

@@ -1,4 +1,4 @@
-﻿namespace Balder.Core.Interfaces
+﻿namespace Balder.Core.Assets
 {
 	public interface IAssetPart
 	{

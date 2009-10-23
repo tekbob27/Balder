@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Media;
 using Balder.Core;
-using Balder.Core.FlatObjects;
-using Balder.Core.Geometries;
 using Balder.Core.Lighting;
 using Balder.Core.Math;
+using Balder.Core.Objects.Flat;
+using Balder.Core.Objects.Geometries;
 using Balder.Core.Runtime;
 using Matrix=Balder.Core.Math.Matrix;
 
@@ -23,13 +23,13 @@ namespace Balder.Silverlight.TestApp
 		public override void LoadContent()
 		{
 			var ring = new AnnularRing(ContentManager, 5, 5, 8);
-			Scene.AddNode(ring);
+			//Scene.AddNode(ring);
 			
 
 			var mesh = ContentManager.Load<Mesh>("audi.ASE");
 			//mesh.Position.X = -30;
 			mesh.World = Matrix.CreateScale(new Vector(10f, 10f, 10f));
-			//Scene.AddNode(mesh);
+			Scene.AddNode(mesh);
 
 			_lightSprite = ContentManager.Load<Sprite>("sun.png");
 			//Scene.AddNode(_lightSprite);

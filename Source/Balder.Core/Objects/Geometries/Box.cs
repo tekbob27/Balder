@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Balder.Core.Geometries;
 
-namespace Balder.Core.Objects
+namespace Balder.Core.Objects.Geometries
 {
 	public enum BoxSide
 	{

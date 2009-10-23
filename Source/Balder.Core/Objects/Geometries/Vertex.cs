@@ -6,7 +6,7 @@ using System.Drawing;
 using Balder.Core.Math;
 using Matrix = Balder.Core.Math.Matrix;
 
-namespace Balder.Core.Geometries
+namespace Balder.Core.Objects.Geometries
 {
 	public struct Vertex
 	{

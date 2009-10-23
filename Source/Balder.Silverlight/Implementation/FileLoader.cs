@@ -2,8 +2,8 @@
 using System.IO;
 using System.Windows;
 using Balder.Core;
+using Balder.Core.Content;
 using Balder.Core.Interfaces;
-using Balder.Core.Services;
 using Balder.Core.Utils;
 
 namespace Balder.Silverlight.Implementation

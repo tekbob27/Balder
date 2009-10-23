@@ -1,10 +1,9 @@
-﻿using Balder.Core.Imaging;
+﻿using Balder.Core.Assets;
+using Balder.Core.Imaging;
 using Balder.Core.Interfaces;
 using Balder.Core.Math;
-//us ing Balder.Core.Animation;
-using Balder.Core.Services;
 
-namespace Balder.Core.FlatObjects
+namespace Balder.Core.Objects.Flat
 {
 	public class Sprite : RenderableNode, IAsset
 	{
@@ -44,16 +43,16 @@ namespace Balder.Core.FlatObjects
 			 */
 
 			var position = new Vector(0, 0, 0);
-            var actualPosition = new Vector(World.data[12], World.data[13], World.data[14]);
+			var actualPosition = new Vector(World.data[12], World.data[13], World.data[14]);
 			var transformedPosition = Vector.Transform(position, World, view);
 			var translatedPosition = Vector.Translate(transformedPosition, projection, viewport.Width, viewport.Height);
 
-            var distanceVector = viewport.Camera.Position - actualPosition;
-            var distance = distanceVector.Length;
-            var n = 100.0f;
-            distance = MathHelper.Abs(distance);
+			var distanceVector = viewport.Camera.Position - actualPosition;
+			var distance = distanceVector.Length;
+			var n = 100.0f;
+			distance = MathHelper.Abs(distance);
 
-            var scale = 0.0f + ((2 * n) / distance);
+			var scale = 0.0f + ((2 * n) / distance);
 			if (scale <= 0)
 			{
 				scale = 0;

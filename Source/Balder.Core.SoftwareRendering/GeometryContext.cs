@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Balder.Core.Geometries;
 using Balder.Core.Interfaces;
 using Balder.Core.Materials;
 using Balder.Core.Math;
+using Balder.Core.Objects.Geometries;
 using Balder.Core.Runtime;
 
 namespace Balder.Core.SoftwareRendering

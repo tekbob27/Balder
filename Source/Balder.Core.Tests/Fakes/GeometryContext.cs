@@ -1,8 +1,8 @@
 ﻿using System;
-using Balder.Core.Geometries;
 using Balder.Core.Interfaces;
 using Balder.Core.Materials;
 using Balder.Core.Math;
+using Balder.Core.Objects.Geometries;
 
 namespace Balder.Core.Tests.Fakes
 {

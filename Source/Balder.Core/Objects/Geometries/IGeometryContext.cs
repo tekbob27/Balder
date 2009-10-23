@@ -2,7 +2,7 @@
 using Balder.Core.Materials;
 using Balder.Core.Math;
 
-namespace Balder.Core.Geometries
+namespace Balder.Core.Objects.Geometries
 {
 	public interface IGeometryContext
 	{

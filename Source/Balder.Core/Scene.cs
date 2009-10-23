@@ -4,12 +4,12 @@ using System.Windows.Media;
 using System.Drawing;
 #endif
 using Balder.Core.Collections;
-using Balder.Core.FlatObjects;
-using Balder.Core.Geometries;
 using Balder.Core.Interfaces;
 using Balder.Core.Lighting;
 using Balder.Core.Math;
-using Geometry=Balder.Core.Geometries.Geometry;
+using Balder.Core.Objects.Flat;
+using Balder.Core.Objects.Geometries;
+using Geometry=Balder.Core.Objects.Geometries.Geometry;
 using Matrix=Balder.Core.Math.Matrix;
 using Balder.Core.Extensions;
 

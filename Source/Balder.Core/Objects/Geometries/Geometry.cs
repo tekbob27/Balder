@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Balder.Core.Assets;
 using Balder.Core.Interfaces;
 using Balder.Core.Math;
 using Balder.Core.Services;
 using Ninject.Core;
 
-namespace Balder.Core.Geometries
+namespace Balder.Core.Objects.Geometries
 {
 	public class Geometry : RenderableNode, IAssetPart
 	{

@@ -1,13 +1,8 @@
-﻿using Balder.Core.Interfaces;
-using Balder.Core.Services;
+﻿using Balder.Core.Content;
+using Balder.Core.Interfaces;
 
-namespace Balder.Core
+namespace Balder.Core.Assets
 {
-	public interface IAssetLoader
-	{
-		string[] FileExtensions { get; }
-	}
-
 	public abstract class AssetLoader<T> : IAssetLoader
 		where T:IAssetPart
 	{
@@ -17,8 +12,8 @@ namespace Balder.Core
 			ContentManager = contentManager;
 		}
 
-		public IFileLoader FileLoader { get; private set; }
-		public IContentManager ContentManager { get; private set; }
+		protected IFileLoader FileLoader { get; private set; }
+		protected IContentManager ContentManager { get; private set; }
 
 		public abstract string[] FileExtensions { get; }
 		public abstract T[] Load(string assetName);

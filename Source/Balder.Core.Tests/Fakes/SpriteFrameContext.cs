@@ -1,6 +1,6 @@
-﻿using Balder.Core.FlatObjects;
-using Balder.Core.Interfaces;
+﻿using Balder.Core.Interfaces;
 using Balder.Core.Math;
+using Balder.Core.Objects.Flat;
 
 namespace Balder.Core.Tests.Fakes
 {

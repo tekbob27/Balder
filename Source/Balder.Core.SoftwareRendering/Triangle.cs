@@ -4,9 +4,9 @@ using System.Windows.Media;
 using Color = System.Drawing.Color;
 #endif
 using Balder.Core.Extensions;
-using Balder.Core.Geometries;
 using Balder.Core.Imaging;
 using Balder.Core.Math;
+using Balder.Core.Objects.Geometries;
 
 namespace Balder.Core.SoftwareRendering
 {

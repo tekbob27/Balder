@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
+using Balder.Core.Content;
 using Balder.Core.Exceptions;
-using Balder.Core.Geometries;
 using Balder.Core.Imaging;
 using Balder.Core.Materials;
+using Balder.Core.Objects.Geometries;
 using Balder.Core.ReadableRex;
 using Balder.Core.ReadableRex.LinqToRegex;
-using Balder.Core.Services;
 using Balder.Core.Interfaces;
 
 
-namespace Balder.Core.AssetLoaders
+namespace Balder.Core.Assets.AssetLoaders
 {
 	public class AseLoader : AssetLoader<Geometry>
 	{
@@ -59,15 +59,15 @@ namespace Balder.Core.AssetLoaders
 			var rootPath = Path.GetDirectoryName(aseAssetName);
 
 			var query = from match in RegexQuery.Against(data)
-						where	match
-								.RegEx("\t")
-								.Literal("*MATERIAL")
-								.WhiteSpace
-								.Group(Pattern.With.Digit.Repeat.ZeroOrMore)
-								.WhiteSpace
-								.Literal("{")
-								.RegEx("[\n\r]*")
-								.IsTrue()
+			            where	match
+			            	.RegEx("\t")
+			            	.Literal("*MATERIAL")
+			            	.WhiteSpace
+			            	.Group(Pattern.With.Digit.Repeat.ZeroOrMore)
+			            	.WhiteSpace
+			            	.Literal("{")
+			            	.RegEx("[\n\r]*")
+			            	.IsTrue()
 			            select match;
 			
 			foreach( var match in query )

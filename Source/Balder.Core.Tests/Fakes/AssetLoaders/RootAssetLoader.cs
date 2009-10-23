@@ -1,5 +1,6 @@
 ﻿using System;
-using Balder.Core.Geometries;
+using Balder.Core.Assets;
+using Balder.Core.Objects.Geometries;
 
 namespace Balder.Core.Tests.Fakes.AssetLoaders
 {

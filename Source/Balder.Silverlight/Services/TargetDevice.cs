@@ -1,5 +1,6 @@
 ﻿using System;
 using Balder.Core;
+using Balder.Core.Assets;
 using Balder.Core.Services;
 using Balder.Silverlight.Implementation;
 using Balder.Core.Runtime;

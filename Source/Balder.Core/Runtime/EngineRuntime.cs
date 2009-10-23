@@ -1,8 +1,10 @@
 ﻿using System;
-using Balder.Core.FlatObjects;
-using Balder.Core.Geometries;
+using Balder.Core.Assets;
+using Balder.Core.Content;
 using Balder.Core.Imaging;
 using Balder.Core.Interfaces;
+using Balder.Core.Objects.Flat;
+using Balder.Core.Objects.Geometries;
 using Balder.Core.Services;
 using Ninject.Core;
 

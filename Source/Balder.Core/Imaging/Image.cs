@@ -1,5 +1,4 @@
-﻿using System;
-using Balder.Core.Interfaces;
+﻿using Balder.Core.Assets;
 using Ninject.Core;
 
 namespace Balder.Core.Imaging

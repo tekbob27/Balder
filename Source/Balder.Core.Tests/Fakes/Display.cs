@@ -1,9 +1,5 @@
 ﻿using System;
-#if(SILVERLIGHT)
 using System.Windows.Media;
-#else
-using Color = System.Drawing.Color;
-#endif
 
 using Balder.Core.Interfaces;
 using Balder.Core.Services;
@@ -18,7 +14,7 @@ namespace Balder.Core.Tests.Fakes
 		public event EventHandler Draw;
 		public event EventHandler Render;
 		public event EventHandler Update;
-		public Color BackgroundColor { get; set; }
+		
 
 		public IViewport CreateViewport(int xpos, int ypos, int width, int height)
 		{
@@ -32,5 +28,7 @@ namespace Balder.Core.Tests.Fakes
 		}
 
 		#endregion
+
+		public Color BackgroundColor { get; set; }
 	}
 }

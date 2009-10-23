@@ -18,7 +18,7 @@ namespace Balder.Core.Runtime
 
 		public void Initialize(ITargetDevice targetDevice)
 		{
-			Kernel = new StandardKernel(new CoreModule(), GetSpecificModule(targetDevice));
+			Kernel = new AutoKernel(GetSpecificModule(targetDevice));
 
 			TargetDevice = targetDevice;
 

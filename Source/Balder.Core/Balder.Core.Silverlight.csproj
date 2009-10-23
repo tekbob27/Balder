@@ -104,6 +104,8 @@
     <Compile Include="Imaging\ImageFormat.cs" />
     <Compile Include="Imaging\ImageHelper.cs" />
     <Compile Include="Imaging\ImagePalette.cs" />
+    <Compile Include="Runtime\IObjectFactory.cs" />
+    <Compile Include="Runtime\ObjectFactory.cs" />
     <Compile Include="PixelFormat.cs" />
     <Compile Include="Implementation\ContentManager.cs" />
     <Compile Include="Implementation\FrameAnimatable.cs" />
@@ -123,7 +125,7 @@
     <Compile Include="ReadableRex\Quantifier.cs" />
     <Compile Include="ReadableRex\Range.cs" />
     <Compile Include="Runtime\Actor.cs" />
-    <Compile Include="Runtime\CoreModule.cs" />
+    <Compile Include="Runtime\AutoKernel.cs" />
     <Compile Include="Runtime\DebugLevel.cs" />
     <Compile Include="Runtime\EngineRuntime.cs" />
     <Compile Include="Game.cs" />

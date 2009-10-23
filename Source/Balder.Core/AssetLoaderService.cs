@@ -7,15 +7,18 @@ using Balder.Core.Interfaces;
 using Balder.Core.Runtime;
 using Balder.Core.Utils;
 using Balder.Core.Services;
+using Ninject.Core;
 
 namespace Balder.Core
 {
 	public class AssetLoaderService : IAssetLoaderService
 	{
+		private readonly IObjectFactory _objectFactory;
 		private readonly Dictionary<string, IAssetLoader> _assetLoaders;
 
-		public AssetLoaderService()
+		public AssetLoaderService(IObjectFactory objectFactory)
 		{
+			_objectFactory = objectFactory;
 			_assetLoaders = new Dictionary<string, IAssetLoader>();
 		}
 
@@ -48,7 +51,7 @@ namespace Balder.Core
 
 			foreach (var type in query)
 			{
-				var loader = EngineRuntime.Instance.Kernel.Get(type) as IAssetLoader;
+				var loader = _objectFactory.Get(type) as IAssetLoader;
 				RegisterLoader(loader);
 			}
 		}
@@ -79,7 +82,7 @@ namespace Balder.Core
 
 			foreach (var type in query)
 			{
-				var loader = EngineRuntime.Instance.Kernel.Get(type) as IAssetLoader;
+				var loader = _objectFactory.Get(type) as IAssetLoader;
 				RegisterLoader(loader);
 			}
 		}

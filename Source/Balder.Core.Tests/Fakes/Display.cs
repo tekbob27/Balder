@@ -1,5 +1,9 @@
 ﻿using System;
+#if(SILVERLIGHT)
 using System.Windows.Media;
+#else
+using System.Drawing;
+#endif
 
 using Balder.Core.Interfaces;
 using Balder.Core.Services;

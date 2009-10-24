@@ -13,6 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balder.Silverlight.TestApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balder.Core.Tests.Silverlight", "..\Balder.Core.Tests\Balder.Core.Tests.Silverlight.csproj", "{14C4473E-12FB-4D78-A607-A84E3FB09322}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{67FF2401-5E46-474C-A0AE-02D1A6B9ED2C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Build\Balder.build = ..\..\Build\Balder.build
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 8

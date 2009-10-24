@@ -152,11 +152,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Balder.Core\Balder.Core.Silverlight.csproj">
       <Project>{9F4164D8-6C61-4C4D-B3FF-7AEEE16D9D6B}</Project>
-      <Name>Balder.Core.Silverlight3</Name>
+      <Name>Balder.Core.Silverlight</Name>
     </ProjectReference>
     <ProjectReference Include="..\Balder.Silverlight\Balder.Silverlight.csproj">
       <Project>{E39B101E-9447-49EE-B849-BA2A9E4664D0}</Project>
-      <Name>Balder.Silverlight3</Name>
+      <Name>Balder.Silverlight</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

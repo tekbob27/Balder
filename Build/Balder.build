@@ -6,15 +6,14 @@
 	<property name="Path.Drop" value="${Path.Root}/Drop"/>
 	<property name="Path.Components" value="${Path.Root}/Components"/>
 	<property name="Path.Source" value="${Path.Root}/Source"/>
+	<property name="Path.Tests" value="${Path.Root}/Tests"/>
 
 	<target name="All">
-		<call target="Clean"/>
 		<call target="Configure"/>
-		<call target="Silverlight"/>
+		<call target="SilverlightPlatform"/>
 	</target>
 
 	<target name="Clean">
-		
 		<delete dir="${Path.Drop}"/>
 	</target>
 
@@ -36,18 +35,21 @@
 		<property name="Global.Build.Defines" value="TRACE, STRONG"/>
 	</target>
 
-	<target name="ConfigureSilverlight">
+	<target name="ConfigureSilverlightPlatform">
 		<property name="Build.Defines" value="${Global.Build.Defines},SILVERLIGHT,SILVERLIGHT_30,NO_ASSEMBLY_SCANNING,NO_WEB,NO_PARTIAL_TRUST,NO_EXCEPTION_SERIALIZATION,NO_DEBUG_SYMBOLS"/>
 		<property name="Current.Path.Drop" value="${Path.Drop}/Silverlight"/>
 		<property name="Current.Path.Components" value="${Path.Components}/Siilverlight"/>
 	</target>
 
-	<target name="Silverlight">
+	<target name="SilverlightPlatform">
 		<if test="${framework::exists('silverlight-3.0')}">
 			<property name="nant.settings.currentframework" value="silverlight-3.0"/>
 			<property name="Build.Platform" value="silverlight-3.0"/>
-			<call target="ConfigureSilverlight"/>
+			<call target="ConfigureSilverlightPlatform"/>
 			<call target="Core"/>
+			<call target="SoftwareRendering"/>
+			<call target="Silverlight"/>
+			<!--<call target="Test"/>-->
 		</if>
 		<if test="${not(framework::exists('silverlight-3.0'))}">
 			<echo message="Silverlight v3.0 is not available. Skipping platform."/>
@@ -67,7 +69,7 @@
 				 doc="${Current.Path.Drop}/Balder.Core.xml"
 				 >
 			<sources basedir="${Path.Source}">
-				-<include name="${Build.AssemblyInfo}"/>
+				<include name="${Build.AssemblyInfo}"/>
 				<include name="Balder.Core/**/*.cs"/>
 			</sources>
 			<references>
@@ -82,4 +84,111 @@
 			</references>
 		</csc>
 	</target>
+
+	<target name="CompileCoreTests">
+		<call target="ConfigureDebug"/>
+		<mkdir dir="${Path.Tests}"/>
+		<copy todir="${Path.Tests}">
+			<fileset basedir="${Current.Path.Drop}">
+				<include name="*.dll"/>
+			</fileset>
+		</copy>
+		<copy todir="${Path.Tests}">
+			<fileset basedir="${Path.Components}">
+				<include name="nunit.framework.dll"/>
+				<include name="moq.dll"/>
+			</fileset>
+		</copy>
+	<property name="nant.settings.currentframework" value="net-3.5"/>
+		<property name="Build.Platform" value="net-3.5"/>
+		<csc noconfig="true"
+				 warnaserror="false"
+				 target="library"
+				 debug="${Build.Debug}"
+				 optimize="${Build.Optimize}"
+				 define="${Build.Defines}"
+				 output="${Current.Path.Drop}/Balder.Core.Tests.dll"
+				 >
+			<sources basedir="${Path.Source}">
+				<include name="${Build.AssemblyInfo}"/>
+				<include name="Balder.Core.Tests/**/*.cs"/>
+			</sources>
+			<references basedir="${Path.Tests}">
+				<include name="mscorlib.dll"/>
+				<include name="System.dll"/>
+				<include name="System.Core.dll"/>
+				<include name="System.Net.dll"/>
+				<include name="System.Windows.dll"/>
+				<include name="System.Xml.dll"/>
+				<include name="PresentationCore.dll"/>
+				<include name="${Current.Path.Components}/System.Xml.Linq.dll" if="${Build.Platform == 'silverlight-3.0'}"/>
+				<include name="${Current.Path.Components}/Ninject.Core.dll"/>
+				<include name="Balder.Core.dll"/>
+				<include name="nunit.framework.dll"/>
+				<include name="moq.dll"/>
+			</references>
+		</csc>
+	</target>
+
+
+
+	<target name="SoftwareRendering" depents="Core">
+		<mkdir dir="${Current.Path.Drop}"/>
+		<csc noconfig="true"
+				 warnaserror="false"
+				 target="library"
+				 debug="${Build.Debug}"
+				 optimize="${Build.Optimize}"
+				 define="${Build.Defines}"
+				 output="${Current.Path.Drop}/Balder.Core.SoftwareRendering.dll"
+				 >
+			<sources basedir="${Path.Source}">
+				<include name="${Build.AssemblyInfo}"/>
+				<include name="Balder.Core.SoftwareRendering/**/*.cs"/>
+			</sources>
+			<references basedir="${Current.Path.Drop}">
+				<include name="mscorlib.dll"/>
+				<include name="System.dll"/>
+				<include name="System.Core.dll"/>
+				<include name="System.Net.dll"/>
+				<include name="System.Windows.dll"/>
+				<include name="${Current.Path.Components}/System.Windows.Browser.dll" if="${Build.Platform == 'silverlight-3.0'}"/>
+				<include name="${Current.Path.Components}/Ninject.Core.dll"/>
+				<include name="Balder.Core.dll"/>
+			</references>
+		</csc>
+	</target>
+
+	<target name="Silverlight" depents="SoftwareRendering">
+		<mkdir dir="${Current.Path.Drop}"/>
+		<csc noconfig="true"
+				 warnaserror="false"
+				 target="library"
+				 debug="${Build.Debug}"
+				 optimize="${Build.Optimize}"
+				 define="${Build.Defines}"
+				 output="${Current.Path.Drop}/Balder.Silverlight.dll"
+				 >
+			<sources basedir="${Path.Source}">
+				<include name="${Build.AssemblyInfo}"/>
+				<include name="Balder.Silverlight/**/*.cs"/>
+			</sources>
+			<references basedir="${Current.Path.Drop}">
+				<include name="mscorlib.dll"/>
+				<include name="System.dll"/>
+				<include name="System.Core.dll"/>
+				<include name="System.Net.dll"/>
+				<include name="System.Windows.dll"/>
+				<include name="${Current.Path.Components}/System.Windows.Browser.dll" if="${Build.Platform == 'silverlight-3.0'}"/>
+				<include name="${Current.Path.Components}/Ninject.Core.dll"/>
+				<include name="Balder.Core.dll"/>
+				<include name="Balder.Core.SoftwareRendering.dll"/>
+			</references>
+		</csc>
+	</target>
+
+	<target name="Test">
+		<call target="CompileCoreTests"/>
+	</target>
+
 </project>

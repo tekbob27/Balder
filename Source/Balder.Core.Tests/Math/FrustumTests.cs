@@ -1,15 +1,15 @@
 ﻿using Balder.Core.Math;
 using Balder.Core.Tests.Fakes;
-using Balder.Specifications;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Balder.Core.Tests.Math
 {
-	[TestClass]
+	[TestFixture]
 	public class FrustumTests
 	{
 		private Frustum _frustum;
-		[ClassInitialize]
+
+		[TestFixtureSetUp]
 		public void Setup()
 		{
 			var viewport = new Viewport {Width = 640, Height = 480};
@@ -20,62 +20,60 @@ namespace Balder.Core.Tests.Math
 			_frustum.SetCameraDefinition(camera);
 		}
 
-
-		[TestMethod]
+		[Test]
 		public void VectorInsideShouldNotBeClipped()
 		{
 			var vectorToTest = new Vector(0f, 0f, 0.5f);
 			var result = _frustum.IsPointInFrustum(vectorToTest);
-			result.ShouldBe(FrustumIntersection.Inside);
+			Assert.That(result, Is.EqualTo(FrustumIntersection.Inside));
 		}
 
-		[TestMethod]
+		[Test]
 		public void VectorAboveTopShouldBeClipped()
 		{
 			var vectorToTest = new Vector(0f, 1000f, 0.5f);
 			var result = _frustum.IsPointInFrustum(vectorToTest);
-			result.ShouldBe(FrustumIntersection.Outside);
+			Assert.That(result, Is.EqualTo(FrustumIntersection.Outside));
 		}
 
-		[TestMethod]
+		[Test]
 		public void VectorBelowBottomShouldBeClipped()
 		{
 			var vectorToTest = new Vector(0f, -1000f, 0.5f);
 			var result = _frustum.IsPointInFrustum(vectorToTest);
-			result.ShouldBe(FrustumIntersection.Outside);
+			Assert.That(result, Is.EqualTo(FrustumIntersection.Outside));
 		}
 
-		[TestMethod]
+		[Test]
 		public void VectorLeftOfLeftShouldBeClipped()
 		{
 			var vectorToTest = new Vector(-1000f, 0f, 0.5f);
 			var result = _frustum.IsPointInFrustum(vectorToTest);
-			result.ShouldBe(FrustumIntersection.Outside);
+			Assert.That(result, Is.EqualTo(FrustumIntersection.Outside));
 		}
 
-		[TestMethod]
+		[Test]
 		public void VectorRightOfRightShouldBeClipped()
 		{
 			var vectorToTest = new Vector(1000f, 0f, 0.5f);
 			var result = _frustum.IsPointInFrustum(vectorToTest);
-			result.ShouldBe(FrustumIntersection.Outside);
+			Assert.That(result, Is.EqualTo(FrustumIntersection.Outside));
 		}
 
-		[TestMethod]
+		[Test]
 		public void VectorBehindNearShouldBeClipped()
 		{
 			var vectorToTest = new Vector(0f, 0f, -1000f);
 			var result = _frustum.IsPointInFrustum(vectorToTest);
-			result.ShouldBe(FrustumIntersection.Outside);
+			Assert.That(result, Is.EqualTo(FrustumIntersection.Outside));
 		}
 
-		[TestMethod]
+		[Test]
 		public void VectorBeyondFarShouldBeClipped()
 		{
 			var vectorToTest = new Vector(0f, 0f, 1000f);
 			var result = _frustum.IsPointInFrustum(vectorToTest);
-			result.ShouldBe(FrustumIntersection.Outside);
+			Assert.That(result, Is.EqualTo(FrustumIntersection.Outside));
 		}
-
 	}
 }

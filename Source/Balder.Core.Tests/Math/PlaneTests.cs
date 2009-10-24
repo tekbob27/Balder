@@ -1,13 +1,12 @@
 ﻿using Balder.Core.Math;
-using Balder.Specifications;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Balder.Core.Tests.Math
 {
-	[TestClass]
+	[TestFixture]
 	public class PlaneTests
 	{
-		[TestMethod]
+		[Test]
 		public void GettingDistanceFromPlaneShouldReturnCorrectDistance()
 		{
 			var plane = new Plane();
@@ -19,7 +18,7 @@ namespace Balder.Core.Tests.Math
 			var vectorToTest = new Vector(0, -200, 0);
 
 			var length = plane.GetDistanceFromVector(vectorToTest);
-			length.ShouldBe(-100f);
+			Assert.That(length,Is.EqualTo(-100f));
 		}
 	}
 }

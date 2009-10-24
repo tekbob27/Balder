@@ -73,6 +73,8 @@
     <Compile Include="Fakes\SpriteFrameContext.cs" />
     <Compile Include="Fakes\TargetDevice.cs" />
     <Compile Include="Fakes\Viewport.cs" />
+    <Compile Include="Math\FrustumTests.cs" />
+    <Compile Include="Math\PlaneTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Models.Designer.cs">
       <AutoGen>True</AutoGen>

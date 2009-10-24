@@ -63,7 +63,6 @@ namespace Balder.Core
 		{
 			SetupDefaults();
 			ExecuteActionOnActors(a => a.Initialize());
-			ContentManager.Game = this;
 		}
 
 		internal void OnLoadContent()

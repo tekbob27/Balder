@@ -41,7 +41,7 @@ namespace Balder.Silverlight.TestApp
 
 			Display.BackgroundColor = Color.FromArgb(0xff, 0, 0, 0);
 
-			var cylinder = ContentManager.CreateCylinder(10f, 20f, 8, 1);
+			var cylinder = ContentManager.Creator.CreateCylinder(10f, 20f, 8, 1);
 
 			light = new OmniLight();
             light.Range = 3.0f;

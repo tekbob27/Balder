@@ -60,6 +60,34 @@ namespace Balder.Core.Tests
 		}
 
 		[Test]
+		public void RegisterAssemblyByNameShouldRegisterAllAssetLoaderTypesInAssembly()
+		{
+			var asm = GetType().Assembly;
+			var rootAssetLoaderType = typeof(RootAssetLoader);
+
+			var objectFactoryMock = GetObjectFactoryMock();
+
+			var service = new AssetLoaderService(objectFactoryMock.Object);
+			service.RegisterAssembly(asm.FullName);
+			var loaders = service.AvailableLoaders;
+
+			Assert.That(loaders.Length, Is.EqualTo(2));
+
+			var foundLoader = false;
+			foreach (var loader in loaders)
+			{
+				if (loader.GetType().Equals(rootAssetLoaderType))
+				{
+					foundLoader = true;
+					break;
+				}
+			}
+
+			Assert.That(foundLoader, Is.True);
+		}
+		
+
+		[Test]
 		public void RegisteringNamespaceNonRecursivelyShouldRegisterAllAssetLoaderTypesInNamespace()
 		{
 			var asm = GetType().Assembly;
@@ -109,6 +137,35 @@ namespace Balder.Core.Tests
 			var loader = service.GetLoader<Geometry>(assetName);
 			Assert.That(loader, Is.Not.Null);
 			Assert.That(loader, Is.SameAs(rootAssetLoader));
+		}
+
+		[Test]
+		public void InitializeShouldAddLoadersInCore()
+		{
+			var loaderCount = 0;
+			var objectFactoryMock = new Mock<IObjectFactory>();
+			objectFactoryMock.Expect(o => o.Get(It.IsAny<Type>())).Returns(
+				(Type t) =>
+					{
+						if( t.Namespace.StartsWith("Balder.Core") )
+						{
+							loaderCount++;
+						}
+						return new RootAssetLoader();
+					});
+			var service = new AssetLoaderService(objectFactoryMock.Object);
+			service.Initialize();
+			Assert.That(loaderCount,Is.GreaterThan(0));			
+		}
+
+
+
+		[Test,ExpectedException(typeof(ArgumentException))]
+		public void GettingLoaderForAnUnsupportedExtensionShouldCauseException()
+		{
+			var objectFactoryMock = GetObjectFactoryMock();
+			var service = new AssetLoaderService(objectFactoryMock.Object);
+			service.GetLoader<Geometry>("something.something");
 		}
 	}
 }

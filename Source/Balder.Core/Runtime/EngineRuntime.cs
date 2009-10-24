@@ -67,7 +67,7 @@ namespace Balder.Core.Runtime
 			return fileLoader;
 		}
 
-		public IKernel Kernel { get; private set; }
+		private IKernel Kernel { get;  set; }
 		public Game CurrentGame { get; private set; }
 		public ITargetDevice TargetDevice { get; private set; }
 

@@ -89,6 +89,7 @@
     <Compile Include="Assets\AssetLoaders\XLoader.cs" />
     <Compile Include="Assets\IAssetLoader.cs" />
     <Compile Include="Collections\ActorCollection.cs" />
+    <Compile Include="Content\ContentCreator.cs" />
     <Compile Include="Dimension.cs" />
     <Compile Include="Exceptions\AssetNotFoundException.cs" />
     <Compile Include="Exceptions\UnsupportedImageFormatException.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Imaging\ImageFormat.cs" />
     <Compile Include="Imaging\ImageHelper.cs" />
     <Compile Include="Imaging\ImagePalette.cs" />
+    <Compile Include="Runtime\ConstructorArgument.cs" />
     <Compile Include="Runtime\IObjectFactory.cs" />
     <Compile Include="Runtime\ObjectFactory.cs" />
     <Compile Include="PixelFormat.cs" />

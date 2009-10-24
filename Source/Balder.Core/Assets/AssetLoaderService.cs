@@ -51,7 +51,7 @@ namespace Balder.Core.Assets
 			foreach (var type in query)
 			{
 				var loader = _objectFactory.Get(type) as IAssetLoader;
-				RegisterLoader(loader);
+				RegisterLoader(type, loader);
 			}
 		}
 
@@ -82,23 +82,22 @@ namespace Balder.Core.Assets
 			foreach (var type in query)
 			{
 				var loader = _objectFactory.Get(type) as IAssetLoader;
-				RegisterLoader(loader);
+				RegisterLoader(type, loader);
 			}
 		}
 
-
-		public void RegisterLoader(IAssetLoader loader)
+		private void RegisterLoader(Type type, IAssetLoader loader)
 		{
-			var type = loader.GetType();
-			if( !type.BaseType.Name.Equals(typeof(AssetLoader<>).Name) )
-			{
-				throw new ArgumentException("The loader must be of type AssetLoader<T>");
-			}
-
-			foreach( var extension in loader.FileExtensions )
+			foreach (var extension in loader.FileExtensions)
 			{
 				_assetLoaders[extension.ToLower()] = loader;
 			}
+		}
+
+		public void RegisterLoader<T>(AssetLoader<T> loader)
+			where T:IAssetPart
+		{
+			RegisterLoader(typeof(T),loader);
 		}
 
 		public AssetLoader<T> GetLoader<T>(string assetName)

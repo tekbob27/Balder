@@ -19,7 +19,7 @@ namespace Balder.Core.Assets.AssetLoaders
 	/// </summary>
 	public class Demoniak3DLoader : AssetLoader<Geometry>
 	{
-		private IAssetLoaderService _assetLoaderService;
+		private readonly IAssetLoaderService _assetLoaderService;
 
 		public override string[] FileExtensions { get { return new[] {"xml"}; } }
 

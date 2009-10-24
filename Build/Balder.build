@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<project name="Balder" default="All" basedir="..">
+	<description>Main build file for Balder</description>
+
+	<property name="Path.Root" value="${project::get-base-directory()}"/>
+	<property name="Path.Drop" value="${Path.Root}/Drop"/>
+	<property name="Path.Components" value="${Path.Root}/Components"/>
+	<property name="Path.Source" value="${Path.Root}/Source"/>
+
+	<target name="All">
+		<call target="Clean"/>
+		<call target="Configure"/>
+		<call target="Silverlight"/>
+	</target>
+
+	<target name="Clean">
+		
+		<delete dir="${Path.Drop}"/>
+	</target>
+
+	<target name="Configure">
+		<property name="Build.Config" value="Debug" overwrite="false"/>
+		<property name="Build.AssemblyInfo" value="${Path.Source}/Common/GlobalAssemblyInfo.cs"/>
+		<call target="Configure${Build.Config}"/>
+	</target>
+
+	<target name="ConfigureDebug">
+		<property name="Build.Debug" value="true"/>
+		<property name="Build.Optimize" value="false"/>
+		<property name="Global.Build.Defines" value="DEBUG, TRACE"/>
+	</target>
+
+	<target name="ConfigureRelease">
+		<property name="Build.Debug" value="false"/>
+		<property name="Build.Optimize" value="true"/>
+		<property name="Global.Build.Defines" value="TRACE, STRONG"/>
+	</target>
+
+	<target name="ConfigureSilverlight">
+		<property name="Build.Defines" value="${Global.Build.Defines},SILVERLIGHT,SILVERLIGHT_30,NO_ASSEMBLY_SCANNING,NO_WEB,NO_PARTIAL_TRUST,NO_EXCEPTION_SERIALIZATION,NO_DEBUG_SYMBOLS"/>
+		<property name="Current.Path.Drop" value="${Path.Drop}/Silverlight"/>
+		<property name="Current.Path.Components" value="${Path.Components}/Siilverlight"/>
+	</target>
+
+	<target name="Silverlight">
+		<if test="${framework::exists('silverlight-3.0')}">
+			<property name="nant.settings.currentframework" value="silverlight-3.0"/>
+			<property name="Build.Platform" value="silverlight-3.0"/>
+			<call target="ConfigureSilverlight"/>
+			<call target="Core"/>
+		</if>
+		<if test="${not(framework::exists('silverlight-3.0'))}">
+			<echo message="Silverlight v3.0 is not available. Skipping platform."/>
+		</if>
+
+	</target>
+
+	<target name="Core" depends="Configure">
+		<mkdir dir="${Current.Path.Drop}"/>
+		<csc noconfig="true"
+				 warnaserror="false"
+				 target="library"
+				 debug="${Build.Debug}"
+				 optimize="${Build.Optimize}"
+				 define="${Build.Defines}"
+				 output="${Current.Path.Drop}/Balder.Core.dll"
+				 doc="${Current.Path.Drop}/Balder.Core.xml"
+				 >
+			<sources basedir="${Path.Source}">
+				-<include name="${Build.AssemblyInfo}"/>
+				<include name="Balder.Core/**/*.cs"/>
+			</sources>
+			<references>
+				<include name="mscorlib.dll"/>
+				<include name="System.dll"/>
+				<include name="System.Core.dll"/>
+				<include name="System.Net.dll"/>
+				<include name="System.Windows.dll"/>
+				<include name="System.Xml.dll"/>
+				<include name="${Current.Path.Components}/System.Xml.Linq.dll" if="${Build.Platform == 'silverlight-3.0'}"/>
+				<include name="${Current.Path.Components}/Ninject.Core.dll"/>
+			</references>
+		</csc>
+	</target>
+</project>

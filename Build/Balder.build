@@ -15,6 +15,7 @@
 
 	<target name="Clean">
 		<delete dir="${Path.Drop}"/>
+		<delete dir="$(Path.Tests}"/>
 	</target>
 
 	<target name="Configure">

@@ -55,10 +55,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Microsoft Silverlight\3.0.40723.0\System.Core.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Windows, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Microsoft Silverlight\3.0.40723.0\System.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AssetLoaderServiceTests.cs" />
@@ -80,6 +82,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.resx</DependentUpon>
     </Compile>
+    <Compile Include="Runtime\EngineRuntimeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Models.resx">

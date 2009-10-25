@@ -23,8 +23,6 @@ namespace Balder.Silverlight.Services
 
 		private readonly FrameworkElement _root;
 
-		
-
 		public Display()
 		{
 			HorizontalAlignment = HorizontalAlignment.Left;

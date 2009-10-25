@@ -8,12 +8,11 @@ namespace Balder.Core.Services
 		string Name { get; }
 		string Description { get; }
 
-		IDisplay Display { get; }
 		Type GeometryContextType { get; }
 		Type ImageContextType { get; }
 		Type SpriteContextType { get; }
-		Type GameType { get; }
 		Type FileLoaderType { get; }
+		Type DisplayType { get;  }
 
 		void RegisterAssetLoaders(IAssetLoaderService assetLoaderService);
 	}

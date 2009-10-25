@@ -10,30 +10,20 @@ namespace Balder.Silverlight.Services
 {
 	public class TargetDevice : ITargetDevice
 	{
-		public TargetDevice()
-			: this(null)
-		{
-			
-		}
-
-		public TargetDevice(Type gameType)
-		{
-			Display = new Display();
-			GameType = gameType;
-		}
-
-
 		public static void Initialize()
 		{
-			var targetDevice = new TargetDevice(null);
+			var targetDevice = new TargetDevice();
 			EngineRuntime.Instance.Initialize(targetDevice);
 		}
 
 		public static void Initialize<T>()
 			where T:Game
 		{
-			var targetDevice = new TargetDevice(typeof (T));
+			var targetDevice = new TargetDevice();
 			EngineRuntime.Instance.Initialize(targetDevice);
+
+			var display = new Display();
+			EngineRuntime.Instance.RegisterGame<T>(display);
 		}
 
 
@@ -45,8 +35,10 @@ namespace Balder.Silverlight.Services
 		public Type GeometryContextType { get { return typeof (GeometryContext); } }
 		public Type ImageContextType { get { return typeof (ImageContext); } }
 		public Type SpriteContextType { get { return typeof (SpriteContext); } }
-		public Type GameType { get; set; }
+		public Type DisplayType { get { return typeof (Display); } }
 		public Type FileLoaderType { get { return typeof (FileLoader); } }
+
+		
 
 		public void RegisterAssetLoaders(IAssetLoaderService assetLoaderService)
 		{

@@ -18,8 +18,9 @@ namespace Balder.Core.Tests.Fakes
 		public Type GeometryContextType { get { return typeof(GeometryContext); } }
 		public Type ImageContextType { get { return typeof(ImageContext); } }
 		public Type SpriteContextType { get { return typeof (SpriteContext); } }
-		public Type GameType { get; set; }
 		public Type FileLoaderType { get { return typeof(FileLoader); } }
+		public Type DisplayType { get { return typeof (Display); } }
+
 		public void RegisterAssetLoaders(IAssetLoaderService assetLoaderService)
 		{
 			

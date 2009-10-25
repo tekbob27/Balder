@@ -156,7 +156,6 @@ namespace Balder.Silverlight.Services
 			_buffers.FrameBuffer.Render += OnDraw;
 			_buffers.FrameBuffer.Updated += OnUpdate;
 			BufferManager.Instance.Current = _buffers;
-			_buffers.Start();
 
 			_image.Width = Width;
 			_image.Height = Height;
@@ -170,10 +169,6 @@ namespace Balder.Silverlight.Services
 			Initialize();
 		}
 
-		public void Stop()
-		{
-			_buffers.Stop();
-		}
 
 		public Color BackgroundColor
 		{

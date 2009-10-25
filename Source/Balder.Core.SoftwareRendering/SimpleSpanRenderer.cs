@@ -166,6 +166,7 @@ namespace Balder.Core.SoftwareRendering
 					var texel = ((intv*image.Width) + intu);
 
 
+					
 					if (bufferZ < buffer.DepthBuffer[depthBufferOffset] &&
 					    z >= 0f &&
 					    z < 1f

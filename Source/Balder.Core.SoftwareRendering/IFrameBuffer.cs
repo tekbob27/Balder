@@ -12,6 +12,7 @@ namespace Balder.Core.SoftwareRendering
 	public delegate void FrameBufferRender();
 	public delegate void FrameBufferClear();
 	public delegate void FrameBufferSwapped();
+	public delegate void FrameBufferShow();
 
 	public interface IFrameBuffer
 	{
@@ -30,9 +31,6 @@ namespace Balder.Core.SoftwareRendering
 
 		void SetPixel(int x, int y, Color color);
 		Color GetPixel(int x, int y);
-
-		void Start();
-		void Stop();
 
 #if(SILVERLIGHT)
 		BitmapSource BitmapSource { get; }

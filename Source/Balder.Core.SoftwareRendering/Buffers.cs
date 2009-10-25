@@ -37,11 +37,16 @@ namespace Balder.Core.SoftwareRendering
 
 			_clearingDepthBuffer = new UInt32[zBufferSize];
 
-			for (var index = 0; index < DepthBuffer.Length; index++)
+			lock (_clearingDepthBuffer)
 			{
-				_clearingDepthBuffer[index] = DepthBufferMax;
+				for (var index = 0; index < DepthBuffer.Length; index++)
+				{
+					_clearingDepthBuffer[index] = DepthBufferMax;
+				}
 			}
 
+			ClearZBuffer();
+			FrameBufferSwapped();
 			ClearZBuffer();
 		}
 
@@ -62,7 +67,14 @@ namespace Balder.Core.SoftwareRendering
 
 		private void ClearZBuffer()
 		{
-			_clearingDepthBuffer.CopyTo(FrontDepthBuffer,0);
+			if( null != _clearingDepthBuffer )
+			{
+				lock( _clearingDepthBuffer )
+				{
+					_clearingDepthBuffer.CopyTo(FrontDepthBuffer, 0);		
+				}
+				
+			}
 		}
 
 		public IFrameBuffer FrameBuffer { get; private set; }
@@ -71,15 +83,5 @@ namespace Balder.Core.SoftwareRendering
 
 		public int Width { get; private set; }
 		public int Height { get; private set; }
-
-		public void Start()
-		{
-			FrameBuffer.Start();
-		}
-
-		public void Stop()
-		{
-			FrameBuffer.Stop();
-		}
 	}
 }

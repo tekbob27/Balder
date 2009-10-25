@@ -17,7 +17,5 @@ namespace Balder.Core.Services
 		Color BackgroundColor { get; set; }
 
 		IViewport CreateViewport(int xpos, int ypos, int width, int height);
-
-		void Stop();
 	}
 }

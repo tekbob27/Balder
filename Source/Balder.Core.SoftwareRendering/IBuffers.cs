@@ -8,7 +8,5 @@ namespace Balder.Core.SoftwareRendering
 		UInt32[] DepthBuffer { get; }
 		int Width { get; }
 		int Height { get; }
-		void Start();
-		void Stop();
 	}
 }

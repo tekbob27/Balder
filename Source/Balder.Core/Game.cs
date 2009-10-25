@@ -119,8 +119,6 @@ namespace Balder.Core
 
 		protected void Stop()
 		{
-			Display.Stop();
-
 			foreach (var actor in GetActors())
 			{
 				actor.Stopped();

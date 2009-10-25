@@ -90,6 +90,7 @@
     <Compile Include="Services\Display.cs" />
     <Compile Include="Services\TargetDevice.cs" />
     <Compile Include="SoftwareRendering\FrameBuffer.cs" />
+    <Compile Include="SoftwareRendering\FrameBufferManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

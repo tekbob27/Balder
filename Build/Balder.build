@@ -7,6 +7,8 @@
 	<property name="Path.Components" value="${Path.Root}/Components"/>
 	<property name="Path.Source" value="${Path.Root}/Source"/>
 	<property name="Path.Tests" value="${Path.Root}/Tests"/>
+	<property name="Path.Keys" value="${Path.Root}/Keys"/>
+	<property name="GlobalKeyFile" value="${Path.Keys}/Balder.snk"/>
 
 	<target name="All">
 		<call target="Configure"/>
@@ -60,7 +62,8 @@
 
 	<target name="Core" depends="Configure">
 		<mkdir dir="${Current.Path.Drop}"/>
-		<csc noconfig="true"
+		<csc keyfile="${GlobalKeyFile}" 
+				 noconfig="true"
 				 warnaserror="false"
 				 target="library"
 				 debug="${Build.Debug}"
@@ -102,7 +105,8 @@
 		</copy>
 	<property name="nant.settings.currentframework" value="net-3.5"/>
 		<property name="Build.Platform" value="net-3.5"/>
-		<csc noconfig="true"
+		<csc keyfile="${GlobalKeyFile}" 
+				 noconfig="true"
 				 warnaserror="false"
 				 target="library"
 				 debug="${Build.Debug}"
@@ -135,7 +139,8 @@
 
 	<target name="SoftwareRendering" depents="Core">
 		<mkdir dir="${Current.Path.Drop}"/>
-		<csc noconfig="true"
+		<csc keyfile="${GlobalKeyFile}" 
+				 noconfig="true"
 				 warnaserror="false"
 				 target="library"
 				 debug="${Build.Debug}"
@@ -162,7 +167,8 @@
 
 	<target name="Silverlight" depents="SoftwareRendering">
 		<mkdir dir="${Current.Path.Drop}"/>
-		<csc noconfig="true"
+		<csc keyfile="${GlobalKeyFile}" 
+				 noconfig="true"
 				 warnaserror="false"
 				 target="library"
 				 debug="${Build.Debug}"

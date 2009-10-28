@@ -38,26 +38,26 @@ namespace Balder.Silverlight.Helpers
 		private static PropertyMetadata GetPropertyMetaData(PropertyInfo propertyInfo, object defaultValue)
 		{
 			var propertyMetadata = new PropertyMetadata(defaultValue,
-				(o, e) =>
-				{
-					if (GetIsInternalSet(o))
-					{
-						return;
-					}
-					if (null == e.OldValue || (!e.OldValue.Equals(e.NewValue)||!GetIsNotFirstSet(o)) )
-					{
-						SetIsNotFirstSet(o,true);
-						Action a = () => propertyInfo.SetValue(o, e.NewValue, null);
-						if (o.Dispatcher.CheckAccess())
-						{
-							a();
-						}
-						else
-						{
-							o.Dispatcher.BeginInvoke(a);
-						}
-					}
-				});
+			                                            (o, e) =>
+			                                            	{
+			                                            		if (GetIsInternalSet(o))
+			                                            		{
+			                                            			return;
+			                                            		}
+			                                            		if (null == e.OldValue || (!e.OldValue.Equals(e.NewValue)||!GetIsNotFirstSet(o)) )
+			                                            		{
+			                                            			SetIsNotFirstSet(o,true);
+			                                            			Action a = () => propertyInfo.SetValue(o, e.NewValue, null);
+			                                            			if (o.Dispatcher.CheckAccess())
+			                                            			{
+			                                            				a();
+			                                            			}
+			                                            			else
+			                                            			{
+			                                            				o.Dispatcher.BeginInvoke(a);
+			                                            			}
+			                                            		}
+			                                            	});
 			return propertyMetadata;
 		}
 

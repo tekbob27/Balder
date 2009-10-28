@@ -2,8 +2,8 @@
 using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
-using DependencyProperty = System.Windows.DependencyProperty;
 using Balder.Silverlight.Helpers;
+using DependencyProperty = System.Windows.DependencyProperty;
 
 namespace Balder.Silverlight.Extensions
 {

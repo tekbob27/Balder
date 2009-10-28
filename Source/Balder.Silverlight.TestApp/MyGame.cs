@@ -5,7 +5,6 @@ using Balder.Core.Lighting;
 using Balder.Core.Math;
 using Balder.Core.Objects.Flat;
 using Balder.Core.Objects.Geometries;
-using Balder.Core.Runtime;
 using Matrix=Balder.Core.Math.Matrix;
 
 namespace Balder.Silverlight.TestApp
@@ -22,26 +21,14 @@ namespace Balder.Silverlight.TestApp
 
 		public override void LoadContent()
 		{
-			var ring = new AnnularRing(ContentManager, 5, 5, 8);
-			//Scene.AddNode(ring);
-			
-
 			var mesh = ContentManager.Load<Mesh>("audi.ASE");
-			//mesh.Position.X = -30;
 			mesh.World = Matrix.CreateScale(new Vector(10f, 10f, 10f));
 			Scene.AddNode(mesh);
 
 			_lightSprite = ContentManager.Load<Sprite>("sun.png");
-			//Scene.AddNode(_lightSprite);
-
-
-			var sprite = ContentManager.Load<Sprite>("recycle.png");
-			sprite.Position = new Vector(-10,0,0);
-			//Scene.AddNode(sprite);
+			Scene.AddNode(_lightSprite);
 
 			Display.BackgroundColor = Color.FromArgb(0xff, 0, 0, 0);
-
-			var cylinder = ContentManager.Creator.CreateCylinder(10f, 20f, 8, 1);
 
 			light = new OmniLight();
             light.Range = 3.0f;
@@ -68,7 +55,6 @@ namespace Balder.Silverlight.TestApp
 			light.Position.Z = (float)Math.Sin(sinPos) * 20f;
 			
 			_lightSprite.Position = light.Position;
-
 
 			Camera.Target.X = 0;
 			Camera.Target.Y = -5f;

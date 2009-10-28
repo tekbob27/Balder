@@ -120,6 +120,7 @@
     <Resource Include="Assets\SpikyBox.ASE" />
     <Resource Include="Assets\SpikySphere.ASE" />
     <Resource Include="Assets\audi.ASE" />
+    <Resource Include="Assets\evolve.ASE" />
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>

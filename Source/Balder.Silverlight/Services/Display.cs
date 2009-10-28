@@ -3,8 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Balder.Core.Display;
 using Balder.Core.Interfaces;
-using Balder.Core.Services;
 using Balder.Core.SoftwareRendering;
 using Balder.Silverlight.Implementation;
 using System.Threading;
@@ -21,7 +21,7 @@ namespace Balder.Silverlight.Services
 		private BitmapImage _imageSource;
 		private Color _backgroundColor;
 
-		private readonly FrameworkElement _root;
+		private FrameworkElement _root;
 
 		public Display()
 		{
@@ -29,18 +29,6 @@ namespace Balder.Silverlight.Services
 			VerticalAlignment = VerticalAlignment.Top;
 
 			BackgroundColor = Colors.Black;
-
-			_root = GetRoot();
-			AddDisplayToRoot();
-
-			var parentWithDimensionsSet = FindParentWithDimensionsSet(_root);
-			if( null != parentWithDimensionsSet )
-			{
-				Initialize();
-			} else
-			{
-				Loaded += DisplayLoaded;	
-			}
 		}
 
 
@@ -142,9 +130,22 @@ namespace Balder.Silverlight.Services
 		}
 		#endregion
 
-
-		private void Initialize()
+		public void Initialize()
 		{
+			Initialize(null);
+		}
+
+		public void Initialize(FrameworkElement root)
+		{
+			if( null == root )
+			{
+				_root = GetRoot();
+				AddDisplayToRoot();
+			} else
+			{
+				_root = root;
+			}
+
 			AutomaticallyAdjustDimensions();
 			_image = new Image { Stretch = Stretch.None };
 

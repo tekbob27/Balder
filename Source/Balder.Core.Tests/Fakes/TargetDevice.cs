@@ -1,5 +1,6 @@
 ﻿using System;
 using Balder.Core.Assets;
+using Balder.Core.Display;
 using Balder.Core.Services;
 
 namespace Balder.Core.Tests.Fakes

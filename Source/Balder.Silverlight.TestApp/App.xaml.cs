@@ -18,8 +18,10 @@ namespace Balder.Silverlight.TestApp
 
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
+			//TargetDevice.Initialize();
 			RootVisual = new Page();
 			TargetDevice.Initialize<MyGame>();
+			
 		}
 
 		private void Application_Exit(object sender, EventArgs e)

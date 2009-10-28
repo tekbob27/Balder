@@ -84,6 +84,21 @@
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssetLoaders\ImageLoader.cs" />
+    <Compile Include="Controls\Mesh.cs" />
+    <Compile Include="Controls\RenderedNode.cs" />
+    <Compile Include="Controls\RenderedNodeCollection.cs" />
+    <Compile Include="Controls\RenderingContainer.cs" />
+    <Compile Include="Extensions\DependencyPropertyExtensions.cs" />
+    <Compile Include="Extensions\DependencyPropertySubscription.cs" />
+    <Compile Include="Extensions\ExpressionExtensions.cs" />
+    <Compile Include="Extensions\ICollectionExtensions.cs" />
+    <Compile Include="Extensions\IListExtensions.cs" />
+    <Compile Include="Extensions\NotificationExtensions.cs" />
+    <Compile Include="Extensions\StoryboardExtensions.cs" />
+    <Compile Include="Extensions\VisualStateExtensions.cs" />
+    <Compile Include="Extensions\VisualTreeExtensions.cs" />
+    <Compile Include="Helpers\DependencyProperty.cs" />
+    <Compile Include="Helpers\DependencyPropertyHelper.cs" />
     <Compile Include="Implementation\FileLoader.cs" />
     <Compile Include="Implementation\Viewport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

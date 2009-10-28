@@ -6,7 +6,7 @@ using System.Drawing;
 #endif
 using Balder.Core.Interfaces;
 
-namespace Balder.Core.Services
+namespace Balder.Core.Display
 {
 	public interface IDisplay
 	{

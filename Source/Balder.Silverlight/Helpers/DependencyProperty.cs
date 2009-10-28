@@ -72,14 +72,10 @@ namespace Balder.Silverlight.Helpers
 			var binding = new System.Windows.Data.Binding(path)
 			              	{
 			              		Source = source,
-								Mode = mode
+			              		Mode = mode
 			              	};
 			obj.SetBinding(this.ActualDependencyProperty, binding);
 			return binding;
 		}
-
-
-
-
 	}
 }

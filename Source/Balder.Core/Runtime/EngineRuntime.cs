@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Balder.Core.Assets;
 using Balder.Core.Content;
+using Balder.Core.Display;
 using Balder.Core.Imaging;
 using Balder.Core.Interfaces;
 using Balder.Core.Objects.Flat;
@@ -9,6 +10,8 @@ using Balder.Core.Objects.Geometries;
 using Balder.Core.Services;
 using Ninject.Core;
 using Ninject.Core.Activation;
+using Ninject.Core.Binding;
+using Ninject.Core.Binding.Syntax;
 using Ninject.Core.Tracking;
 
 namespace Balder.Core.Runtime
@@ -17,8 +20,9 @@ namespace Balder.Core.Runtime
 	{
 		public static readonly EngineRuntime Instance = new EngineRuntime();
 
-		private IKernel _kernel;
+		private AutoKernel _kernel;
 		private List<Game> _games;
+		
 
 		private EngineRuntime()
 		{
@@ -30,6 +34,7 @@ namespace Balder.Core.Runtime
 			if (null == _kernel)
 			{
 				_kernel = new AutoKernel(GetSpecificModule(targetDevice));
+				_kernel.AddBindingResolver<IDisplay>(DisplayBindingResolver);
 				TargetDevice = targetDevice;
 				var assetLoaderService = _kernel.Get<IAssetLoaderService>();
 				assetLoaderService.Initialize();
@@ -54,11 +59,19 @@ namespace Balder.Core.Runtime
 			public IDisplay Display { get; private set; }
 		}
 
-		public void RegisterGame<T>(IDisplay display)
-			where T:Game
+
+		public IDisplay CreateDisplay()
 		{
-			var displayActivationContext = new DisplayActivationContext(display, _kernel, typeof (T),
-			                                                            _kernel.CreateScope());
+			var display = _kernel.Get<IDisplay>();
+			return display;
+		}
+
+
+		public T RegisterGame<T>(IDisplay display)
+			where T : Game
+		{
+			var displayActivationContext = new DisplayActivationContext(display, _kernel, typeof(T),
+																		_kernel.CreateScope());
 			var game = _kernel.Get<T>(displayActivationContext);
 			if (null != game)
 			{
@@ -66,21 +79,42 @@ namespace Balder.Core.Runtime
 				game.OnLoadContent();
 				game.OnLoaded();
 				_games.Add(game);
+				return game;
 			}
+			return null;
 		}
 
 		private StandardModule GetSpecificModule(ITargetDevice targetDevice)
 		{
 			var inlineModule = new InlineModule(
-				(m) =>m.Bind<IDisplay>().ToMethod(c=>((DisplayActivationContext)c.ParentContext).Display),
-				(m)=>m.Bind<ITargetDevice>().ToConstant(targetDevice),
-				(m)=>m.Bind<IGeometryContext>().To(targetDevice.GeometryContextType),
-				(m)=>m.Bind<IImageContext>().To(targetDevice.ImageContextType),
-				(m)=>m.Bind<ISpriteContext>().To(targetDevice.SpriteContextType),
-				(m)=>m.Bind<IFileLoader>().ToMethod((c)=>CreateFileLoader(targetDevice))
+				(m) => m.Bind<ITargetDevice>().ToConstant(targetDevice),
+				(m) => m.Bind<IGeometryContext>().To(targetDevice.GeometryContextType),
+				(m) => m.Bind<IImageContext>().To(targetDevice.ImageContextType),
+				(m) => m.Bind<ISpriteContext>().To(targetDevice.SpriteContextType),
+				(m) => m.Bind<IFileLoader>().ToMethod((c) => CreateFileLoader(targetDevice))
 			);
 			return inlineModule;
 		}
+
+		private IBinding DisplayBindingResolver(IContext context)
+		{
+			var binding = new StandardBinding(_kernel, typeof(IDisplay));
+			IBindingTargetSyntax binder = new StandardBindingBuilder(binding);
+
+			if (null != context.ParentContext &&
+				context.ParentContext is DisplayActivationContext)
+			{
+				var display = ((DisplayActivationContext)context.ParentContext).Display;
+				binder.ToConstant(display);
+			} else
+			{
+				binder.To(TargetDevice.DisplayType);
+			}
+			
+			return binding;
+		}
+
+
 
 		private IFileLoader CreateFileLoader(ITargetDevice targetDevice)
 		{

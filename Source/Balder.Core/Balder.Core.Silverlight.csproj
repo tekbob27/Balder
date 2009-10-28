@@ -110,6 +110,7 @@
     <Compile Include="Imaging\ImagePalette.cs" />
     <Compile Include="Runtime\ConstructorArgument.cs" />
     <Compile Include="Runtime\IObjectFactory.cs" />
+    <Compile Include="Runtime\NInjectExtensions.cs" />
     <Compile Include="Runtime\ObjectFactory.cs" />
     <Compile Include="PixelFormat.cs" />
     <Compile Include="Content\ContentManager.cs" />
@@ -139,7 +140,7 @@
     <Compile Include="Runtime\IActor.cs" />
     <Compile Include="Assets\IAssetLoaderService.cs" />
     <Compile Include="Content\IContentManager.cs" />
-    <Compile Include="Services\IDisplay.cs" />
+    <Compile Include="Display\IDisplay.cs" />
     <Compile Include="Assets\IAsset.cs" />
     <Compile Include="Math\MathHelper.cs" />
     <Compile Include="Collections\NodeCollection.cs" />

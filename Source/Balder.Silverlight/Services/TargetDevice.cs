@@ -1,6 +1,7 @@
 ﻿using System;
 using Balder.Core;
 using Balder.Core.Assets;
+using Balder.Core.Display;
 using Balder.Core.Services;
 using Balder.Silverlight.Implementation;
 using Balder.Core.Runtime;
@@ -23,6 +24,7 @@ namespace Balder.Silverlight.Services
 			EngineRuntime.Instance.Initialize(targetDevice);
 
 			var display = new Display();
+			display.Initialize();
 			EngineRuntime.Instance.RegisterGame<T>(display);
 		}
 

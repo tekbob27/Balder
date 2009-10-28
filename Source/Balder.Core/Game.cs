@@ -13,9 +13,14 @@ using Balder.Core.Runtime;
 
 namespace Balder.Core
 {
+	public delegate void GameEvent(Game game);
+
 	public class Game : Actor
 	{
 		public static Dimension DefaultDisplayDimension;
+
+		public event GameEvent Updated = (g) => { };
+
 
 		private ActorCollection Actors { get; set; }
 
@@ -43,10 +48,11 @@ namespace Balder.Core
 			Actors = new ActorCollection();
 		}
 
+		public Scene Scene { get; private set; }
+		public IViewport Viewport { get; private set; }
+		public Camera Camera { get; private set; }
+
 		#region Protected properties
-		protected Scene Scene { get; private set; }
-		protected IViewport Viewport { get; private set; }
-		protected Camera Camera { get; private set; }
 
 		protected virtual Dimension DisplayDimension { get { return DefaultDisplayDimension; } }
 		#endregion
@@ -100,6 +106,7 @@ namespace Balder.Core
 		private void OnUpdate()
 		{
 			ExecuteActionOnActors(a => a.Update());
+			Updated(this);
 		}
 
 		private Actor[] GetActors()

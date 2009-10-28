@@ -4,9 +4,8 @@ using System.Windows.Media;
 #else
 using System.Drawing;
 #endif
-
+using Balder.Core.Display;
 using Balder.Core.Interfaces;
-using Balder.Core.Services;
 
 namespace Balder.Core.Tests.Fakes
 {

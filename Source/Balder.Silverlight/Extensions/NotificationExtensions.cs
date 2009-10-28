@@ -47,13 +47,14 @@ namespace Balder.Silverlight.Extensions
 
 						if (e.PropertyName.Equals(propertyInfo.Name))
 						{
-							if( Deployment.Current.Dispatcher.CheckAccess() ) 
+							var dispatcher = Application.Current.RootVisual.Dispatcher;
+							if (null == dispatcher)
 							{
 								handler(objectThatNotifies);
 							}
 							else
 							{
-								Deployment.Current.Dispatcher.BeginInvoke(handler, objectThatNotifies);
+								dispatcher.BeginInvoke(handler);
 							}
 						}
 					};

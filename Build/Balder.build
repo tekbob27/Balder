@@ -21,7 +21,7 @@
 	</target>
 
 	<target name="Configure">
-		<property name="Build.Config" value="Debug" overwrite="false"/>
+		<property name="Build.Config" value="Release" overwrite="false"/>
 		<property name="Build.AssemblyInfo" value="${Path.Source}/Common/GlobalAssemblyInfo.cs"/>
 		<call target="Configure${Build.Config}"/>
 	</target>
@@ -52,6 +52,7 @@
 			<call target="Core"/>
 			<call target="SoftwareRendering"/>
 			<call target="Silverlight"/>
+			<call target="SilverlightDependencyDrops"/>
 			<!--<call target="Test"/>-->
 		</if>
 		<if test="${not(framework::exists('silverlight-3.0'))}">
@@ -137,7 +138,7 @@
 
 
 
-	<target name="SoftwareRendering" depents="Core">
+	<target name="SoftwareRendering" depends="Core">
 		<mkdir dir="${Current.Path.Drop}"/>
 		<csc keyfile="${GlobalKeyFile}" 
 				 noconfig="true"
@@ -165,7 +166,7 @@
 		</csc>
 	</target>
 
-	<target name="Silverlight" depents="SoftwareRendering">
+	<target name="Silverlight" depends="SoftwareRendering">
 		<mkdir dir="${Current.Path.Drop}"/>
 		<csc keyfile="${GlobalKeyFile}" 
 				 noconfig="true"
@@ -192,6 +193,15 @@
 				<include name="Balder.Core.SoftwareRendering.dll"/>
 			</references>
 		</csc>
+	</target>
+
+	<target name="SilverlightDependencyDrops" depends="Silverlight">
+		<copy todir="${Current.Path.Drop}">
+			<fileset basedir="${Path.Components}\Siilverlight">
+				<include name="ninject.core.dll"/>
+			</fileset>
+		</copy>
+
 	</target>
 
 	<target name="Test">

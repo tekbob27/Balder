@@ -21,23 +21,23 @@ namespace Balder.Silverlight.TestApp
 
 		public override void LoadContent()
 		{
-			var mesh = ContentManager.Load<Mesh>("audi.ASE");
-			mesh.World = Matrix.CreateScale(new Vector(10f, 10f, 10f));
+			var mesh = ContentManager.Load<Mesh>("pumpkin.ASE");
+			//mesh.World = Matrix.CreateScale(new Vector(10f, 10f, 10f));
 			Scene.AddNode(mesh);
 
 			_lightSprite = ContentManager.Load<Sprite>("sun.png");
-			Scene.AddNode(_lightSprite);
+			//Scene.AddNode(_lightSprite);
 
 			Display.BackgroundColor = Color.FromArgb(0xff, 0, 0, 0);
 
 			light = new OmniLight();
-            light.Range = 3.0f;
+            light.Range = 2.0f;
 			light.Position.X = 0;
 			light.Position.Y = 0;
 			light.Position.Z = -30;
-            light.ColorDiffuse = Color.FromArgb(0xff, 0x1f, 0x1f, 0x6f);
+            light.ColorDiffuse = Color.FromArgb(0xff, 255, 121, 32);
             light.ColorSpecular = Color.FromArgb(0xff, 0xff, 0xff, 0xff);
-            light.ColorAmbient = Color.FromArgb(0xff, 0, 0x5f, 0);
+            light.ColorAmbient = Color.FromArgb(0xff, 0x7f, 0x3f, 0x10);
 			Scene.AddNode(light);
 		}
 
@@ -46,9 +46,9 @@ namespace Balder.Silverlight.TestApp
 
 		public override void Update()
 		{
-			Camera.Position.X = (float)Math.Sin(cameraSin) * 130f;
+			Camera.Position.X = (float)Math.Sin(cameraSin) * 430f;
 			Camera.Position.Y = -60; // ((float)Math.Sin(cameraSin) * 15f) - 20f;
-			Camera.Position.Z = (float)Math.Cos(cameraSin) * 130f;
+			Camera.Position.Z = (float)Math.Cos(cameraSin) * 430f;
 
 			light.Position.X = (float)Math.Cos(sinPos) * 20f;
 			light.Position.Y = (float) (((Math.Sin(sinPos) + Math.Cos(sinPos))/2)*20f);
@@ -60,7 +60,7 @@ namespace Balder.Silverlight.TestApp
 			Camera.Target.Y = -5f;
 			Camera.Target.Z = 0;
 
-			sinPos -= 0.11;
+			sinPos -= 0.1;
 			cameraSin += 0.05;
 		}
 	}

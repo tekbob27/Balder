@@ -22,8 +22,11 @@ namespace Balder.Silverlight.TestApp
 		public override void LoadContent()
 		{
 			var mesh = ContentManager.Load<Mesh>("pumpkin.ASE");
-			//mesh.World = Matrix.CreateScale(new Vector(10f, 10f, 10f));
 			Scene.AddNode(mesh);
+
+
+
+			//mesh.World = Matrix.CreateScale(new Vector(10f, 10f, 10f));
 
 			_lightSprite = ContentManager.Load<Sprite>("sun.png");
 			//Scene.AddNode(_lightSprite);

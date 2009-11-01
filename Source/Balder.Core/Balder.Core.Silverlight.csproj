@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Balder.Core</RootNamespace>
-    <AssemblyName>Balder.Core.Silverlight</AssemblyName>
+    <AssemblyName>Balder.Core</AssemblyName>
     <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
     <SilverlightApplication>false</SilverlightApplication>
     <SccProjectName>%24/Balder/Trunk/Source/Balder.Core</SccProjectName>
@@ -95,6 +95,7 @@
     <Compile Include="Exceptions\UnsupportedImageFormatException.cs" />
     <Compile Include="Extensions\ColorExtensions.cs" />
     <Compile Include="Extensions\ImageFormatExtensions.cs" />
+    <Compile Include="Extensions\ViewportExtensions.cs" />
     <Compile Include="Extensions\WaitHandleExtensions.cs" />
     <Compile Include="Objects\Flat\ISpriteContext.cs" />
     <Compile Include="ColorSpace.cs" />

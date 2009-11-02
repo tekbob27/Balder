@@ -86,6 +86,7 @@
       <DependentUpon>Models.resx</DependentUpon>
     </Compile>
     <Compile Include="Runtime\EngineRuntimeTests.cs" />
+    <Compile Include="SceneTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Models.resx">

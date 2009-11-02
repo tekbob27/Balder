@@ -123,5 +123,38 @@ namespace Balder.Core
 				return _flatNodes.Count;
 			}
 		}
+
+		public RenderableNode	GetNodeAtScreenCoordinate(IViewport viewport, int x, int y)
+		{
+			var nearSource = new Vector((float)x, (float)y, 0f);
+			var farSource = new Vector((float)x, (float)y, 1f);
+			var camera = viewport.Camera;
+			var nearPoint = viewport.Unproject(nearSource, camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
+			var farPoint = viewport.Unproject(farSource, camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
+
+			var direction = farPoint - nearPoint;
+			direction.Normalize();
+
+			var pickRay = new Ray(nearPoint, direction);
+
+			var closestObjectDistance = float.MaxValue;
+			RenderableNode closestObject = null;
+
+			foreach (var node in RenderableNodes)
+			{
+				var transformedSphere = node.BoundingSphere.Transform(node.World);
+				var distance = pickRay.Intersects(transformedSphere);
+				if( distance.HasValue )
+				{
+					if( distance < closestObjectDistance )
+					{
+						closestObject = node as RenderableNode;
+						closestObjectDistance = distance.Value;
+					}
+				}
+			}
+
+			return closestObject;
+		}
 	}
 }

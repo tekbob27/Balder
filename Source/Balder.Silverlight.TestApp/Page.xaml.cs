@@ -30,41 +30,16 @@ namespace Balder.Silverlight.TestApp
 			var mousePosition = e.GetPosition(_renderingContainer);
 			_mousePosition.Text = string.Format("X: {0}, Y: {1}", mousePosition.X, mousePosition.Y);
 
-			var camera = _renderingContainer.Camera;
-
-			_viewMatrix.Text = camera.ViewMatrix.ToString();
-			_projectionMatrix.Text = camera.ProjectionMatrix.ToString();
-
-			var nearSource = new Vector((float)mousePosition.X, (float)mousePosition.Y, 0f);
-			var farSource = new Vector((float)mousePosition.X, (float)mousePosition.Y, 1f);
-
-			var nearPoint = _renderingContainer.Viewport.Unproject(nearSource, camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
-			var farPoint = _renderingContainer.Viewport.Unproject(farSource, camera.ProjectionMatrix, camera.ViewMatrix, Matrix.Identity);
-
-			var direction = farPoint - nearPoint;
-			direction.Normalize();
-
-			var pickRay = new Ray(nearPoint, direction);
-
-			_nearPosition.Text = nearPoint.ToString();
-			_farPosition.Text = farPoint.ToString();
-
-			foreach (var node in _renderingContainer.Scene.RenderableNodes)
+			var hitObject = _renderingContainer.Scene.GetNodeAtScreenCoordinate(_renderingContainer.Viewport, (int)mousePosition.X,
+			                                                                      (int)mousePosition.Y);
+			if( null != hitObject )
 			{
-				_spherePosition.Text = node.BoundingSphere.Center.ToString();
-
-				var transformedSphere = node.BoundingSphere.Transform(node.World);
-				_transformedSpherePosition.Text = transformedSphere.Center.ToString();
-
-				var distance = pickRay.Intersects(transformedSphere);
-				_intersects.Text = distance.ToString();
-				if (distance.HasValue)
-				{
-					var hitCount = Convert.ToInt32(_hitCounter.Text);
-					hitCount++;
-					_hitCounter.Text = hitCount.ToString();
-				}
+				var hitCount = Convert.ToInt32(_hitCounter.Text);
+				hitCount++;
+				_hitCounter.Text = hitCount.ToString();
 			}
+
+
 		}
 
 		void _renderingContainer_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -89,7 +64,7 @@ namespace Balder.Silverlight.TestApp
 			//_audi.Node.World = Matrix.CreateRotationY(_angle);
 			_angle += 0.05f;
 			//_renderingContainer.Camera.Position = new Vector(0,-5,-20);
-			_renderingContainer.Camera.Target = new Vector(-4, 0, 0);
+			//_renderingContainer.Camera.Target = new Vector(-4, 0, 0);
 
 			_cameraPosition.Text = renderingContainer.Camera.Position.ToString();
 			_cameraTarget.Text = renderingContainer.Camera.Target.ToString();

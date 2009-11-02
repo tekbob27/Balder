@@ -2,15 +2,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:balder="clr-namespace:Balder.Silverlight.Controls;assembly=Balder.Silverlight"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Core="clr-namespace:Balder.Core;assembly=Balder.Core.Silverlight">
+    >
 	<Grid x:Name="LayoutRoot" Width="800" Height="600">
-		<!--
 		<balder:RenderingContainer x:Name="_renderingContainer" Width="800" Height="600" BackgroundColor="Black" Updated="Updated">
 			<balder:RenderingContainer.Nodes>
 				<balder:RenderedNodeCollection>
 					<balder:Mesh x:Name="_audi" AssetName="audi.ASE"/>
 				</balder:RenderedNodeCollection>
 			</balder:RenderingContainer.Nodes>
-		</balder:RenderingContainer>-->
+		</balder:RenderingContainer>
 	</Grid>
 </UserControl>

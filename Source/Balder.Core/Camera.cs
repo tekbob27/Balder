@@ -7,7 +7,7 @@ namespace Balder.Core
 	{
 		public const float DefaultFieldOfView = 40f;
 		public const float DefaultFar = 4000f;
-		public const float DefaultNear = 0f;
+		public const float DefaultNear = 1f;
 
 		private float _fieldOfView;
 		private float _near;

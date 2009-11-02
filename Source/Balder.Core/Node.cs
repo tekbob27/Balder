@@ -39,6 +39,11 @@ namespace Balder.Core
 		public string Name;
 
 		/// <summary>
+		/// The bounding sphere surrounding the node
+		/// </summary>
+		public BoundingSphere BoundingSphere;
+
+		/// <summary>
 		/// Get and set wether or not the node is visible
 		/// </summary>
 		public bool IsVisible { get; set; }

@@ -48,6 +48,8 @@ namespace Balder.Core
 			}
 		}
 
+		public NodeCollection RenderableNodes { get { return _renderableNodes;  } }
+
 
 		public Color CalculateColorForVector(IViewport viewport, Vector vector, Vector normal)
 		{

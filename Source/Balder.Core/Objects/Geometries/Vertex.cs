@@ -18,6 +18,8 @@ namespace Balder.Core.Objects.Geometries
 			Normal = new Math.Vector();
 		}
 
+		public static Vertex Zero = new Vertex(0,0,0);
+
 		public Vector Vector;
 		public Vector TransformedVector;
 		public Vector TranslatedVector;

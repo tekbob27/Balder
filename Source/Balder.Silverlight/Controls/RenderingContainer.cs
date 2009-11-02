@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Balder.Core;
 using Balder.Core.Display;
+using Balder.Core.Interfaces;
 using Balder.Core.Runtime;
 using Balder.Silverlight.Helpers;
 using Balder.Silverlight.Services;
@@ -48,6 +49,8 @@ namespace Balder.Silverlight.Controls
 
 			Display = EngineRuntime.Instance.CreateDisplay();
 			Game = EngineRuntime.Instance.RegisterGame<RenderingContainerGame>(Display);
+			Viewport = Game.Viewport;
+			Scene = Game.Scene;
 
 			Game.Updated += (g) => Updated(this);
 
@@ -94,7 +97,9 @@ namespace Balder.Silverlight.Controls
 			}
 		}
 
+		public IViewport Viewport { get; private set; }
 		public IDisplay Display { get; private set; }
+		public Scene Scene { get; private set; }
 		public Game Game { get; private set; }
 		public Camera Camera { get { return Game.Camera;  } }
 	}

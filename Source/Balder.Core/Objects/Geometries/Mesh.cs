@@ -18,6 +18,16 @@ namespace Balder.Core.Objects.Geometries
 		{
 			var loader = _assetLoaderService.GetLoader<Geometry>(assetName);
 			_geometries = loader.Load(assetName);
+
+			var boundingSphere = new BoundingSphere(Vector.Zero,0);
+			for( var geometryIndex=0; geometryIndex<_geometries.Length; geometryIndex++ )
+			{
+				var geometry = _geometries[geometryIndex];
+				geometry.InitializeBoundingSphere();
+				boundingSphere = BoundingSphere.CreateMerged(boundingSphere, geometry.BoundingSphere);
+			}
+			//boundingSphere = new BoundingSphere(Vector.Zero, 100);
+			BoundingSphere = boundingSphere;
 		}
 
 		public override void Render(IViewport viewport, Matrix view, Matrix projection)

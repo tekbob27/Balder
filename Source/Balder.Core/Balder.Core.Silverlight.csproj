@@ -97,6 +97,13 @@
     <Compile Include="Extensions\ImageFormatExtensions.cs" />
     <Compile Include="Extensions\ViewportExtensions.cs" />
     <Compile Include="Extensions\WaitHandleExtensions.cs" />
+    <Compile Include="Math\BoundingBox.cs" />
+    <Compile Include="Math\BoundingFrustum.cs" />
+    <Compile Include="Math\BoundingSphere.cs" />
+    <Compile Include="Math\ContainmentType.cs" />
+    <Compile Include="Math\Gjk.cs" />
+    <Compile Include="Math\PlaneIntersectionType.cs" />
+    <Compile Include="Math\Ray.cs" />
     <Compile Include="Objects\Flat\ISpriteContext.cs" />
     <Compile Include="ColorSpace.cs" />
     <Compile Include="ColorSpaces.cs" />

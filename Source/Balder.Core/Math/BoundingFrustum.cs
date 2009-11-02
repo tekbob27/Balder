@@ -43,10 +43,10 @@ namespace Balder.Core.Math
 
 		private static Ray ComputeIntersectionLine(ref Plane p1, ref Plane p2)
 		{
-			Ray ray = new Ray();
-			ray.Direction = Vector.Cross(p1.Normal, p2.Normal);
-			float num = ray.Direction.LengthSquared();
-			ray.Position = (Vector)(Vector.Cross((Vector)((-p1.Distance * p2.Normal) + (p2.Distance * p1.Normal)), ray.Direction) / num);
+			var direction = Vector.Cross(p1.Normal, p2.Normal);
+			var length = direction.LengthSquared();
+			var position = (Vector)(Vector.Cross((Vector)((-p1.Distance * p2.Normal) + (p2.Distance * p1.Normal)), direction) / length);
+			var ray = new Ray(position,direction);
 			return ray;
 		}
 

@@ -446,7 +446,7 @@ namespace Balder.Core.Math
 
 		public BoundingSphere Transform(Matrix matrix)
 		{
-			var center = Vector.Transform(this.Center, matrix);
+			var center = Vector.Transform(Center, matrix);
 			float num4 = ((matrix[0, 0] * matrix[0, 0]) + (matrix[0, 1] * matrix[0, 1])) + (matrix[0, 2] * matrix[0, 2]);
 			float num3 = ((matrix[1, 0] * matrix[1, 0]) + (matrix[1, 1] * matrix[1, 1])) + (matrix[1, 2] * matrix[1, 2]);
 			float num2 = ((matrix[2, 0] * matrix[2, 0]) + (matrix[2, 1] * matrix[2, 1])) + (matrix[2, 2] * matrix[2, 2]);

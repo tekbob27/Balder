@@ -76,6 +76,7 @@
     <Compile Include="Fakes\SpriteFrameContext.cs" />
     <Compile Include="Fakes\TargetDevice.cs" />
     <Compile Include="Fakes\Viewport.cs" />
+    <Compile Include="Math\BoundingSphereTests.cs" />
     <Compile Include="Math\FrustumTests.cs" />
     <Compile Include="Math\PlaneTests.cs" />
     <Compile Include="Math\RayTests.cs" />

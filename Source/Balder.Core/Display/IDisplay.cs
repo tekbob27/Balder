@@ -13,9 +13,11 @@ namespace Balder.Core.Display
 		event EventHandler Draw;
 		event EventHandler Render;
 		event EventHandler Update;
+		event EventHandler Initialized;
 
 		Color BackgroundColor { get; set; }
 
+		IViewport CreateViewport();
 		IViewport CreateViewport(int xpos, int ypos, int width, int height);
 	}
 }

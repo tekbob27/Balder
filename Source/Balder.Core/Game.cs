@@ -17,18 +17,9 @@ namespace Balder.Core
 
 	public class Game : Actor
 	{
-		public static Dimension DefaultDisplayDimension;
-
 		public event GameEvent Updated = (g) => { };
 
-
 		private ActorCollection Actors { get; set; }
-
-		static Game()
-		{
-			DefaultDisplayDimension = new Dimension {Width = 640, Height = 480};
-		}
-
 
 		protected Game()
 		{
@@ -38,24 +29,25 @@ namespace Balder.Core
 		private void SetupDefaults()
 		{
 			Scene = new Scene();
-			Viewport = Display.CreateViewport(0, 0, DefaultDisplayDimension.Width, DefaultDisplayDimension.Height);
+			Display.Initialized += Display_Initialized;
 			Display.BackgroundColor = Color.FromArgb(0xff, 0xff, 0xff, 0xff);
-			Camera = new Camera();
-			Camera.Prepare(Viewport);
-			Viewport.Camera = Camera;
-			Viewport.Scene = Scene;
 
 			Actors = new ActorCollection();
+		}
+
+		void Display_Initialized(object sender, EventArgs e)
+		{
+			Viewport = Display.CreateViewport();
+			Camera = new Camera();
+			Camera.Prepare(Viewport);
+
+			Viewport.Camera = Camera;
+			Viewport.Scene = Scene;
 		}
 
 		public Scene Scene { get; private set; }
 		public IViewport Viewport { get; private set; }
 		public Camera Camera { get; private set; }
-
-		#region Protected properties
-
-		protected virtual Dimension DisplayDimension { get { return DefaultDisplayDimension; } }
-		#endregion
 
 
 		protected void AddActor(Actor actor)

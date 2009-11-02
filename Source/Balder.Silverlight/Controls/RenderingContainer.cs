@@ -49,8 +49,6 @@ namespace Balder.Silverlight.Controls
 
 			Display = EngineRuntime.Instance.CreateDisplay();
 			Game = EngineRuntime.Instance.RegisterGame<RenderingContainerGame>(Display);
-			Viewport = Game.Viewport;
-			Scene = Game.Scene;
 
 			Game.Updated += (g) => Updated(this);
 
@@ -58,6 +56,10 @@ namespace Balder.Silverlight.Controls
 			Content = display;
 
 			display.Initialize(this);
+
+			Viewport = Game.Viewport;
+			Scene = Game.Scene;
+
 			InitializeProperties();
 		}
 

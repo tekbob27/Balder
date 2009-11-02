@@ -154,33 +154,6 @@ namespace Balder.Core.SoftwareRendering
 			TransformAndTranslateVertices(viewport,view,projection,world);
 			RenderFaces(viewport, view, projection, world);
 			RenderLines(viewport, view, projection, world);
-
-
-			var mousePosition = new Point(1,1); //viewport.Width/2, viewport.Height/2);
-			var nearSource = new Vector((float)mousePosition.X, (float)mousePosition.Y, 0f);
-			var farSource = new Vector((float)mousePosition.X, (float)mousePosition.Y, 1f);
-
-
-			var nullMatrix = Matrix.CreateTranslation(new Vector(0f, 0f, 0f));
-			var nearPoint = viewport.Unproject(nearSource, projection, view, nullMatrix);
-			var farPoint = viewport.Unproject(farSource, projection, view, nullMatrix);
-
-			var direction = farPoint - nearPoint;
-			direction.Normalize();
-
-			var nearVertex = new Vertex(nearSource.X, nearSource.Y, nearSource.Z);
-			var farVertex = new Vertex(farSource.X, farSource.Y, farSource.Z);
-
-			TransformAndTranslateVertex(ref nearVertex, viewport, view, projection, nullMatrix);
-			TransformAndTranslateVertex(ref farVertex, viewport, view, projection, nullMatrix);
-
-			Shapes.DrawLine(viewport,
-							BufferManager.Instance.Current,
-							(int)nearVertex.TranslatedScreenCoordinates.X,
-							(int)nearVertex.TranslatedScreenCoordinates.Y,
-							(int)farVertex.TranslatedScreenCoordinates.X,
-							(int)farVertex.TranslatedScreenCoordinates.Y,
-							Colors.White);
 		}
 
 		private void TransformAndTranslateVertex(ref Vertex vertex, IViewport viewport, Matrix view, Matrix projection, Matrix world)
@@ -190,7 +163,7 @@ namespace Balder.Core.SoftwareRendering
 			vertex.MakeScreenCoordinates();
 			vertex.TransformedVectorNormalized = vertex.TransformedNormal;
 			vertex.TransformedVectorNormalized.Normalize();
-			vertex.DepthBufferAdjustedZ = -vertex.TransformedVector.Z / viewport.Camera.DepthDivisor;
+			vertex.DepthBufferAdjustedZ =  -vertex.TransformedVector.Z  / viewport.Camera.DepthDivisor;
 			vertex.Color = viewport.Scene.CalculateColorForVector(viewport, vertex.Vector, vertex.Normal);
 		}
 

@@ -16,6 +16,14 @@ namespace Balder.Silverlight.Services
 
 	public class Display : Canvas, IDisplay
 	{
+		private static readonly EventArgs DefaultEventArgs = new EventArgs();
+
+		public event EventHandler Draw = (s, e) => { };
+		public event EventHandler Render = (s, e) => { };
+		public event EventHandler Update = (s, e) => { };
+		public event EventHandler Initialized = (s, e) => { };
+
+
 		private IBuffers _buffers;
 		private Image _image;
 		private BitmapImage _imageSource;
@@ -149,6 +157,8 @@ namespace Balder.Silverlight.Services
 			AutomaticallyAdjustDimensions();
 			_image = new Image { Stretch = Stretch.None };
 
+			Initialized(this, DefaultEventArgs);
+
 			_buffers = BufferManager.Instance.Create<FrameBuffer>((int)Width, (int)Height);
 
 			_image.Source = _buffers.FrameBuffer.BitmapSource;
@@ -159,13 +169,7 @@ namespace Balder.Silverlight.Services
 			_image.Width = Width;
 			_image.Height = Height;
 
-
 			Children.Add(_image);
-		}
-
-		private void DisplayLoaded(object sender, RoutedEventArgs e)
-		{
-			Initialize();
 		}
 
 
@@ -183,9 +187,20 @@ namespace Balder.Silverlight.Services
 		}
 
 
-		public event EventHandler Draw = (s, e) => { };
-		public event EventHandler Render = (s, e) => { };
-		public event EventHandler Update = (s, e) => { };
+
+		public IViewport CreateViewport()
+		{
+			var viewport = new Viewport();
+
+			if( 0 != Width && !Width.Equals(double.NaN) &&
+				0 != Height && !Height.Equals(double.NaN) )
+			{
+				viewport.Width = (int) Width;
+				viewport.Height = (int) Height;
+			}
+			Children.Add(viewport);
+			return viewport;
+		}
 
 		public IViewport CreateViewport(int xpos, int ypos, int width, int height)
 		{
@@ -203,13 +218,13 @@ namespace Balder.Silverlight.Services
 
 		private void OnDraw()
 		{
-			Render(this, null);
-			Draw(this, null);
+			Render(this, DefaultEventArgs);
+			Draw(this, DefaultEventArgs);
 		}
 
 		private void OnUpdate()
 		{
-			Update(this, null);
+			Update(this, DefaultEventArgs);
 		}
 	}
 }

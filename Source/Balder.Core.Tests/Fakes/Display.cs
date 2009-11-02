@@ -17,7 +17,14 @@ namespace Balder.Core.Tests.Fakes
 		public event EventHandler Draw;
 		public event EventHandler Render;
 		public event EventHandler Update;
-		
+		public event EventHandler Initialized;
+
+
+		public IViewport CreateViewport()
+		{
+			var viewport = new Viewport();
+			return viewport;
+		}
 
 		public IViewport CreateViewport(int xpos, int ypos, int width, int height)
 		{

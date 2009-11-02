@@ -13,10 +13,12 @@ namespace Balder.Core.SoftwareRendering
 		public Vertex[] Vertices { get; private set; }
 		public Face[] Faces { get; private set; }
 		public TextureCoordinate[] TextureCoordinates { get; private set; }
+		public Line[] Lines { get; private set; }
 
 		public int FaceCount { get { return Faces.Length; } }
 		public int VertexCount { get { return Vertices.Length; } }
 		public int TextureCoordinateCount { get { return TextureCoordinates.Length; } }
+		public int LineCount { get { return Lines.Length; } }
 
 		public void AllocateFaces(int count)
 		{
@@ -69,6 +71,21 @@ namespace Balder.Core.SoftwareRendering
 		public Vertex[] GetVertices()
 		{
 			return Vertices;
+		}
+
+		public void AllocateLines(int count)
+		{
+			Lines = new Line[count];
+		}
+
+		public void SetLine(int index, Line line)
+		{
+			Lines[index] = line;
+		}
+
+		public Line[] GetLines()
+		{
+			return Lines;
 		}
 
 		public void AllocateTextureCoordinates(int count)
@@ -130,7 +147,13 @@ namespace Balder.Core.SoftwareRendering
 
 		public void Render(IViewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
-			
+			TransformAndTranslateVertices(viewport,view,projection,world);
+			RenderFaces(viewport, view, projection, world);
+			RenderLines(viewport, view, projection, world);
+		}
+
+		private void TransformAndTranslateVertices(IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		{
 			for (var vertexIndex = 0; vertexIndex < Vertices.Length; vertexIndex++)
 			{
 				var vertex = Vertices[vertexIndex];
@@ -143,7 +166,14 @@ namespace Balder.Core.SoftwareRendering
 				vertex.Color = viewport.Scene.CalculateColorForVector(viewport, vertex.Vector, vertex.Normal);
 				Vertices[vertexIndex] = vertex;
 			}
-			
+		}
+
+		private void RenderFaces(IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		{
+			if( null == Faces )
+			{
+				return;
+			}
 			for (var faceIndex = 0; faceIndex < Faces.Length; faceIndex++)
 			{
 				var face = Faces[faceIndex];
@@ -172,6 +202,29 @@ namespace Balder.Core.SoftwareRendering
 				{
 					//actualViewport.DebugRenderFace(face, a, b, c);	
 				}
+			}
+		}
+
+		private void RenderLines(IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		{
+			if( null == Lines )
+			{
+				return;
+			}
+			for( var lineIndex=0; lineIndex< Lines.Length; lineIndex++)
+			{
+				var line = Lines[lineIndex];
+				var a = Vertices[line.A];
+				var b = Vertices[line.B];
+				var xstart = a.TranslatedScreenCoordinates.X;
+				var ystart = a.TranslatedScreenCoordinates.Y;
+				var xend = b.TranslatedScreenCoordinates.X;
+				var yend = b.TranslatedScreenCoordinates.Y;
+				Shapes.DrawLine(BufferManager.Instance.Current, 
+								(int)xstart, 
+								(int)ystart, 
+								(int)xend, 
+								(int)yend, line.Color);
 			}
 		}
 	}

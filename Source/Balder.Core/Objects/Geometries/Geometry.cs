@@ -1,4 +1,5 @@
 ﻿using Balder.Core.Assets;
+using Balder.Core.Debug;
 using Balder.Core.Interfaces;
 using Balder.Core.Math;
 using Balder.Core.Services;
@@ -13,6 +14,10 @@ namespace Balder.Core.Objects.Geometries
 
 		[Inject]
 		public IGeometryContext GeometryContext { get; set; }
+
+		[Inject]
+		public IDebugRenderer DebugRenderer { get; set; }
+
 
 
 		public void InitializeBoundingSphere()
@@ -52,9 +57,8 @@ namespace Balder.Core.Objects.Geometries
 			var length = highestVector - lowestVector;
 			var center = lowestVector + (length / 2);
 
-			BoundingSphere = new BoundingSphere(center, length.Length);
+			BoundingSphere = new BoundingSphere(center, length.Length/2);
 		}
-
 
 		public override void Render(IViewport viewport, Matrix view, Matrix projection)
 		{
@@ -68,6 +72,7 @@ namespace Balder.Core.Objects.Geometries
 			var localToWorld = World * xRotation * yRotation * zRotation * translation * scale;
 			*/
 
+			DebugRenderer.RenderBoundingSphere(BoundingSphere, viewport, view, projection, World);
 			GeometryContext.Render(viewport, view, projection, World);
 		}
 

@@ -11,6 +11,7 @@ namespace Balder.Core.Services
 		Type GeometryContextType { get; }
 		Type ImageContextType { get; }
 		Type SpriteContextType { get; }
+		Type ShapeContextType { get; }
 		Type FileLoaderType { get; }
 		Type DisplayType { get;  }
 

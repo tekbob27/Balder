@@ -312,6 +312,10 @@ namespace Balder.Core.Math
 			return matrix;
 		}
 
+		public static Matrix CreateScale(float scale)
+		{
+			return CreateScale(new Vector(scale, scale, scale));
+		}
 
 		public static Matrix CreateScale(Vector scales)
 		{

@@ -3,6 +3,7 @@ using Balder.Core;
 using Balder.Core.Assets;
 using Balder.Core.Display;
 using Balder.Core.Services;
+using Balder.Core.SoftwareRendering.Rendering;
 using Balder.Silverlight.Implementation;
 using Balder.Core.Runtime;
 using Balder.Core.SoftwareRendering;
@@ -37,9 +38,9 @@ namespace Balder.Silverlight.Services
 		public Type GeometryContextType { get { return typeof (GeometryContext); } }
 		public Type ImageContextType { get { return typeof (ImageContext); } }
 		public Type SpriteContextType { get { return typeof (SpriteContext); } }
+		public Type ShapeContextType { get { return typeof (ShapeContext); } }
 		public Type DisplayType { get { return typeof (Display); } }
 		public Type FileLoaderType { get { return typeof (FileLoader); } }
-
 		
 
 		public void RegisterAssetLoaders(IAssetLoaderService assetLoaderService)

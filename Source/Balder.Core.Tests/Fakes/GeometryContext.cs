@@ -15,6 +15,10 @@ namespace Balder.Core.Tests.Fakes
 		public int FaceCount { get { return Faces.Length; } }
 		public int VertexCount { get { return Vertices.Length; }}
 		public int TextureCoordinateCount { get { return TextureCoordinates.Length; }}
+		public int LineCount
+		{
+			get { throw new NotImplementedException(); }
+		}
 
 		public void AllocateFaces(int count)
 		{
@@ -56,6 +60,21 @@ namespace Balder.Core.Tests.Fakes
 		public Vertex[] GetVertices()
 		{
 			return Vertices;
+		}
+
+		public void AllocateLines(int count)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetLine(int index, Line line)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Line[] GetLines()
+		{
+			throw new NotImplementedException();
 		}
 
 		public void AllocateTextureCoordinates(int count)

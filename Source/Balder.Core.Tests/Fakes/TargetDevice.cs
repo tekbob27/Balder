@@ -19,6 +19,11 @@ namespace Balder.Core.Tests.Fakes
 		public Type GeometryContextType { get { return typeof(GeometryContext); } }
 		public Type ImageContextType { get { return typeof(ImageContext); } }
 		public Type SpriteContextType { get { return typeof (SpriteContext); } }
+		public Type ShapeContextType
+		{
+			get { throw new NotImplementedException(); }
+		}
+
 		public Type FileLoaderType { get { return typeof(FileLoader); } }
 		public Type DisplayType { get { return typeof (Display); } }
 

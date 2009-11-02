@@ -39,8 +39,6 @@ namespace Balder.Core.Objects.Geometries
 			C = c;
 		}
 
-
-
 		public void Transform(Matrix world, Matrix view)
 		{
 			TransformedNormal = Vector.TransformNormal(Normal, world);

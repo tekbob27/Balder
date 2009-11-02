@@ -90,6 +90,10 @@
     <Compile Include="Assets\IAssetLoader.cs" />
     <Compile Include="Collections\ActorCollection.cs" />
     <Compile Include="Content\ContentCreator.cs" />
+    <Compile Include="Debug\BoundingSphereDebugShape.cs" />
+    <Compile Include="Debug\DebugRenderer.cs" />
+    <Compile Include="Debug\DebugShape.cs" />
+    <Compile Include="Debug\IDebugRenderer.cs" />
     <Compile Include="Dimension.cs" />
     <Compile Include="Exceptions\AssetNotFoundException.cs" />
     <Compile Include="Exceptions\UnsupportedImageFormatException.cs" />
@@ -116,6 +120,8 @@
     <Compile Include="Imaging\ImageFormat.cs" />
     <Compile Include="Imaging\ImageHelper.cs" />
     <Compile Include="Imaging\ImagePalette.cs" />
+    <Compile Include="Objects\Geometries\Line.cs" />
+    <Compile Include="Rendering\IShapeContext.cs" />
     <Compile Include="Runtime\ConstructorArgument.cs" />
     <Compile Include="Runtime\IObjectFactory.cs" />
     <Compile Include="Runtime\NInjectExtensions.cs" />

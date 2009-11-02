@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using Balder.Core.Extensions;
 using Balder.Core.Math;
 using Balder.Silverlight.Controls;
@@ -46,9 +47,15 @@ namespace Balder.Silverlight.TestApp
 		}
 
 		private float _angle = 0f;
+		private double cameraSin;
 
 		private void Updated(RenderingContainer renderingContainer)
 		{
+			renderingContainer.Camera.Position.X = (float)Math.Sin(cameraSin) * 50f;
+			renderingContainer.Camera.Position.Y = -10; // ((float)Math.Sin(cameraSin) * 15f) - 20f;
+			renderingContainer.Camera.Position.Z = (float)Math.Cos(cameraSin) * 50f;
+			cameraSin += 0.05;
+
 			//_audi.Node.World = Matrix.CreateRotationY(_angle);
 			_angle += 0.5f;
 			//_renderingContainer.Camera.Position = new Vector(0,-5,-20);

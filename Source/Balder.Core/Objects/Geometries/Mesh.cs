@@ -1,6 +1,8 @@
 ﻿using Balder.Core.Assets;
+using Balder.Core.Debug;
 using Balder.Core.Interfaces;
 using Balder.Core.Math;
+using Ninject.Core;
 
 namespace Balder.Core.Objects.Geometries
 {
@@ -8,12 +10,14 @@ namespace Balder.Core.Objects.Geometries
 	{
 		private Geometry[] _geometries;
 		private readonly IAssetLoaderService _assetLoaderService;
+		private readonly IDebugRenderer _debugRenderer;
 
-		public Mesh(IAssetLoaderService assetLoaderService)
+		public Mesh(IAssetLoaderService assetLoaderService, IDebugRenderer debugRenderer)
 		{
 			_assetLoaderService = assetLoaderService;
+			_debugRenderer = debugRenderer;
 		}
-		
+
 		public void Load(string assetName)
 		{
 			var loader = _assetLoaderService.GetLoader<Geometry>(assetName);
@@ -36,8 +40,9 @@ namespace Balder.Core.Objects.Geometries
 			{
 				var geometry = _geometries[geometryIndex];
 
-				var localWorld = World*geometry.World;
+				var localWorld = World * geometry.World;
 
+				_debugRenderer.RenderBoundingSphere(BoundingSphere, viewport, view, projection, localWorld);
 				geometry.GeometryContext.Render(viewport,view,projection,localWorld);
 			}
 		}

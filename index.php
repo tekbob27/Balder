@@ -1,4 +1,6 @@
 <html>
-	<?php include("header.inc"); ?>
 
+<body>
+	<?php include("header.inc"); ?>
+</body>
 </html>

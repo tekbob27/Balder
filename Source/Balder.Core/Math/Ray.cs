@@ -103,6 +103,28 @@ namespace Balder.Core.Math
 
 		public float? Intersects(BoundingSphere sphere)
 		{
+			var distance = sphere.Center - Position;
+			var lengthSquared = distance.LengthSquared();
+			var radiusSquared = sphere.Radius*sphere.Radius;
+			if( lengthSquared <= radiusSquared )
+			{
+				return 0f;
+			}
+			var dotProduct = Vector.Dot(distance, Direction);
+			if( dotProduct < 0f )
+			{
+				return null;
+			}
+
+			var result = lengthSquared - (dotProduct * dotProduct);
+			if( result > radiusSquared )
+			{
+				return null;
+			}
+			var actual = (float) System.Math.Sqrt((double) radiusSquared - result);
+			return actual;
+
+			/*
 			float num5 = sphere.Center.X - this.Position.X;
 			float num4 = sphere.Center.Y - this.Position.Y;
 			float num3 = sphere.Center.Z - this.Position.Z;
@@ -124,6 +146,7 @@ namespace Balder.Core.Math
 			}
 			float num8 = (float)System.Math.Sqrt((double)(num2 - num6));
 			return new float?(num - num8);
+			 * */
 		}
 
 		public void Intersects(ref BoundingSphere sphere, out float? result)

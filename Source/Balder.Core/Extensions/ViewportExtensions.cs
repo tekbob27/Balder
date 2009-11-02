@@ -16,7 +16,8 @@ namespace Balder.Core.Extensions
 
 		public static Vector Unproject(this IViewport viewport, Vector source, Matrix projection, Matrix view, Matrix world)
 		{
-			var matrix = Matrix.Invert((world * view) * projection);
+			var multipliedMatrix = (world*view)*projection;
+			var matrix = Matrix.Invert(multipliedMatrix);
 			source.X = (((source.X - viewport.XPosition) / ((float)viewport.Width)) * 2f) - 1f;
 			source.Y = -((((source.Y - viewport.YPosition) / ((float)viewport.Height)) * 2f) - 1f);
 			source.Z = (source.Z - MinDepth) / (MaxDepth - MinDepth);

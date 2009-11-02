@@ -4,12 +4,13 @@ using System.Windows.Media;
 using System.Drawing;
 #endif
 using Balder.Core.Extensions;
+using Balder.Core.Interfaces;
 
 namespace Balder.Core.SoftwareRendering
 {
 	public static class Shapes
 	{
-		public static void DrawLine(IBuffers buffers, int xstart, int ystart, int xend, int yend, Color color)
+		public static void DrawLine(IViewport viewport, IBuffers buffers, int xstart, int ystart, int xend, int yend, Color color)
 		{
 			var colorAsInt = (int)color.ToUInt32();
 
@@ -31,8 +32,11 @@ namespace Balder.Core.SoftwareRendering
 
 				for( var pixel=0; pixel<actualLength; pixel++)
 				{
-					var bufferOffset = (buffers.FrameBuffer.Stride*(int)currentY) + (int)currentX;
-					buffers.FrameBuffer.Pixels[bufferOffset] = colorAsInt;
+					if (currentX > 0 && currentY > 0 && currentX < viewport.Width && currentY < viewport.Height)
+					{
+						var bufferOffset = (buffers.FrameBuffer.Stride*(int) currentY) + (int) currentX;
+						buffers.FrameBuffer.Pixels[bufferOffset] = colorAsInt;
+					}
 
 					currentX += slopeX;
 					currentY += slopeY;

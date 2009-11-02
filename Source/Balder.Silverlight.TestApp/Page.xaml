@@ -11,5 +11,26 @@
 				</balder:RenderedNodeCollection>
 			</balder:RenderingContainer.Nodes>
 		</balder:RenderingContainer>
+		
+		<StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Width="400" Height="150">
+			<StackPanel.Resources>
+				<Style x:Key="DebugFont" TargetType="TextBlock">
+					<Style.Setters>
+						<Setter Property="FontFamily" Value="Verdana"/>
+						<Setter Property="FontSize" Value="15"/>
+						<Setter Property="Foreground" Value="White"/>
+					</Style.Setters>
+					
+				</Style>
+			</StackPanel.Resources>
+			<StackPanel.Background>
+				<SolidColorBrush Opacity="0.5" Color="Gray"/>
+			</StackPanel.Background>
+			<TextBlock x:Name="_hitCounter" Style="{StaticResource DebugFont}" Text="0" />
+			<TextBlock x:Name="_mousePosition" Style="{StaticResource DebugFont}" Text="0" />
+			<TextBlock x:Name="_nearPosition"  Style="{StaticResource DebugFont}" Text="0" />
+			<TextBlock x:Name="_farPosition"  Style="{StaticResource DebugFont}" Text="0" />
+		</StackPanel>
+		
 	</Grid>
 </UserControl>

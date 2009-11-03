@@ -20,6 +20,11 @@ namespace Balder.Core.Tests.Fakes
 		public event EventHandler Initialized;
 
 
+		public bool IsInitialized
+		{
+			get { throw new NotImplementedException(); }
+		}
+
 		public IViewport CreateViewport()
 		{
 			var viewport = new Viewport();

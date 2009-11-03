@@ -97,11 +97,12 @@ namespace Balder.Silverlight.Services
 			{
 				if (_root is Panel)
 				{
-					((Panel)_root).Children.Add(this);
+
+					((Panel)_root).Children.Insert(0,this);
 				}
 				else if (_root is ItemsControl)
 				{
-					((ItemsControl)_root).Items.Add(this);
+					((ItemsControl)_root).Items.Insert(0,this);
 				}
 			}
 		}
@@ -170,6 +171,8 @@ namespace Balder.Silverlight.Services
 			_image.Height = Height;
 
 			Children.Add(_image);
+
+			IsInitialized = true;
 		}
 
 
@@ -187,7 +190,8 @@ namespace Balder.Silverlight.Services
 		}
 
 
-
+		public bool IsInitialized { get; private set; }
+		
 		public IViewport CreateViewport()
 		{
 			var viewport = new Viewport();

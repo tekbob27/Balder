@@ -18,7 +18,7 @@ namespace Balder.Silverlight.Services
 			EngineRuntime.Instance.Initialize(targetDevice);
 		}
 
-		public static void Initialize<T>()
+		public static T Initialize<T>()
 			where T:Game
 		{
 			var targetDevice = new TargetDevice();
@@ -26,7 +26,8 @@ namespace Balder.Silverlight.Services
 
 			var display = new Display();
 			display.Initialize();
-			EngineRuntime.Instance.RegisterGame<T>(display);
+			var game = EngineRuntime.Instance.RegisterGame<T>(display);
+			return game;
 		}
 
 

@@ -32,10 +32,12 @@ namespace Balder.Core.Objects.Geometries
 
 		public void Transform(Matrix world, Matrix view)
 		{
-			TransformedVector = Vector.Transform(Vector, world);
-			TransformedVector = Vector.Transform(TransformedVector, view);
-			TransformedNormal = Vector.TransformNormal(Normal, world);
-			TransformedNormal = Vector.TransformNormal(TransformedNormal, view);
+			//var matrix = world*view;
+			var matrix = view;
+			TransformedVector = Vector.Transform(Vector, matrix);
+			//TransformedVector = Vector.Transform(TransformedVector, view);
+			TransformedNormal = Vector.TransformNormal(Normal, matrix);
+			//TransformedNormal = Vector.TransformNormal(TransformedNormal, view);
 		}
 
 

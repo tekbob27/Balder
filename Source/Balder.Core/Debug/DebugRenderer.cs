@@ -7,7 +7,7 @@ using Balder.Core.Interfaces;
 using Balder.Core.Math;
 using Balder.Core.Runtime;
 using Ninject.Core;
-using Matrix=Balder.Core.Math.Matrix;
+using Matrix = Balder.Core.Math.Matrix;
 
 namespace Balder.Core.Debug
 {
@@ -35,7 +35,7 @@ namespace Balder.Core.Debug
 		public void RenderBoundingSphere(BoundingSphere sphere, IViewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
 			var scaleMatrix = Matrix.CreateScale(sphere.Radius);
-			var translationMatrix = Matrix.CreateTranslation(sphere.Center);
+			var translationMatrix = Matrix.CreateTranslation(sphere.Center) * world;
 			var rotateYMatrix = Matrix.CreateRotationY(90);
 			var rotateXMatrix = Matrix.CreateRotationX(90);
 

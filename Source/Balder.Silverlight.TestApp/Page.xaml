@@ -4,44 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     >
-	<Grid x:Name="LayoutRoot">
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-			<balder:RenderingContainer x:Name="_renderingContainer" Width="800" Height="600" BackgroundColor="Black" Updated="Updated">
-				<balder:RenderingContainer.Nodes>
-					<balder:RenderedNodeCollection>
-						<balder:Mesh x:Name="_audi" AssetName="audi.ASE"/>
-					</balder:RenderedNodeCollection>
-				</balder:RenderingContainer.Nodes>
-			</balder:RenderingContainer>
+	<Grid x:Name="LayoutRoot" Width="800" Height="600" HorizontalAlignment="Left" VerticalAlignment="Top">
+		<StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+			<StackPanel.Resources>
+				<Style x:Key="DebugFont" TargetType="TextBlock">
+					<Style.Setters>
+						<Setter Property="FontFamily" Value="Verdana"/>
+						<Setter Property="FontSize" Value="12"/>
+						<Setter Property="Foreground" Value="White"/>
+					</Style.Setters>
 
-			<StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
-				<StackPanel.Resources>
-					<Style x:Key="DebugFont" TargetType="TextBlock">
-						<Style.Setters>
-							<Setter Property="FontFamily" Value="Verdana"/>
-							<Setter Property="FontSize" Value="12"/>
-							<Setter Property="Foreground" Value="White"/>
-						</Style.Setters>
-
-					</Style>
-				</StackPanel.Resources>
-				<StackPanel.Background>
-					<SolidColorBrush Opacity="0.5" Color="Gray"/>
-				</StackPanel.Background>
-				<TextBlock x:Name="_hitCounter" Style="{StaticResource DebugFont}" Text="0" />
-				<TextBlock x:Name="_mousePosition" Style="{StaticResource DebugFont}" Text="0"  />
-				<TextBlock x:Name="_nearPosition"  Style="{StaticResource DebugFont}" Text="0" />
-				<TextBlock x:Name="_farPosition"  Style="{StaticResource DebugFont}" Text="0" />
-				<TextBlock x:Name="_spherePosition"  Style="{StaticResource DebugFont}" Text="0" />
-				<TextBlock x:Name="_transformedSpherePosition"  Style="{StaticResource DebugFont}" Text="0" />
-
-				<TextBlock x:Name="_cameraPosition"  Style="{StaticResource DebugFont}" Text="0" />
-				<TextBlock x:Name="_cameraTarget"  Style="{StaticResource DebugFont}" Text="0" />
-				<TextBlock x:Name="_intersects" Style="{StaticResource DebugFont}" Text="0" />
-				
-				<TextBlock x:Name="_viewMatrix" Style="{StaticResource DebugFont}" Text="0"/>
-				<TextBlock x:Name="_projectionMatrix" Style="{StaticResource DebugFont}" Text="0"/>
-			</StackPanel>
+				</Style>
+			</StackPanel.Resources>
+			<StackPanel.Background>
+				<SolidColorBrush Opacity="0.5" Color="Gray"/>
+			</StackPanel.Background>
+			<TextBlock x:Name="_hitObject" Style="{StaticResource DebugFont}" Text="0" />
+			<TextBlock x:Name="_mousePosition" Style="{StaticResource DebugFont}" Text="0" />
 		</StackPanel>
 
 	</Grid>

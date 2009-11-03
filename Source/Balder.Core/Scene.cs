@@ -1,4 +1,5 @@
 ﻿#if(SILVERLIGHT)
+using System;
 using System.Windows.Media;
 #else
 using System.Drawing;
@@ -37,14 +38,24 @@ namespace Balder.Core
 			node.Scene = this;
 			if( node is RenderableNode )
 			{
-				_renderableNodes.Add(node);
+				lock( _renderableNodes )
+				{
+					_renderableNodes.Add(node);
+					
+				}
 				if( node is Sprite )
 				{
-					_flatNodes.Add(node);
+					lock( _flatNodes )
+					{
+						_flatNodes.Add(node);	
+					}
 				}
 			} else
 			{
-				_environmentalNodes.Add(node);
+				lock (_environmentalNodes)
+				{
+					_environmentalNodes.Add(node);
+				}
 			}
 		}
 
@@ -55,26 +66,40 @@ namespace Balder.Core
 		{
 			var color = AmbientColor.ToVector();
 
-			foreach( var node in _environmentalNodes )
+			lock (_environmentalNodes)
 			{
-				if( node is Light )
+				foreach (var node in _environmentalNodes)
 				{
-					var light = node as Light;
-					var currentLightResult = light.Calculate(viewport, vector, normal);
-					var currentLightResultAsVector = currentLightResult.ToVector();
-					color += currentLightResultAsVector;
+					if (node is Light)
+					{
+						var light = node as Light;
+						var currentLightResult = light.Calculate(viewport, vector, normal);
+						var currentLightResultAsVector = currentLightResult.ToVector();
+						color += currentLightResultAsVector;
+					}
 				}
+				return color.ToColorWithClamp();
 			}
-			return color.ToColorWithClamp();
 		}
+
+		public event EventHandler ObjectHitChanged = (s, e) => { };
+
+		public Node ObjectHit { get; private set; }
 
 		public void Render(IViewport viewport, Matrix view, Matrix projection)
 		{
-			foreach( RenderableNode node in _renderableNodes )
+			lock (_renderableNodes)
 			{
-				node.PrepareRender();
-				node.Render(viewport,view,projection);
+				foreach (RenderableNode node in _renderableNodes)
+				{
+					node.PrepareRender();
+					node.Render(viewport, view, projection);
+				}
 			}
+
+			var objectHit = GetNodeAtScreenCoordinate(viewport, MouseXPosition, MouseYPosition);
+			ObjectHit = objectHit;
+			ObjectHitChanged(this, null);
 		}
 
 		public int TotalVertexCount
@@ -140,21 +165,28 @@ namespace Balder.Core
 			var closestObjectDistance = float.MaxValue;
 			RenderableNode closestObject = null;
 
-			foreach (var node in RenderableNodes)
+			lock (_renderableNodes)
 			{
-				var transformedSphere = node.BoundingSphere.Transform(node.World);
-				var distance = pickRay.Intersects(transformedSphere);
-				if( distance.HasValue )
+				foreach (var node in _renderableNodes)
 				{
-					if( distance < closestObjectDistance )
+					var transformedSphere = node.BoundingSphere.Transform(node.World);
+					var distance = pickRay.Intersects(transformedSphere);
+					if (distance.HasValue)
 					{
-						closestObject = node as RenderableNode;
-						closestObjectDistance = distance.Value;
+						if (distance < closestObjectDistance)
+						{
+							closestObject = node as RenderableNode;
+							closestObjectDistance = distance.Value;
+						}
 					}
 				}
 			}
 
 			return closestObject;
 		}
+
+		
+		public int MouseXPosition { get; set; }
+		public int MouseYPosition { get; set; }
 	}
 }

@@ -29,7 +29,14 @@ namespace Balder.Core
 		private void SetupDefaults()
 		{
 			Scene = new Scene();
-			Display.Initialized += Display_Initialized;
+			if( Display.IsInitialized )
+			{
+				Display_Initialized(null,null);
+			} else
+			{
+				Display.Initialized += Display_Initialized;	
+			}
+			
 			Display.BackgroundColor = Color.FromArgb(0xff, 0xff, 0xff, 0xff);
 
 			Actors = new ActorCollection();

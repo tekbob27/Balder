@@ -133,36 +133,6 @@ namespace Balder.Core.Math
         }
 
 
-		/*
-		public Vector ApplyToVector(Vector position)
-		{
-			Vector outVector = new Vector();
-			//Create a new vector and make it 4d homogenous
-			vectorIn[0] = position.X;
-			vectorIn[1] = position.Y;
-			vectorIn[2] = position.Z;
-			vectorIn[3] = 1.0d;
-
-			for (int i = 0; i < 4; i++)
-			{
-				vectorOut[i] = 0.0d;
-				for (int j = 0; j < 4; j++)
-				{
-					vectorOut[i] += vectorIn[j] * this[i, j];
-				}
-			}
-
-			//Unhomogenize the result vector and return a 3d vector
-			outVector.X = vectorOut[0]/vectorOut[3];
-			outVector.Y = vectorOut[1]/vectorOut[3];
-			outVector.Z = vectorOut[2]/vectorOut[3];
-
-			return outVector;
-		}
-		 * */
-
-
-
         public static Matrix Identity
         {
 			get 
@@ -201,7 +171,7 @@ namespace Balder.Core.Math
 		public static Matrix CreatePerspectiveFieldOfView(float fieldOfView, float aspectRatio, float nearPlaneDistance, float farPlaneDistance)
 		{
 			Matrix matrix = new Matrix(); //Matrix.Identity);
-			float num = 1f / (float)System.Math.Tan(fieldOfView * 0.5);
+			float num = 1f / (float)System.Math.Tan((double)(fieldOfView * 0.5f));
 			float num9 = num / aspectRatio;
 			matrix[0, 0] = num9;
 			matrix[0, 1] = matrix[0, 2] = matrix[0, 3] = 0f;

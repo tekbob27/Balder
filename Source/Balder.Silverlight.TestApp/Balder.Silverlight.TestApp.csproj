@@ -122,6 +122,7 @@
     <Resource Include="Assets\audi.ASE" />
     <Resource Include="Assets\evolve.ASE" />
     <Resource Include="Assets\pumpkin.ASE" />
+    <Resource Include="Assets\box.ASE" />
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>

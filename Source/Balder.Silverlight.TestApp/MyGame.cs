@@ -21,15 +21,20 @@ namespace Balder.Silverlight.TestApp
 
 		public override void LoadContent()
 		{
-			var mesh = ContentManager.Load<Mesh>("pumpkin.ASE");
+			Mesh mesh;
+			mesh = ContentManager.Load<Mesh>("box.ASE");
+			mesh.Name = "Box1";
 			Scene.AddNode(mesh);
-
-
-
-			//mesh.World = Matrix.CreateScale(new Vector(10f, 10f, 10f));
-
-			_lightSprite = ContentManager.Load<Sprite>("sun.png");
-			//Scene.AddNode(_lightSprite);
+			mesh = ContentManager.Load<Mesh>("box.ASE");
+			mesh.World = Matrix.CreateTranslation(new Vector(300, 0, 0));
+			mesh.Name = "Box2";
+			Scene.AddNode(mesh);
+			
+			mesh = ContentManager.Load<Mesh>("box.ASE");
+			mesh.World = Matrix.CreateTranslation(new Vector(-300, 0, 0));
+			mesh.Name = "Box3";
+			 
+			Scene.AddNode(mesh);
 
 			Display.BackgroundColor = Color.FromArgb(0xff, 0, 0, 0);
 
@@ -44,27 +49,21 @@ namespace Balder.Silverlight.TestApp
 			Scene.AddNode(light);
 		}
 
-		private double sinPos;
-		private double cameraSin;
+		private float zPos = -1050;
+		private double pos = 0;
 
 		public override void Update()
 		{
-			Camera.Position.X = (float)Math.Sin(cameraSin) * 430f;
-			Camera.Position.Y = -60; // ((float)Math.Sin(cameraSin) * 15f) - 20f;
-			Camera.Position.Z = (float)Math.Cos(cameraSin) * 430f;
+			Camera.Position.X = (float)Math.Sin(pos) * 1050; //  = new Vector(0, 0, zPos);
+			Camera.Position.Z = (float) Math.Cos(pos)*1050;
 
-			light.Position.X = (float)Math.Cos(sinPos) * 20f;
-			light.Position.Y = (float) (((Math.Sin(sinPos) + Math.Cos(sinPos))/2)*20f);
-			light.Position.Z = (float)Math.Sin(sinPos) * 20f;
+			pos += 0.001;
+
+			//zPos -= 0.5f;
 			
-			_lightSprite.Position = light.Position;
-
-			Camera.Target.X = 0;
-			Camera.Target.Y = -5f;
-			Camera.Target.Z = 0;
-
-			sinPos -= 0.1;
-			cameraSin += 0.05;
+			Camera.Target.X = 0f;
+			Camera.Target.Y = 0f;
+			Camera.Target.Z = 0f;
 		}
 	}
 }

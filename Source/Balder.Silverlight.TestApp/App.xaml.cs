@@ -7,6 +7,8 @@ namespace Balder.Silverlight.TestApp
 {
 	public partial class App : Application
 	{
+		public static MyGame MyGame;
+
 		public App()
 		{
 			Startup += Application_Startup;
@@ -18,9 +20,9 @@ namespace Balder.Silverlight.TestApp
 
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
-			TargetDevice.Initialize();
+			//TargetDevice.Initialize();
 			RootVisual = new Page();
-			//TargetDevice.Initialize<MyGame>();
+			MyGame = TargetDevice.Initialize<MyGame>();
 			
 		}
 

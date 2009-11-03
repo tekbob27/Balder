@@ -7,9 +7,11 @@ namespace Balder.Core
 	{
 		public void PrepareRender()
 		{
+			/*
 			World[3, 0] = Position.X;
 			World[3, 1] = Position.Y;
 			World[3, 2] = Position.Z;
+			 * */
 		}
 
 

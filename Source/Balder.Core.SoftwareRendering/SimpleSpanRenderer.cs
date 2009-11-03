@@ -58,19 +58,14 @@ namespace Balder.Core.SoftwareRendering
 				{
 					var z = DepthInterpolator.Points[0].InterpolatedValues[index];
 					var bufferZ = (UInt32) (z*(float) UInt32.MaxValue);
-
+					/*
 					if (bufferZ < buffer.DepthBuffer[depthBufferOffset] &&
 					    z >= 0f &&
 					    z < 1f
-						)
+						)*/
 					{
 						buffer.FrameBuffer.Pixels[bufferOffset] = colorAsInt;
 						buffer.DepthBuffer[depthBufferOffset] = bufferZ;
-					}
-					else
-					{
-						int i = 0;
-						i++;
 					}
 				}
 
@@ -108,11 +103,11 @@ namespace Balder.Core.SoftwareRendering
 					var z = GouraudInterpolator.Points[0].InterpolatedValues[index];
 					var bufferZ = (UInt32) (z*(float) UInt32.MaxValue);
 
-
+					/*
 					if (bufferZ < buffer.DepthBuffer[depthBufferOffset] &&
 					    z >= 0f &&
 					    z < 1f
-						)
+						)*/
 					{
 						buffer.DepthBuffer[depthBufferOffset] = bufferZ;
 

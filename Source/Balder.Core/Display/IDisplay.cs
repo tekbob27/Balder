@@ -17,6 +17,8 @@ namespace Balder.Core.Display
 
 		Color BackgroundColor { get; set; }
 
+		bool IsInitialized { get; }
+
 		IViewport CreateViewport();
 		IViewport CreateViewport(int xpos, int ypos, int width, int height);
 	}

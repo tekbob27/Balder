@@ -158,7 +158,8 @@ namespace Balder.Core.SoftwareRendering
 
 		private void TransformAndTranslateVertex(ref Vertex vertex, IViewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
-			vertex.Transform(world, view);
+			var matrix = (world*view)*projection;
+			vertex.Transform(world, matrix);
 			vertex.Translate(projection, viewport.Width, viewport.Height);
 			vertex.MakeScreenCoordinates();
 			vertex.TransformedVectorNormalized = vertex.TransformedNormal;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 using Balder.Core;
+using Balder.Core.Imaging;
 using Balder.Core.Lighting;
 using Balder.Core.Math;
 using Balder.Core.Objects.Flat;
@@ -22,11 +23,14 @@ namespace Balder.Silverlight.TestApp
 		public override void LoadContent()
 		{
 			Mesh mesh;
-			mesh = ContentManager.Load<Mesh>("box.ASE");
+
+			var image = ContentManager.Load<Image>("Bricks.png");
+
+			mesh = ContentManager.Load<Mesh>("CoordinateSystem.ASE");
 			mesh.Name = "Box1";
 			Scene.AddNode(mesh);
 			mesh = ContentManager.Load<Mesh>("box.ASE");
-			mesh.World = Matrix.CreateTranslation(new Vector(300, 0, 0));
+			mesh.World = Matrix.CreateTranslation(new Vector(300, 50, 0));
 			mesh.Name = "Box2";
 			Scene.AddNode(mesh);
 			
@@ -54,8 +58,8 @@ namespace Balder.Silverlight.TestApp
 
 		public override void Update()
 		{
-			Camera.Position.X = (float)Math.Sin(pos) * 1050; //  = new Vector(0, 0, zPos);
-			Camera.Position.Z = (float) Math.Cos(pos)*1050;
+			//Camera.Position.X = (float)Math.Sin(pos) * 1050; //  = new Vector(0, 0, zPos);
+			Camera.Position.Z = -1050; // (float)Math.Cos(pos) * 1050;
 
 			pos += 0.001;
 

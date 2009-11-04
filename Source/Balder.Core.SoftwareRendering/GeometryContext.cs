@@ -164,7 +164,8 @@ namespace Balder.Core.SoftwareRendering
 			vertex.MakeScreenCoordinates();
 			vertex.TransformedVectorNormalized = vertex.TransformedNormal;
 			vertex.TransformedVectorNormalized.Normalize();
-			vertex.DepthBufferAdjustedZ =  -vertex.TransformedVector.Z  / viewport.Camera.DepthDivisor;
+			var z = ((vertex.TransformedVector.Z/viewport.Camera.DepthDivisor) + viewport.Camera.DepthZero);
+			vertex.DepthBufferAdjustedZ = z;
 			vertex.Color = viewport.Scene.CalculateColorForVector(viewport, vertex.Vector, vertex.Normal);
 		}
 

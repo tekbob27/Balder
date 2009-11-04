@@ -58,11 +58,11 @@ namespace Balder.Core.SoftwareRendering
 				{
 					var z = DepthInterpolator.Points[0].InterpolatedValues[index];
 					var bufferZ = (UInt32) (z*(float) UInt32.MaxValue);
-					/*
+					
 					if (bufferZ < buffer.DepthBuffer[depthBufferOffset] &&
 					    z >= 0f &&
 					    z < 1f
-						)*/
+						)
 					{
 						buffer.FrameBuffer.Pixels[bufferOffset] = colorAsInt;
 						buffer.DepthBuffer[depthBufferOffset] = bufferZ;
@@ -103,11 +103,10 @@ namespace Balder.Core.SoftwareRendering
 					var z = GouraudInterpolator.Points[0].InterpolatedValues[index];
 					var bufferZ = (UInt32) (z*(float) UInt32.MaxValue);
 
-					/*
 					if (bufferZ < buffer.DepthBuffer[depthBufferOffset] &&
 					    z >= 0f &&
 					    z < 1f
-						)*/
+						)
 					{
 						buffer.DepthBuffer[depthBufferOffset] = bufferZ;
 
@@ -159,8 +158,6 @@ namespace Balder.Core.SoftwareRendering
 					var intv = (int) (v*image.Height) & (image.Height - 1);
 
 					var texel = ((intv*image.Width) + intu);
-
-
 					
 					if (bufferZ < buffer.DepthBuffer[depthBufferOffset] &&
 					    z >= 0f &&
@@ -179,5 +176,4 @@ namespace Balder.Core.SoftwareRendering
 			}
 		}
 	}
-
 }

@@ -123,6 +123,7 @@
     <Resource Include="Assets\evolve.ASE" />
     <Resource Include="Assets\pumpkin.ASE" />
     <Resource Include="Assets\box.ASE" />
+    <Resource Include="Assets\CoordinateSystem.ASE" />
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>

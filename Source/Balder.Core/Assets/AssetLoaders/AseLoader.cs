@@ -140,9 +140,9 @@ namespace Balder.Core.Assets.AssetLoaders
 			var vertexIndex = 0;
 			foreach (Match match in matches)
 			{
-				var z = float.Parse(match.Groups[2].Value, format);
-				var x = float.Parse(match.Groups[3].Value, format);
-				var y = -float.Parse(match.Groups[4].Value, format);
+				var x = float.Parse(match.Groups[2].Value, format);
+				var z = float.Parse(match.Groups[3].Value, format);
+				var y = float.Parse(match.Groups[4].Value, format);
 
 				context.SetVertex(vertexIndex, new Vertex(x, y, z));
 				vertexIndex++;

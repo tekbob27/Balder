@@ -96,6 +96,12 @@ namespace Balder.Core
 		/// </summary>
 		public float DepthDivisor { get; private set; }
 
+		/// <summary>
+		/// Gets the value that indicates the actual zero/start of the depth, typically used by depth buffers
+		/// </summary>
+		public float DepthZero { get; private set; }
+
+
 
 		/// <summary>
 		/// Gets or sets the field of view for the camera
@@ -138,6 +144,7 @@ namespace Balder.Core
 		private void UpdateDepthDivisor()
 		{
 			DepthDivisor = Far - Near;
+			DepthZero = Near/DepthDivisor;
 			SetupProjection();
 		}
 		#endregion
@@ -153,7 +160,8 @@ namespace Balder.Core
 
 		public override void Update()
 		{
-			Up = new Vector(-(float)System.Math.Sin(Roll), (float)System.Math.Cos(Roll), Up.Z);
+			//Up = new Vector(-(float)System.Math.Sin(Roll), (float)System.Math.Cos(Roll), Up.Z);
+			Up = new Vector(0,-1,0);
 			ViewMatrix = Matrix.CreateLookAt(Position, Target, Up);
 			SetupProjection();
 			Frustum.SetCameraDefinition(this);

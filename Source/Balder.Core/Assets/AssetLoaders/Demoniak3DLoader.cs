@@ -99,7 +99,7 @@ namespace Balder.Core.Assets.AssetLoaders
 				{
 					var index = int.Parse(vertex.Attribute("i").Value);
 					var x = float.Parse(vertex.Attribute("px").Value);
-					var y = -float.Parse(vertex.Attribute("py").Value);
+					var y = float.Parse(vertex.Attribute("py").Value);
 					var z = float.Parse(vertex.Attribute("pz").Value);
 					var u = float.Parse(vertex.Attribute("u0").Value);
 					var v = float.Parse(vertex.Attribute("v0").Value);

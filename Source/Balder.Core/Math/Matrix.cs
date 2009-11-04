@@ -116,7 +116,7 @@ namespace Balder.Core.Math
         {
 			get 
 			{
-				Matrix identityMatrix = new Matrix();
+				var identityMatrix = new Matrix();
 				SetIdentity(identityMatrix);
 				return identityMatrix;
 			}

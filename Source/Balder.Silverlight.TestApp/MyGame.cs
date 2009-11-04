@@ -6,6 +6,7 @@ using Balder.Core.Lighting;
 using Balder.Core.Math;
 using Balder.Core.Objects.Flat;
 using Balder.Core.Objects.Geometries;
+using Balder.Core.Runtime;
 using Matrix=Balder.Core.Math.Matrix;
 
 namespace Balder.Silverlight.TestApp
@@ -17,7 +18,7 @@ namespace Balder.Silverlight.TestApp
 
 		public override void Initialize()
 		{
-			//EngineRuntime.Instance.DebugLevel |= DebugLevel.FaceNormals;
+			//EngineRuntime.Instance.DebugLevel |= DebugLevel.BoundingSpheres;
 		}
 
 		public override void LoadContent()
@@ -58,10 +59,10 @@ namespace Balder.Silverlight.TestApp
 
 		public override void Update()
 		{
-			//Camera.Position.X = (float)Math.Sin(pos) * 1050; //  = new Vector(0, 0, zPos);
-			Camera.Position.Z = -1050; // (float)Math.Cos(pos) * 1050;
+			Camera.Position.X = (float)Math.Sin(pos) * 1050; //  = new Vector(0, 0, zPos);
+			Camera.Position.Z = (float)Math.Cos(pos) * 1050;
 
-			pos += 0.001;
+			pos += 0.005;
 
 			//zPos -= 0.5f;
 			

@@ -128,5 +128,8 @@ namespace Balder.Core.Runtime
 
 		public ITargetDevice TargetDevice { get; private set; }
 		public DebugLevel DebugLevel { get; set; }
+
+		public int MouseXPosition { get; set; }
+		public int MouseYPosition { get; set; }
 	}
 }

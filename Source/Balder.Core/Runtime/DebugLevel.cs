@@ -25,6 +25,11 @@ namespace Balder.Core.Runtime
 			return debugLevel.IsFlagSet(DebugLevel.FaceNormals);
 		}
 
+		public static bool IsBoundingSpheresSet(this DebugLevel debugLevel)
+		{
+			return debugLevel.IsFlagSet(DebugLevel.BoundingSpheres);
+		}
+
 		private static bool IsFlagSet(this DebugLevel debugLevel, DebugLevel desiredFlag)
 		{
 			return (debugLevel & desiredFlag) == desiredFlag;

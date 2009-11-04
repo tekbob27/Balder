@@ -10,8 +10,9 @@ using Balder.Core.Lighting;
 using Balder.Core.Math;
 using Balder.Core.Objects.Flat;
 using Balder.Core.Objects.Geometries;
-using Geometry=Balder.Core.Objects.Geometries.Geometry;
-using Matrix=Balder.Core.Math.Matrix;
+using Balder.Core.Runtime;
+using Geometry = Balder.Core.Objects.Geometries.Geometry;
+using Matrix = Balder.Core.Math.Matrix;
 using Balder.Core.Extensions;
 
 namespace Balder.Core
@@ -36,21 +37,22 @@ namespace Balder.Core
 		public void AddNode(Node node)
 		{
 			node.Scene = this;
-			if( node is RenderableNode )
+			if (node is RenderableNode)
 			{
-				lock( _renderableNodes )
+				lock (_renderableNodes)
 				{
 					_renderableNodes.Add(node);
-					
+
 				}
-				if( node is Sprite )
+				if (node is Sprite)
 				{
-					lock( _flatNodes )
+					lock (_flatNodes)
 					{
-						_flatNodes.Add(node);	
+						_flatNodes.Add(node);
 					}
 				}
-			} else
+			}
+			else
 			{
 				lock (_environmentalNodes)
 				{
@@ -59,7 +61,7 @@ namespace Balder.Core
 			}
 		}
 
-		public NodeCollection RenderableNodes { get { return _renderableNodes;  } }
+		public NodeCollection RenderableNodes { get { return _renderableNodes; } }
 
 
 		public Color CalculateColorForVector(IViewport viewport, Vector vector, Vector normal)
@@ -82,10 +84,6 @@ namespace Balder.Core
 			}
 		}
 
-		public event EventHandler ObjectHitChanged = (s, e) => { };
-
-		public Node ObjectHit { get; private set; }
-
 		public void Render(IViewport viewport, Matrix view, Matrix projection)
 		{
 			lock (_renderableNodes)
@@ -97,9 +95,13 @@ namespace Balder.Core
 				}
 			}
 
-			var objectHit = GetNodeAtScreenCoordinate(viewport, MouseXPosition, MouseYPosition);
-			ObjectHit = objectHit;
-			ObjectHitChanged(this, null);
+			var objectHit = GetNodeAtScreenCoordinate(	viewport,
+														EngineRuntime.Instance.MouseXPosition,
+														EngineRuntime.Instance.MouseYPosition);
+			if( null != objectHit )
+			{
+				objectHit.OnHover();	
+			}
 		}
 
 		public int TotalVertexCount
@@ -107,9 +109,9 @@ namespace Balder.Core
 			get
 			{
 				var count = 0;
-				foreach( var node in _renderableNodes )
+				foreach (var node in _renderableNodes)
 				{
-					if( node is Geometry )
+					if (node is Geometry)
 					{
 						var geometry = node as Geometry;
 						count += geometry.GeometryContext.VertexCount;
@@ -131,7 +133,7 @@ namespace Balder.Core
 						var geometry = node as Geometry;
 						count += geometry.GeometryContext.FaceCount;
 					}
-					if( node is Mesh)
+					if (node is Mesh)
 					{
 						var mesh = node as Mesh;
 						count += mesh.TotalFaceCount;
@@ -149,7 +151,7 @@ namespace Balder.Core
 			}
 		}
 
-		public RenderableNode	GetNodeAtScreenCoordinate(IViewport viewport, int x, int y)
+		public RenderableNode GetNodeAtScreenCoordinate(IViewport viewport, int x, int y)
 		{
 			var nearSource = new Vector((float)x, (float)y, 0f);
 			var farSource = new Vector((float)x, (float)y, 1f);
@@ -184,9 +186,5 @@ namespace Balder.Core
 
 			return closestObject;
 		}
-
-		
-		public int MouseXPosition { get; set; }
-		public int MouseYPosition { get; set; }
 	}
 }

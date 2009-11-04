@@ -2,6 +2,7 @@
 using Balder.Core.Debug;
 using Balder.Core.Interfaces;
 using Balder.Core.Math;
+using Balder.Core.Runtime;
 using Ninject.Core;
 
 namespace Balder.Core.Objects.Geometries
@@ -30,7 +31,6 @@ namespace Balder.Core.Objects.Geometries
 				geometry.InitializeBoundingSphere();
 				boundingSphere = BoundingSphere.CreateMerged(boundingSphere, geometry.BoundingSphere);
 			}
-			//boundingSphere = new BoundingSphere(Vector.Zero, 100);
 			BoundingSphere = boundingSphere;
 		}
 
@@ -42,7 +42,10 @@ namespace Balder.Core.Objects.Geometries
 
 				var localWorld = World * geometry.World;
 
-				_debugRenderer.RenderBoundingSphere(BoundingSphere, viewport, view, projection, localWorld);
+				if (EngineRuntime.Instance.DebugLevel.IsBoundingSpheresSet())
+				{
+					_debugRenderer.RenderBoundingSphere(BoundingSphere, viewport, view, projection, localWorld);
+				}
 				geometry.GeometryContext.Render(viewport,view,projection,localWorld);
 			}
 		}

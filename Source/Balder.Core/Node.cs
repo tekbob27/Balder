@@ -1,5 +1,6 @@
 ﻿using Balder.Core.Interfaces;
 using Balder.Core.Math;
+using System;
 
 namespace Balder.Core
 {
@@ -8,10 +9,16 @@ namespace Balder.Core
 	/// </summary>
 	public abstract class Node
 	{
+		private static readonly EventArgs DefaultEventArgs = new EventArgs();
+		public event EventHandler Hover = (s, e) => { };
+
 		#region Constructor(s)
 		protected Node()
 		{
 			World = Matrix.Identity;
+
+			PositionMatrix = Matrix.Identity;
+			ScaleMatrix = Matrix.Identity;
 			Scale = new Vector(1f,1f,1f);
 		}
 		#endregion
@@ -51,9 +58,16 @@ namespace Balder.Core
 		public Scene Scene { get; set; }
 		#endregion
 
+		protected Matrix PositionMatrix { get; private set; }
+		protected Matrix ScaleMatrix { get; private set; }
 
 		public virtual void Prepare(IViewport viewport) {}
 		public virtual void Update() {}
 
+
+		internal void OnHover()
+		{
+			Hover(this, DefaultEventArgs);
+		}
 	}
 }

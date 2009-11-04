@@ -5,6 +5,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Balder.Core.Display;
 using Balder.Core.Interfaces;
+using Balder.Core.Runtime;
 using Balder.Core.SoftwareRendering;
 using Balder.Silverlight.Implementation;
 using System.Threading;
@@ -98,28 +99,28 @@ namespace Balder.Silverlight.Services
 				if (_root is Panel)
 				{
 
-					((Panel)_root).Children.Insert(0,this);
+					((Panel)_root).Children.Insert(0, this);
 				}
 				else if (_root is ItemsControl)
 				{
-					((ItemsControl)_root).Items.Insert(0,this);
+					((ItemsControl)_root).Items.Insert(0, this);
 				}
 			}
 		}
 
 		private static FrameworkElement FindParentWithDimensionsSet(FrameworkElement element)
 		{
-			if( !element.Width.Equals(Double.NaN) && 
-				element.Width != 0 && 
-				!element.Height.Equals(Double.NaN) && 
+			if (!element.Width.Equals(Double.NaN) &&
+				element.Width != 0 &&
+				!element.Height.Equals(Double.NaN) &&
 				element.Height != 0)
 			{
 				return element;
 			}
 
-			if( null != element.Parent && element.Parent is FrameworkElement )
+			if (null != element.Parent && element.Parent is FrameworkElement)
 			{
-				return FindParentWithDimensionsSet(element.Parent as FrameworkElement);	
+				return FindParentWithDimensionsSet(element.Parent as FrameworkElement);
 			}
 			return null;
 		}
@@ -127,10 +128,10 @@ namespace Balder.Silverlight.Services
 
 		private void AutomaticallyAdjustDimensions()
 		{
-			if( null != _root )
+			if (null != _root)
 			{
 				var elementWithDimensions = FindParentWithDimensionsSet(_root);
-				if( null != elementWithDimensions )
+				if (null != elementWithDimensions)
 				{
 					Width = elementWithDimensions.Width;
 					Height = elementWithDimensions.Height;
@@ -146,11 +147,12 @@ namespace Balder.Silverlight.Services
 
 		public void Initialize(FrameworkElement root)
 		{
-			if( null == root )
+			if (null == root)
 			{
 				_root = GetRoot();
 				AddDisplayToRoot();
-			} else
+			}
+			else
 			{
 				_root = root;
 			}
@@ -172,7 +174,19 @@ namespace Balder.Silverlight.Services
 
 			Children.Add(_image);
 
+			InitializeMouse();
 			IsInitialized = true;
+
+		}
+
+		private void InitializeMouse()
+		{
+			MouseMove += (s, e) =>
+							{
+								var position = e.GetPosition(this);
+								EngineRuntime.Instance.MouseXPosition = (int)position.X;
+								EngineRuntime.Instance.MouseYPosition = (int)position.Y;
+							};
 		}
 
 
@@ -191,16 +205,16 @@ namespace Balder.Silverlight.Services
 
 
 		public bool IsInitialized { get; private set; }
-		
+
 		public IViewport CreateViewport()
 		{
 			var viewport = new Viewport();
 
-			if( 0 != Width && !Width.Equals(double.NaN) &&
-				0 != Height && !Height.Equals(double.NaN) )
+			if (0 != Width && !Width.Equals(double.NaN) &&
+				0 != Height && !Height.Equals(double.NaN))
 			{
-				viewport.Width = (int) Width;
-				viewport.Height = (int) Height;
+				viewport.Width = (int)Width;
+				viewport.Height = (int)Height;
 			}
 			Children.Add(viewport);
 			return viewport;

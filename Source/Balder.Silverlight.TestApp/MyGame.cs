@@ -31,7 +31,8 @@ namespace Balder.Silverlight.TestApp
 			mesh.Name = "Box1";
 			Scene.AddNode(mesh);
 			mesh = ContentManager.Load<Mesh>("box.ASE");
-			mesh.World = Matrix.CreateTranslation(new Vector(300, 50, 0));
+			//mesh.World = Matrix.CreateTranslation(new Vector(300, 50, 0));
+			mesh.Position = new Vector(300, 50, 0);
 			mesh.Name = "Box2";
 			Scene.AddNode(mesh);
 			

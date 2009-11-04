@@ -40,7 +40,7 @@ namespace Balder.Core.Objects.Geometries
 			{
 				var geometry = _geometries[geometryIndex];
 
-				var localWorld = World * geometry.World;
+				var localWorld = World * geometry.World * PositionMatrix;
 
 				if (EngineRuntime.Instance.DebugLevel.IsBoundingSpheresSet())
 				{

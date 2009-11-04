@@ -1,11 +1,5 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using Balder.Core;
-using Balder.Core.Debug;
-using Balder.Core.Extensions;
-using Balder.Core.Math;
-using Balder.Core.Runtime;
-using Balder.Silverlight.Controls;
 
 namespace Balder.Silverlight.TestApp
 {

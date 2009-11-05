@@ -11,6 +11,10 @@ namespace Balder.Core
 	{
 		private static readonly EventArgs DefaultEventArgs = new EventArgs();
 		public event EventHandler Hover = (s, e) => { };
+		public event EventHandler Enter = (s, e) => { };
+		public event EventHandler Leave = (s, e) => { };
+		public event EventHandler Click = (s, e) => { };
+
 
 		#region Constructor(s)
 		protected Node()
@@ -20,6 +24,8 @@ namespace Balder.Core
 			PositionMatrix = Matrix.Identity;
 			ScaleMatrix = Matrix.Identity;
 			Scale = new Vector(1f,1f,1f);
+
+			
 		}
 		#endregion
 

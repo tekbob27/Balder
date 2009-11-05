@@ -1,7 +1,7 @@
 ﻿#if(SILVERLIGHT)
 using System.Windows.Media;
 #else
-using System.Graphics;
+using System.Drawing;
 #endif
 using Balder.Core.Interfaces;
 using Balder.Core.Math;

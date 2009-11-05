@@ -101,6 +101,11 @@
     <Compile Include="Extensions\ImageFormatExtensions.cs" />
     <Compile Include="Extensions\ViewportExtensions.cs" />
     <Compile Include="Extensions\WaitHandleExtensions.cs" />
+    <Compile Include="Input\IMouseDevice.cs" />
+    <Compile Include="Input\IMouseManager.cs" />
+    <Compile Include="Input\Mouse.cs" />
+    <Compile Include="Input\MouseButtonState.cs" />
+    <Compile Include="Input\MouseManager.cs" />
     <Compile Include="Math\BoundingBox.cs" />
     <Compile Include="Math\BoundingFrustum.cs" />
     <Compile Include="Math\BoundingSphere.cs" />

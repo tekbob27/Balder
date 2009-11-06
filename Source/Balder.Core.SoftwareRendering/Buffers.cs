@@ -9,8 +9,11 @@ namespace Balder.Core.SoftwareRendering
 {
 
 	public class Buffers<T> : IBuffers
-		where T:IFrameBuffer, new()
+		where T : IFrameBuffer, new()
 	{
+		private static readonly object ClearingDepthBufferLock = new object();
+		private static readonly object DepthBufferLock = new object();
+
 		public const UInt32 DepthBufferMax = UInt32.MaxValue;
 		public const UInt32 DepthBufferMin = UInt32.MinValue;
 		public static Color BlackBackground = Color.FromArgb(0xff, 0, 0, 0);
@@ -31,14 +34,17 @@ namespace Balder.Core.SoftwareRendering
 
 		private void InitializeZBuffer()
 		{
-			var zBufferSize = Width*Height;
-			DepthBuffer = new UInt32[zBufferSize];
-			FrontDepthBuffer = new UInt32[zBufferSize];
-
-			_clearingDepthBuffer = new UInt32[zBufferSize];
-
-			lock (_clearingDepthBuffer)
+			var zBufferSize = Width * Height;
+			lock (DepthBufferLock)
 			{
+				DepthBuffer = new UInt32[zBufferSize];
+				FrontDepthBuffer = new UInt32[zBufferSize];
+			}
+
+			lock (ClearingDepthBufferLock)
+			{
+				_clearingDepthBuffer = new UInt32[zBufferSize];
+
 				for (var index = 0; index < DepthBuffer.Length; index++)
 				{
 					_clearingDepthBuffer[index] = DepthBufferMax;
@@ -54,10 +60,13 @@ namespace Balder.Core.SoftwareRendering
 
 		private void FrameBufferSwapped()
 		{
-			var front = FrontDepthBuffer;
-			var back = DepthBuffer;
-			DepthBuffer = front;
-			FrontDepthBuffer = back;
+			lock (DepthBufferLock)
+			{
+				var front = FrontDepthBuffer;
+				var back = DepthBuffer;
+				DepthBuffer = front;
+				FrontDepthBuffer = back;
+			}
 		}
 
 		private void FrameBufferClear()
@@ -67,13 +76,13 @@ namespace Balder.Core.SoftwareRendering
 
 		private void ClearZBuffer()
 		{
-			if( null != _clearingDepthBuffer )
+			if (null != _clearingDepthBuffer &&
+				null != FrontDepthBuffer)
 			{
-				lock( _clearingDepthBuffer )
+				lock (ClearingDepthBufferLock)
 				{
-					_clearingDepthBuffer.CopyTo(FrontDepthBuffer, 0);		
+					_clearingDepthBuffer.CopyTo(FrontDepthBuffer, 0);
 				}
-				
 			}
 		}
 

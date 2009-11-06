@@ -160,9 +160,9 @@ namespace Balder.Silverlight.Services
 			AutomaticallyAdjustDimensions();
 			_image = new Image { Stretch = Stretch.None };
 
-			Initialized(this, DefaultEventArgs);
-
 			_buffers = BufferManager.Instance.Create<FrameBuffer>((int)Width, (int)Height);
+
+			Initialized(this, DefaultEventArgs);
 
 			_image.Source = _buffers.FrameBuffer.BitmapSource;
 			_buffers.FrameBuffer.Render += OnDraw;

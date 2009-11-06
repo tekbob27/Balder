@@ -52,6 +52,7 @@ namespace Balder.Core
 			Viewport.Scene = Scene;
 		}
 
+
 		public Scene Scene { get; private set; }
 		public IViewport Viewport { get; private set; }
 		public Camera Camera { get; private set; }
@@ -104,8 +105,13 @@ namespace Balder.Core
 
 		private void OnUpdate()
 		{
+			BeforeUpdate();
+			Scene.HandleMouseEvents(Viewport, Mouse);
+			ExecuteActionOnActors(a => a.BeforeUpdate());
 			ExecuteActionOnActors(a => a.Update());
 			Updated(this);
+			ExecuteActionOnActors(a => a.AfterUpdate());
+			AfterUpdate();
 		}
 
 		private Actor[] GetActors()

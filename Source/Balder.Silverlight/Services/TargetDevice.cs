@@ -2,16 +2,24 @@
 using Balder.Core;
 using Balder.Core.Assets;
 using Balder.Core.Display;
+using Balder.Core.Input;
 using Balder.Core.Services;
 using Balder.Core.SoftwareRendering.Rendering;
 using Balder.Silverlight.Implementation;
 using Balder.Core.Runtime;
 using Balder.Core.SoftwareRendering;
+using Balder.Silverlight.Input;
 
 namespace Balder.Silverlight.Services
 {
 	public class TargetDevice : ITargetDevice
 	{
+		public TargetDevice()
+		{
+			MouseDevice = new MouseDevice();
+		}
+
+
 		public static void Initialize()
 		{
 			var targetDevice = new TargetDevice();
@@ -26,6 +34,8 @@ namespace Balder.Silverlight.Services
 
 			var display = new Display();
 			display.Initialize();
+
+			((MouseDevice) targetDevice.MouseDevice).Initialize(display);
 			var game = EngineRuntime.Instance.RegisterGame<T>(display);
 			return game;
 		}
@@ -41,6 +51,8 @@ namespace Balder.Silverlight.Services
 		public Type SpriteContextType { get { return typeof (SpriteContext); } }
 		public Type ShapeContextType { get { return typeof (ShapeContext); } }
 		public Type DisplayType { get { return typeof (Display); } }
+		public IMouseDevice MouseDevice { get; private set; }
+
 		public Type FileLoaderType { get { return typeof (FileLoader); } }
 		
 

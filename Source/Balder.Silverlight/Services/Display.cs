@@ -174,19 +174,7 @@ namespace Balder.Silverlight.Services
 
 			Children.Add(_image);
 
-			InitializeMouse();
 			IsInitialized = true;
-
-		}
-
-		private void InitializeMouse()
-		{
-			MouseMove += (s, e) =>
-							{
-								var position = e.GetPosition(this);
-								EngineRuntime.Instance.MouseXPosition = (int)position.X;
-								EngineRuntime.Instance.MouseYPosition = (int)position.Y;
-							};
 		}
 
 

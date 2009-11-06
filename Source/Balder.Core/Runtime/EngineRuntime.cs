@@ -4,6 +4,7 @@ using Balder.Core.Assets;
 using Balder.Core.Content;
 using Balder.Core.Display;
 using Balder.Core.Imaging;
+using Balder.Core.Input;
 using Balder.Core.Interfaces;
 using Balder.Core.Objects.Flat;
 using Balder.Core.Objects.Geometries;
@@ -91,7 +92,9 @@ namespace Balder.Core.Runtime
 				(m) => m.Bind<IGeometryContext>().To(targetDevice.GeometryContextType),
 				(m) => m.Bind<IImageContext>().To(targetDevice.ImageContextType),
 				(m) => m.Bind<ISpriteContext>().To(targetDevice.SpriteContextType),
-				(m) => m.Bind<IFileLoader>().ToMethod((c) => CreateFileLoader(targetDevice))
+				(m) => m.Bind<IFileLoader>().ToMethod((c) => CreateFileLoader(targetDevice)),
+				(m) => m.Bind<IMouseDevice>().ToConstant(targetDevice.MouseDevice)
+
 			);
 			return inlineModule;
 		}
@@ -128,8 +131,5 @@ namespace Balder.Core.Runtime
 
 		public ITargetDevice TargetDevice { get; private set; }
 		public DebugLevel DebugLevel { get; set; }
-
-		public int MouseXPosition { get; set; }
-		public int MouseYPosition { get; set; }
 	}
 }

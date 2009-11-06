@@ -1,16 +1,15 @@
 ﻿#if(SILVERLIGHT)
-using System;
 using System.Windows.Media;
 #else
 using System.Drawing;
 #endif
 using Balder.Core.Collections;
+using Balder.Core.Input;
 using Balder.Core.Interfaces;
 using Balder.Core.Lighting;
 using Balder.Core.Math;
 using Balder.Core.Objects.Flat;
 using Balder.Core.Objects.Geometries;
-using Balder.Core.Runtime;
 using Geometry = Balder.Core.Objects.Geometries.Geometry;
 using Matrix = Balder.Core.Math.Matrix;
 using Balder.Core.Extensions;
@@ -94,14 +93,6 @@ namespace Balder.Core
 					node.Render(viewport, view, projection);
 				}
 			}
-
-			var objectHit = GetNodeAtScreenCoordinate(	viewport,
-														EngineRuntime.Instance.MouseXPosition,
-														EngineRuntime.Instance.MouseYPosition);
-			if( null != objectHit )
-			{
-				objectHit.OnHover();	
-			}
 		}
 
 		public int TotalVertexCount
@@ -150,6 +141,20 @@ namespace Balder.Core
 				return _flatNodes.Count;
 			}
 		}
+
+		public void HandleMouseEvents(IViewport viewport, Mouse mouse)
+		{
+			var objectHit = GetNodeAtScreenCoordinate(viewport, mouse.XPosition, mouse.YPosition);
+			if (null != objectHit)
+			{
+				objectHit.OnHover();
+				if( mouse.LeftButton.IsEdge )
+				{
+					objectHit.OnClick();
+				}
+			}
+		}
+
 
 		public RenderableNode GetNodeAtScreenCoordinate(IViewport viewport, int x, int y)
 		{

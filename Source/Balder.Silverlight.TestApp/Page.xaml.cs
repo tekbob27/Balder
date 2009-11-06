@@ -17,10 +17,10 @@ namespace Balder.Silverlight.TestApp
 
 			foreach (var node in App.MyGame.Scene.RenderableNodes)
 			{
-				node.Hover +=
+				node.Click +=
 					(ss, ee) => Dispatcher.BeginInvoke(() =>
 					                                   	{
-					                                   		_hitObject.Text = string.Format("'{0}' was hit", ((Node)ss).Name);
+					                                   		_hitObject.Text = string.Format("'{0}' was clicked", ((Node)ss).Name);
 					                                   	});
 
 			}

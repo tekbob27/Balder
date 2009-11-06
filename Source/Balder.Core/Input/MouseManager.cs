@@ -1,8 +1,9 @@
-﻿using System;
-using Balder.Core.Runtime;
+﻿using Balder.Core.Runtime;
+using Ninject.Core;
 
 namespace Balder.Core.Input
 {
+	[Singleton]
 	public class MouseManager : IMouseManager
 	{
 		private readonly IMouseDevice _mouseDevice;

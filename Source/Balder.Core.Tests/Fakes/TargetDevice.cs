@@ -1,6 +1,7 @@
 ﻿using System;
 using Balder.Core.Assets;
 using Balder.Core.Display;
+using Balder.Core.Input;
 using Balder.Core.Services;
 
 namespace Balder.Core.Tests.Fakes
@@ -26,6 +27,10 @@ namespace Balder.Core.Tests.Fakes
 
 		public Type FileLoaderType { get { return typeof(FileLoader); } }
 		public Type DisplayType { get { return typeof (Display); } }
+		public IMouseDevice MouseDevice
+		{
+			get { throw new NotImplementedException(); }
+		}
 
 		public void RegisterAssetLoaders(IAssetLoaderService assetLoaderService)
 		{

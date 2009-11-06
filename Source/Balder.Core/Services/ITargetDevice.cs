@@ -1,5 +1,6 @@
 ﻿using System;
 using Balder.Core.Assets;
+using Balder.Core.Input;
 
 namespace Balder.Core.Services
 {
@@ -14,6 +15,7 @@ namespace Balder.Core.Services
 		Type ShapeContextType { get; }
 		Type FileLoaderType { get; }
 		Type DisplayType { get;  }
+		IMouseDevice MouseDevice { get; }
 
 		void RegisterAssetLoaders(IAssetLoaderService assetLoaderService);
 	}

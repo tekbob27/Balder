@@ -10,7 +10,7 @@ namespace Balder.Core.Tests.Runtime
 	public class RuntimeTests
 	{
 
-		private void EventShouldBeCalledForState(Expression<Action<Game>> eventExpression, PlatformState state)
+		private void EventShouldBeCalledForStateDuringRegistration(Expression<Action<Game>> eventExpression, PlatformState state, bool changeStateFirst)
 		{
 			var eventCalled = false;
 			var stateChanged = false;
@@ -35,48 +35,57 @@ namespace Balder.Core.Tests.Runtime
 					eventCalled = true;
 				});
 
+			if( changeStateFirst )
+			{
+				platform.ChangeState(state);
+			}
 
 			var runtime = new Core.Runtime.Runtime(platform, objectFactoryMock.Object);
 			runtime.RegisterGame(gameMock.Object);
+
+			if( !changeStateFirst )
+			{
+				platform.ChangeState(state);
+			}
 
 			Assert.That(eventCalled, Is.True);
 			
 		}
 
 		[Test]
-		public void RegisteredGameShouldNotHaveItsInitializeCalledBeforeInitializeStateChangeOccursOnPlatform()
+		public void RegisteredGameShouldNotHaveItsInitializeCalledAfterInitializeStateChangeOccursOnPlatform()
 		{
-			EventShouldBeCalledForState(g => g.Initialize(),PlatformState.Initialize);
+			EventShouldBeCalledForStateDuringRegistration(g => g.Initialize(),PlatformState.Initialize, false);
 		}
 
 		[Test]
 		public void GameRegisteredAfterInitializeStateChangeOccuredOnPlatformShouldHaveItsInitializeEventCalledDirectly()
 		{
-			Assert.Fail();
+			EventShouldBeCalledForStateDuringRegistration(g => g.Initialize(), PlatformState.Initialize, true);
 		}
 
 		[Test]
-		public void RegisteredGameShouldNotHaveItsLoadCalledBeforeLoadStateChangeOccursOnPlatform()
+		public void RegisteredGameShouldNotHaveItsLoadCalledAfterLoadStateChangeOccursOnPlatform()
 		{
-			EventShouldBeCalledForState(g => g.LoadContent(), PlatformState.Load);
+			EventShouldBeCalledForStateDuringRegistration(g => g.LoadContent(), PlatformState.Load, false);
 		}
 
 		[Test]
 		public void GameRegisteredAfterLoadStateChangeOccuredOnPlatformShouldHaveItsLoadEventCalledDirectly()
 		{
-			Assert.Fail();
+			EventShouldBeCalledForStateDuringRegistration(g => g.LoadContent(), PlatformState.Load, true);
 		}
 
 		[Test]
-		public void RegisteredGameShouldNotHaveItsUpdateCalledBeforeRunStateChangeOccursOnPlatform()
+		public void RegisteredGameShouldNotHaveItsUpdateCalledAfterRunStateChangeOccursOnPlatform()
 		{
-			EventShouldBeCalledForState(g => g.Update(), PlatformState.Run);
+			EventShouldBeCalledForStateDuringRegistration(g => g.Update(), PlatformState.Run, false);
 		}
 
 		[Test]
 		public void ActorsWithinGameShouldHaveItsInitializeCalledAfterGamesInitializeIsCalled()
 		{
-			Assert.Fail();
+			EventShouldBeCalledForStateDuringRegistration(g => g.LoadContent(), PlatformState.Load, true);
 		}
 
 		[Test]

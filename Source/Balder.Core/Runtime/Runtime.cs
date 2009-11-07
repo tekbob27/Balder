@@ -11,6 +11,7 @@ namespace Balder.Core.Runtime
 
 		public Runtime(IPlatform platform, IObjectFactory objectFactory)
 		{
+			_games = new ActorCollection();
 			_platform = platform;
 			_objectFactory = objectFactory;
 			InitializePlatformEventHandlers();

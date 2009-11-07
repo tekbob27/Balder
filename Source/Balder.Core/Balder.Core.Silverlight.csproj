@@ -95,6 +95,7 @@
     <Compile Include="Debug\DebugShape.cs" />
     <Compile Include="Debug\IDebugRenderer.cs" />
     <Compile Include="Dimension.cs" />
+    <Compile Include="Display\IDisplayDevice.cs" />
     <Compile Include="Exceptions\AssetNotFoundException.cs" />
     <Compile Include="Exceptions\UnsupportedImageFormatException.cs" />
     <Compile Include="Extensions\ColorExtensions.cs" />
@@ -129,6 +130,8 @@
     <Compile Include="Rendering\IShapeContext.cs" />
     <Compile Include="Runtime\ConstructorArgument.cs" />
     <Compile Include="Runtime\IObjectFactory.cs" />
+    <Compile Include="Runtime\IPlatform.cs" />
+    <Compile Include="Runtime\IRuntime.cs" />
     <Compile Include="Runtime\NInjectExtensions.cs" />
     <Compile Include="Runtime\ObjectFactory.cs" />
     <Compile Include="PixelFormat.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="Math\MathHelper.cs" />
     <Compile Include="Collections\NodeCollection.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Runtime\Runtime.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Runtime\EnumHelper.cs" />
     <Compile Include="EnvironmentalNode.cs" />

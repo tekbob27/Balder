@@ -1,14 +1,52 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.Linq.Expressions;
+using Balder.Core.Runtime;
+using Moq;
+using NUnit.Framework;
 
 namespace Balder.Core.Tests.Runtime
 {
 	[TestFixture]
 	public class RuntimeTests
 	{
+
+		private void EventShouldBeCalledForState(Expression<Action<Game>> eventExpression, PlatformState state)
+		{
+			var eventCalled = false;
+			var stateChanged = false;
+			var platform = new FakePlatform();
+			var objectFactoryMock = new Mock<IObjectFactory>();
+
+			platform.StateChanged +=
+				(p, s) =>
+				{
+					if (s == state)
+					{
+						stateChanged = true;
+					}
+				};
+
+
+			var gameMock = new Mock<Game>();
+			gameMock.Expect(eventExpression).Callback(
+				() =>
+				{
+					Assert.That(stateChanged, Is.True);
+					eventCalled = true;
+				});
+
+
+			var runtime = new Core.Runtime.Runtime(platform, objectFactoryMock.Object);
+			runtime.RegisterGame(gameMock.Object);
+
+			Assert.That(eventCalled, Is.True);
+			
+		}
+
 		[Test]
 		public void RegisteredGameShouldNotHaveItsInitializeCalledBeforeInitializeStateChangeOccursOnPlatform()
 		{
-			Assert.Fail();
+			EventShouldBeCalledForState(g => g.Initialize(),PlatformState.Initialize);
 		}
 
 		[Test]
@@ -20,7 +58,7 @@ namespace Balder.Core.Tests.Runtime
 		[Test]
 		public void RegisteredGameShouldNotHaveItsLoadCalledBeforeLoadStateChangeOccursOnPlatform()
 		{
-			Assert.Fail();
+			EventShouldBeCalledForState(g => g.LoadContent(), PlatformState.Load);
 		}
 
 		[Test]
@@ -32,7 +70,7 @@ namespace Balder.Core.Tests.Runtime
 		[Test]
 		public void RegisteredGameShouldNotHaveItsUpdateCalledBeforeRunStateChangeOccursOnPlatform()
 		{
-			Assert.Fail();
+			EventShouldBeCalledForState(g => g.Update(), PlatformState.Run);
 		}
 
 		[Test]

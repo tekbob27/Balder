@@ -88,6 +88,8 @@
       <DependentUpon>Models.resx</DependentUpon>
     </Compile>
     <Compile Include="Runtime\EngineRuntimeTests.cs" />
+    <Compile Include="Runtime\FakePlatform.cs" />
+    <Compile Include="Runtime\RuntimeTests.cs" />
     <Compile Include="SceneTests.cs" />
   </ItemGroup>
   <ItemGroup>

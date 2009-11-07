@@ -1,16 +1,15 @@
-﻿using Balder.Core.Services;
-using Balder.Silverlight.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using CThru.Silverlight;
+using NUnit.Framework;
 
-namespace Balder.Silverlight.Tests.Specs_for_display
+namespace Balder.Silverlight.Tests.Display
 {
-	[TestClass]
-	public class When_working_with_viewports
+	[TestFixture]
+	public class DisplayTests
 	{
-		[TestMethod]
-		public void Creating_viewport_returns_valid_viewport()
+		[Test, SilverlightUnitTest]
+		public void CreatingViewportShouldReturnValidViewport()
 		{
-			var display = new Display();
+			var display = new Silverlight.Display.Display();
 
 			const int xpos = 0;
 			const int ypos = 0;

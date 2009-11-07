@@ -103,7 +103,7 @@
     <Compile Include="Implementation\Viewport.cs" />
     <Compile Include="Input\MouseDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Display.cs" />
+    <Compile Include="Display\Display.cs" />
     <Compile Include="Services\TargetDevice.cs" />
     <Compile Include="SoftwareRendering\FrameBuffer.cs" />
     <Compile Include="SoftwareRendering\FrameBufferManager.cs" />

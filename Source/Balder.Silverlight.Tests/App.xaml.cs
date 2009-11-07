@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows;
-using Balder.Silverlight.Services;
-using Microsoft.Silverlight.Testing;
 
 namespace Balder.Silverlight.Tests
 {
@@ -9,7 +7,6 @@ namespace Balder.Silverlight.Tests
 	{
 		public App()
 		{
-			TargetDevice.Initialize();
 			this.Startup += this.Application_Startup;
 			this.Exit += this.Application_Exit;
 			this.UnhandledException += this.Application_UnhandledException;
@@ -19,7 +16,7 @@ namespace Balder.Silverlight.Tests
 
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{
-			this.RootVisual = UnitTestSystem.CreateTestPage();
+			
 		}
 
 		private void Application_Exit(object sender, EventArgs e)

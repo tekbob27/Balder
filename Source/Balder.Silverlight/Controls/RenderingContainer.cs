@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Specialized;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Balder.Core;
@@ -8,7 +7,6 @@ using Balder.Core.Display;
 using Balder.Core.Interfaces;
 using Balder.Core.Runtime;
 using Balder.Silverlight.Helpers;
-using Balder.Silverlight.Services;
 
 namespace Balder.Silverlight.Controls
 {
@@ -52,7 +50,7 @@ namespace Balder.Silverlight.Controls
 
 			Game.Updated += (g) => Updated(this);
 
-			var display = Display as Display;
+			var display = Display as Display.Display;
 			Content = display;
 
 			display.Initialize(this);

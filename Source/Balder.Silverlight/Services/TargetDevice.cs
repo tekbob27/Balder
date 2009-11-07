@@ -32,7 +32,7 @@ namespace Balder.Silverlight.Services
 			var targetDevice = new TargetDevice();
 			EngineRuntime.Instance.Initialize(targetDevice);
 
-			var display = new Display();
+			var display = new Display.Display();
 			display.Initialize();
 
 			((MouseDevice) targetDevice.MouseDevice).Initialize(display);
@@ -50,7 +50,7 @@ namespace Balder.Silverlight.Services
 		public Type ImageContextType { get { return typeof (ImageContext); } }
 		public Type SpriteContextType { get { return typeof (SpriteContext); } }
 		public Type ShapeContextType { get { return typeof (ShapeContext); } }
-		public Type DisplayType { get { return typeof (Display); } }
+		public Type DisplayType { get { return typeof (Display.Display); } }
 		public IMouseDevice MouseDevice { get; private set; }
 
 		public Type FileLoaderType { get { return typeof (FileLoader); } }

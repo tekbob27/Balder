@@ -5,13 +5,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Balder.Core.Display;
 using Balder.Core.Interfaces;
-using Balder.Core.Runtime;
 using Balder.Core.SoftwareRendering;
 using Balder.Silverlight.Implementation;
 using System.Threading;
 using Balder.Silverlight.SoftwareRendering;
 
-namespace Balder.Silverlight.Services
+namespace Balder.Silverlight.Display
 {
 	public delegate void DrawHandler(EventWaitHandle waitHandle);
 
@@ -111,9 +110,9 @@ namespace Balder.Silverlight.Services
 		private static FrameworkElement FindParentWithDimensionsSet(FrameworkElement element)
 		{
 			if (!element.Width.Equals(Double.NaN) &&
-				element.Width != 0 &&
-				!element.Height.Equals(Double.NaN) &&
-				element.Height != 0)
+			    element.Width != 0 &&
+			    !element.Height.Equals(Double.NaN) &&
+			    element.Height != 0)
 			{
 				return element;
 			}
@@ -199,7 +198,7 @@ namespace Balder.Silverlight.Services
 			var viewport = new Viewport();
 
 			if (0 != Width && !Width.Equals(double.NaN) &&
-				0 != Height && !Height.Equals(double.NaN))
+			    0 != Height && !Height.Equals(double.NaN))
 			{
 				viewport.Width = (int)Width;
 				viewport.Height = (int)Height;
@@ -211,12 +210,12 @@ namespace Balder.Silverlight.Services
 		public IViewport CreateViewport(int xpos, int ypos, int width, int height)
 		{
 			var viewport = new Viewport
-							{
-								XPosition = xpos,
-								YPosition = ypos,
-								Width = width,
-								Height = height
-							};
+			               	{
+			               		XPosition = xpos,
+			               		YPosition = ypos,
+			               		Width = width,
+			               		Height = height
+			               	};
 			Children.Add(viewport);
 			return viewport;
 		}

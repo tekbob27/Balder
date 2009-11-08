@@ -3,10 +3,9 @@ using Balder.Core.Collections;
 using Balder.Core.Content;
 using Balder.Core.Display;
 using Balder.Core.Input;
-using Balder.Core.Services;
 using Ninject.Core;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Execution
 {
 	public class Actor : IActor
 	{
@@ -34,11 +33,12 @@ namespace Balder.Core.Runtime
 
 		public virtual void BeforeUpdate()
 		{
+			/*
 			if( null != MouseManager)
 			{
 				MouseManager.HandleButtonSignals(Mouse);
 				MouseManager.HandlePosition(Mouse);
-			}
+			}*/
 		}
 
 		public virtual void AfterUpdate() { }
@@ -84,6 +84,8 @@ namespace Balder.Core.Runtime
 		
 
 		#region Services
+
+		/*
 		[Inject]
 		public Mouse Mouse { get; set; }
 
@@ -98,6 +100,8 @@ namespace Balder.Core.Runtime
 
 		[Inject]
 		public IContentManager ContentManager { get; set; }
+		 * */
+
 		#endregion
 	}
 }

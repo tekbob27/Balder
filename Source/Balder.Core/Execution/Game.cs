@@ -1,7 +1,6 @@
 ﻿using Balder.Core.Interfaces;
-using Balder.Core.Runtime;
 
-namespace Balder.Core
+namespace Balder.Core.Execution
 {
 	public class Game : Actor
 	{

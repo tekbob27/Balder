@@ -15,6 +15,7 @@ namespace Balder.Silverlight.TestApp
 		void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
 		{
 
+			/*
 			foreach (var node in App.MyGame.Scene.RenderableNodes)
 			{
 				node.Click +=
@@ -23,7 +24,7 @@ namespace Balder.Silverlight.TestApp
 					                                   		_hitObject.Text = string.Format("'{0}' was clicked", ((Node)ss).Name);
 					                                   	});
 
-			}
+			}*/
 		}
 	}
 }

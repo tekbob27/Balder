@@ -1,4 +1,6 @@
-﻿namespace Balder.Core.Runtime
+﻿using Balder.Core.Execution;
+
+namespace Balder.Core
 {
 	public interface IRuntime
 	{

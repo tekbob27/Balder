@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Debug
 {
 	[Flags]
 	public enum DebugLevel

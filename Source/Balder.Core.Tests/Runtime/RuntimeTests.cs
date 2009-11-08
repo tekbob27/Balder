@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Balder.Core.Runtime;
 using Moq;
 using NUnit.Framework;
+using Balder.Core.Execution;
 
 namespace Balder.Core.Tests.Runtime
 {
@@ -35,7 +35,7 @@ namespace Balder.Core.Tests.Runtime
 					eventCalled = true;
 				});
 
-			var runtime = new Core.Runtime.Runtime(platform, objectFactoryMock.Object);
+			var runtime = new Core.Runtime(platform, objectFactoryMock.Object);
 
 			if( changeStateFirst )
 			{

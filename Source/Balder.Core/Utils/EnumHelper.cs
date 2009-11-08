@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Utils
 {
 	public static class EnumHelper
 	{
@@ -18,8 +18,8 @@ namespace Balder.Core.Runtime
 			var values = new List<T>();
 
 			var fields = from field in enumType.GetFields()
-						 where field.IsLiteral
-						 select field;
+			             where field.IsLiteral
+			             select field;
 
 			foreach (var field in fields)
 			{
@@ -40,8 +40,8 @@ namespace Balder.Core.Runtime
 			var values = new List<object>();
 
 			var fields = from field in enumType.GetFields()
-						 where field.IsLiteral
-						 select field;
+			             where field.IsLiteral
+			             select field;
 
 			foreach (var field in fields)
 			{

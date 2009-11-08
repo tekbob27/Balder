@@ -2,16 +2,12 @@
 using Balder.Core.Debug;
 using Balder.Core.Interfaces;
 using Balder.Core.Math;
-using Balder.Core.Services;
 using Ninject.Core;
 
 namespace Balder.Core.Objects.Geometries
 {
 	public class Geometry : RenderableNode, IAssetPart
 	{
-		[Inject]
-		public ITargetDevice TargetDevice { get; set; }
-
 		[Inject]
 		public IGeometryContext GeometryContext { get; set; }
 

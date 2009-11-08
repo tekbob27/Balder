@@ -27,8 +27,6 @@ namespace Balder.Core.SoftwareRendering
 			Height = height;
 			FrameBuffer = new T();
 			FrameBuffer.Initialize(width, height);
-			FrameBuffer.Clear += FrameBufferClear;
-			FrameBuffer.Swapped += FrameBufferSwapped;
 			InitializeZBuffer();
 		}
 
@@ -52,13 +50,13 @@ namespace Balder.Core.SoftwareRendering
 			}
 
 			ClearZBuffer();
-			FrameBufferSwapped();
+			SwapZBuffer();
 			ClearZBuffer();
 		}
 
 
 
-		private void FrameBufferSwapped()
+		private void SwapZBuffer()
 		{
 			lock (DepthBufferLock)
 			{
@@ -69,10 +67,6 @@ namespace Balder.Core.SoftwareRendering
 			}
 		}
 
-		private void FrameBufferClear()
-		{
-			ClearZBuffer();
-		}
 
 		private void ClearZBuffer()
 		{
@@ -92,5 +86,22 @@ namespace Balder.Core.SoftwareRendering
 
 		public int Width { get; private set; }
 		public int Height { get; private set; }
+
+		public void Swap()
+		{
+			FrameBuffer.Swap();
+			SwapZBuffer();
+		}
+
+		public void Clear()
+		{
+			FrameBuffer.Clear();
+			ClearZBuffer();
+		}
+
+		public void Show()
+		{
+			FrameBuffer.Show();
+		}
 	}
 }

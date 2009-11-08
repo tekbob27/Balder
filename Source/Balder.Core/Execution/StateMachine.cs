@@ -2,8 +2,9 @@
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using Balder.Core.Utils;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Execution
 {
 	/// <summary>
 	/// Represents the different phases of statechanging
@@ -203,8 +204,8 @@ namespace Balder.Core.Runtime
 			string methodName = "On" + state.ToString() + phase.ToString();
 
 			var method = (from m in methods
-						  where m.Name.Equals(methodName)
-						  select m).SingleOrDefault();
+			              where m.Name.Equals(methodName)
+			              select m).SingleOrDefault();
 			return method;
 		}
 

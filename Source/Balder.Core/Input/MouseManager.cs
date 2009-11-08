@@ -1,4 +1,4 @@
-﻿using Balder.Core.Runtime;
+﻿using Balder.Core.Utils;
 using Ninject.Core;
 
 namespace Balder.Core.Input

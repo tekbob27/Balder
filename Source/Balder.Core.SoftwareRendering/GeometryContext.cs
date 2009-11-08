@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Media;
-using Balder.Core.Extensions;
+using Balder.Core.Execution;
 using Balder.Core.Interfaces;
 using Balder.Core.Materials;
 using Balder.Core.Math;
 using Balder.Core.Objects.Geometries;
-using Balder.Core.Runtime;
 using Matrix=Balder.Core.Math.Matrix;
 
 namespace Balder.Core.SoftwareRendering
@@ -208,11 +205,6 @@ namespace Balder.Core.SoftwareRendering
 				face.Color = viewport.Scene.CalculateColorForVector(viewport, face.TransformedPosition, face.TransformedNormal);
 				Triangle.Draw(BufferManager.Instance.Current, SpanRenderer, TriangleShade.Gouraud, face, Vertices,
 							  TextureCoordinates);
-
-				if (EngineRuntime.Instance.DebugLevel.IsFaceNormalsSet())
-				{
-					//actualViewport.DebugRenderFace(face, a, b, c);	
-				}
 			}
 		}
 

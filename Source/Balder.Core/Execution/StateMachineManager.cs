@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Execution
 {
 	public class StateMachineManager
 	{

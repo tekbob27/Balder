@@ -5,7 +5,7 @@ using Ninject.Core.Activation;
 using Ninject.Core.Binding;
 using Ninject.Core.Creation.Providers;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Execution
 {
 	public delegate IBinding BindingResolver(IContext context);
 

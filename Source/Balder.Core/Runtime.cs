@@ -1,9 +1,18 @@
 ﻿using Balder.Core.Collections;
+using Balder.Core.Display;
+using Balder.Core.Execution;
+using Balder.Core.Input;
+using Ninject.Core;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core
 {
+	[Singleton]
 	public class Runtime : IRuntime
 	{
+		private static AutoKernel _kernel;
+		private static Runtime _instance;
+		private static readonly object _instanceLockObject = new object();
+
 		private readonly IPlatform _platform;
 		private readonly IObjectFactory _objectFactory;
 		private readonly ActorCollection _games;
@@ -19,6 +28,51 @@ namespace Balder.Core.Runtime
 			_objectFactory = objectFactory;
 			InitializePlatformEventHandlers();
 		}
+
+		public static Runtime Instance
+		{
+			get
+			{
+				lock( _instanceLockObject )
+				{
+					if( null == _instance )
+					{
+						_instance = _kernel.Get<IRuntime>() as Runtime;
+					}
+					return _instance;
+				}
+			}
+		}
+
+		public static void Initialize(IPlatform platform)
+		{
+			var runtimeModule = GetRuntimeModule(platform);
+			_kernel = new AutoKernel(runtimeModule);
+		}
+
+		public T CreateGame<T>() where T : Game
+		{
+			var game = _objectFactory.Get<T>();
+			return game;
+		}
+
+		public void RegisterGame<T>(T game) where T : Game
+		{
+			_games.Add(game);
+			HandleEventsForActor(game);
+		}
+
+
+		private static InlineModule GetRuntimeModule(IPlatform platform)
+		{
+			var module = new InlineModule(
+				m => m.Bind<IPlatform>().ToConstant(platform),
+				m => m.Bind<IDisplayDevice>().ToConstant(platform.DisplayDevice),
+				m => m.Bind<IMouseDevice>().ToConstant(platform.MouseDevice)
+			);
+			return module;
+		}
+
 
 		private void InitializePlatformEventHandlers()
 		{
@@ -46,18 +100,6 @@ namespace Balder.Core.Runtime
 					break;
 			}
 			HandleEventsForGames();
-		}
-
-		public T CreateGame<T>() where T : Game
-		{
-			var game = _objectFactory.Get<T>();
-			return game;
-		}
-
-		public void RegisterGame<T>(T game) where T : Game
-		{
-			_games.Add(game);
-			HandleEventsForActor(game);
 		}
 
 		private void HandleEventsForGames()

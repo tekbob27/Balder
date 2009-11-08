@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Execution
 {
 	public interface IObjectFactory
 	{

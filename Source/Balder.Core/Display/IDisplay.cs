@@ -10,14 +10,7 @@ namespace Balder.Core.Display
 {
 	public interface IDisplay
 	{
-		event EventHandler Draw;
-		event EventHandler Render;
-		event EventHandler Update;
-		event EventHandler Initialized;
-
 		Color BackgroundColor { get; set; }
-
-		bool IsInitialized { get; }
 
 		IViewport CreateViewport();
 		IViewport CreateViewport(int xpos, int ypos, int width, int height);

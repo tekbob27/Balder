@@ -2,6 +2,6 @@
 {
 	public interface IDisplayDevice
 	{
-
+		IDisplay CreateDisplay();
 	}
 }

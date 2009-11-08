@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Ninject.Core;
 using Ninject.Core.Parameters;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Execution
 {
 	[Singleton]
 	public class ObjectFactory : IObjectFactory

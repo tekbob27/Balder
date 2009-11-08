@@ -2,19 +2,20 @@
 using System.Threading;
 using System.Windows.Media;
 using Balder.Core.Extensions;
-using Balder.Core.SoftwareRendering;
 
 namespace Balder.Silverlight.SoftwareRendering
 {
-	public class FrameBufferManager : IDisposable
-	{
-		public static readonly FrameBufferManager	Instance = new FrameBufferManager();
+	public delegate void RenderEventHandler();
 
-		public event FrameBufferUpdated Updated = () => { };
-		public event FrameBufferRender Render = () => { };
-		public event FrameBufferClear Clear = () => { };
-		public event FrameBufferSwapped Swapped = () => { };
-		public event FrameBufferShow Show = () => { };
+	public class RenderingManager
+	{
+		public static readonly RenderingManager Instance = new RenderingManager();
+
+		public event RenderEventHandler Updated = () => { };
+		public event RenderEventHandler Render = () => { };
+		public event RenderEventHandler Clear = () => { };
+		public event RenderEventHandler Swapped = () => { };
+		public event RenderEventHandler Show = () => { };
 
 		private ManualResetEvent _renderEvent;
 		private ManualResetEvent _clearEvent;
@@ -28,10 +29,10 @@ namespace Balder.Silverlight.SoftwareRendering
 		private Thread _showThread;
 		private Thread _swapThread;
 
-		private bool _frameBufferAlive;
+		private bool _frameBufferManagerAlive;
 
 
-		private FrameBufferManager()
+		private RenderingManager()
 		{
 			Start();
 		}
@@ -39,7 +40,7 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		public void Start()
 		{
-			_frameBufferAlive = true;
+			_frameBufferManagerAlive = true;
 
 			_renderEvent = new ManualResetEvent(false);
 			_clearEvent = new ManualResetEvent(false);
@@ -47,8 +48,6 @@ namespace Balder.Silverlight.SoftwareRendering
 			_renderFinishedEvent = new ManualResetEvent(true);
 			_clearFinishedEvent = new ManualResetEvent(true);
 			_showFinishedEvent = new ManualResetEvent(true);
-
-			
 
 			CompositionTarget.Rendering += ShowTimer;
 
@@ -65,7 +64,7 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		public void Stop()
 		{
-			_frameBufferAlive = false;
+			_frameBufferManagerAlive = false;
 
 			_renderEvent.Set();
 			_clearEvent.Set();
@@ -91,7 +90,7 @@ namespace Balder.Silverlight.SoftwareRendering
 			                  		_clearEvent
 			                  	};
 
-			for (; ; )
+			while (_frameBufferManagerAlive)
 			{
 				WaitHandle.WaitAll(waitEvents);
 				Swapped();
@@ -102,7 +101,7 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		private void ShowThread()
 		{
-			for (; ; )
+			while (_frameBufferManagerAlive)
 			{
 				_showEvent.WaitOne();
 				Show();
@@ -114,12 +113,10 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		private void RenderThread()
 		{
-			while (_frameBufferAlive)
+			while (_frameBufferManagerAlive)
 			{
 				_renderEvent.WaitOne();
-
 				Render();
-
 				_renderEvent.Reset();
 				_renderFinishedEvent.Set();
 			}
@@ -127,7 +124,7 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		private void ClearThread()
 		{
-			while (_frameBufferAlive)
+			while (_frameBufferManagerAlive)
 			{
 				_clearEvent.WaitOne();
 				Clear();
@@ -139,12 +136,6 @@ namespace Balder.Silverlight.SoftwareRendering
 		private void ShowTimer(object sender, EventArgs e)
 		{
 			Updated();
-		}
-
-
-		public void Dispose()
-		{
-			Stop();
 		}
 	}
 }

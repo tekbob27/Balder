@@ -1,7 +1,7 @@
 ﻿using Balder.Core.Display;
 using Balder.Core.Input;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Execution
 {
 	public enum PlatformState
 	{

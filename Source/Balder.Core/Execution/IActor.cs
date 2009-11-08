@@ -1,4 +1,4 @@
-﻿namespace Balder.Core.Runtime
+﻿namespace Balder.Core.Execution
 {
 	public interface IActor
 	{

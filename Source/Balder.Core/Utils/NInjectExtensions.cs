@@ -1,10 +1,9 @@
 ﻿using System;
 using Ninject.Core;
-using Ninject.Core.Activation;
 using Ninject.Core.Binding;
 using Ninject.Core.Binding.Syntax;
 
-namespace Balder.Core.Runtime
+namespace Balder.Core.Utils
 {
 	public static class NinjectExtensions
 	{

@@ -78,7 +78,7 @@ namespace Balder.Core.Runtime
 			{
 				game.OnInitialize();
 				game.OnLoadContent();
-				game.OnLoaded();
+				//game.OnLoaded();
 				_games.Add(game);
 				return game;
 			}

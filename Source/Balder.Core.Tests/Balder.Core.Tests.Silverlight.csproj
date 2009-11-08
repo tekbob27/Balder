@@ -65,17 +65,12 @@
   <ItemGroup>
     <Compile Include="Assets\AssetLoaderServiceTests.cs" />
     <Compile Include="Extensions\ViewportExtensionsTests.cs" />
-    <Compile Include="Fakes\AssetLoaders\Nested\NestedAssetLoader.cs" />
-    <Compile Include="Fakes\AssetLoaders\RootAssetLoader.cs" />
-    <Compile Include="Fakes\Display.cs" />
-    <Compile Include="Fakes\FileLoader.cs" />
-    <Compile Include="Fakes\GeometryContext.cs" />
-    <Compile Include="Fakes\ImageContext.cs" />
-    <Compile Include="Fakes\MockGame.cs" />
-    <Compile Include="Fakes\MockGeometry.cs" />
-    <Compile Include="Fakes\SpriteFrameContext.cs" />
-    <Compile Include="Fakes\TargetDevice.cs" />
-    <Compile Include="Fakes\Viewport.cs" />
+    <Compile Include="Fakes\AssetLoaders\Nested\NestedAssetLoader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Fakes\AssetLoaders\RootAssetLoader.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Input\MouseButtonStateTests.cs" />
     <Compile Include="Input\MouseManagerTests.cs" />
     <Compile Include="Math\BoundingSphereTests.cs" />

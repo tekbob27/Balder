@@ -10,7 +10,7 @@ namespace Balder.Core.Tests.Runtime
 	public class RuntimeTests
 	{
 
-		private void EventShouldBeCalledForStateDuringRegistration(Expression<Action<Game>> eventExpression, PlatformState state, bool changeStateFirst)
+		private static void EventShouldBeCalledForStateDuringRegistration(Expression<Action<Game>> eventExpression, PlatformState state, bool changeStateFirst)
 		{
 			var eventCalled = false;
 			var stateChanged = false;
@@ -35,12 +35,13 @@ namespace Balder.Core.Tests.Runtime
 					eventCalled = true;
 				});
 
+			var runtime = new Core.Runtime.Runtime(platform, objectFactoryMock.Object);
+
 			if( changeStateFirst )
 			{
 				platform.ChangeState(state);
 			}
-
-			var runtime = new Core.Runtime.Runtime(platform, objectFactoryMock.Object);
+			
 			runtime.RegisterGame(gameMock.Object);
 
 			if( !changeStateFirst )
@@ -49,11 +50,10 @@ namespace Balder.Core.Tests.Runtime
 			}
 
 			Assert.That(eventCalled, Is.True);
-			
 		}
 
 		[Test]
-		public void RegisteredGameShouldNotHaveItsInitializeCalledAfterInitializeStateChangeOccursOnPlatform()
+		public void RegisteredGameShouldHaveItsInitializeCalledAfterInitializeStateChangeOccursOnPlatform()
 		{
 			EventShouldBeCalledForStateDuringRegistration(g => g.Initialize(),PlatformState.Initialize, false);
 		}
@@ -65,7 +65,7 @@ namespace Balder.Core.Tests.Runtime
 		}
 
 		[Test]
-		public void RegisteredGameShouldNotHaveItsLoadCalledAfterLoadStateChangeOccursOnPlatform()
+		public void RegisteredGameShouldHaveItsLoadCalledAfterLoadStateChangeOccursOnPlatform()
 		{
 			EventShouldBeCalledForStateDuringRegistration(g => g.LoadContent(), PlatformState.Load, false);
 		}
@@ -77,7 +77,7 @@ namespace Balder.Core.Tests.Runtime
 		}
 
 		[Test]
-		public void RegisteredGameShouldNotHaveItsUpdateCalledAfterRunStateChangeOccursOnPlatform()
+		public void RegisteredGameShouldHaveItsUpdateCalledAfterRunStateChangeOccursOnPlatform()
 		{
 			EventShouldBeCalledForStateDuringRegistration(g => g.Update(), PlatformState.Run, false);
 		}
@@ -85,7 +85,7 @@ namespace Balder.Core.Tests.Runtime
 		[Test]
 		public void ActorsWithinGameShouldHaveItsInitializeCalledAfterGamesInitializeIsCalled()
 		{
-			EventShouldBeCalledForStateDuringRegistration(g => g.LoadContent(), PlatformState.Load, true);
+			Assert.Fail();
 		}
 
 		[Test]

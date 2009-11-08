@@ -84,10 +84,6 @@
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssetLoaders\ImageLoader.cs" />
-    <Compile Include="Controls\Mesh.cs" />
-    <Compile Include="Controls\RenderedNode.cs" />
-    <Compile Include="Controls\RenderedNodeCollection.cs" />
-    <Compile Include="Controls\RenderingContainer.cs" />
     <Compile Include="Extensions\DependencyPropertyExtensions.cs" />
     <Compile Include="Extensions\DependencyPropertySubscription.cs" />
     <Compile Include="Extensions\ExpressionExtensions.cs" />

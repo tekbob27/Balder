@@ -1,4 +1,6 @@
-﻿using Balder.Core.Content;
+﻿using System;
+using Balder.Core.Collections;
+using Balder.Core.Content;
 using Balder.Core.Display;
 using Balder.Core.Input;
 using Balder.Core.Services;
@@ -8,12 +10,25 @@ namespace Balder.Core.Runtime
 {
 	public class Actor : IActor
 	{
+		protected Actor()
+		{
+			Actors = new ActorCollection();
+		}
+
+		public ActorCollection Actors { get; private set; }
+		public bool HasInitialized { get; private set; }
+		public bool HasLoaded { get; private set; }
+		public bool HasUpdated { get; private set; }
+
+		protected void AddActor(Actor actor)
+		{
+			Actors.Add(actor);
+		}
+		
+
 		public virtual void Initialize() { }
 		public virtual void LoadContent() { }
 		public virtual void Loaded() { }
-		public virtual void BeforeDraw() { }
-		public virtual void Draw() { }
-		public virtual void AfterDraw() { }
 		public virtual void Update() { }
 		public virtual void Stopped() { }
 
@@ -27,6 +42,46 @@ namespace Balder.Core.Runtime
 		}
 
 		public virtual void AfterUpdate() { }
+
+
+		private void ExecuteActionOnActors(Action<Actor> action)
+		{
+			foreach (var actor in Actors)
+			{
+				action(actor);
+			}
+		}
+
+		public void Stop()
+		{
+			foreach (var actor in Actors)
+			{
+				actor.Stopped();
+			}
+		}
+
+
+		internal void OnInitialize()
+		{
+			Initialize();
+			ExecuteActionOnActors(a => a.Initialize());
+			HasInitialized = true;
+		}
+
+		internal void OnLoadContent()
+		{
+			LoadContent();
+			ExecuteActionOnActors(a => a.LoadContent());
+			HasLoaded = true;
+		}
+
+		internal void OnUpdate()
+		{
+			Update();
+			HasUpdated = true;
+		}
+
+		
 
 		#region Services
 		[Inject]

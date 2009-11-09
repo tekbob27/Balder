@@ -1,6 +1,6 @@
 ﻿using System;
+using Balder.Core.Display;
 using Balder.Core.Imaging;
-using Balder.Core.Interfaces;
 using Balder.Core.Math;
 using Balder.Core.Objects.Flat;
 
@@ -19,7 +19,7 @@ namespace Balder.Core.SoftwareRendering
 			YScalingInterpolator.SetNumberOfInterpolationPoints(1);
 		}
 
-		public void Render(IViewport viewport, Sprite sprite, Matrix view, Matrix projection, Matrix world, float xScale, float yScale, float rotation)
+		public void Render(Viewport viewport, Sprite sprite, Matrix view, Matrix projection, Matrix world, float xScale, float yScale, float rotation)
 		{
 			var buffer = BufferManager.Instance.Current;
 

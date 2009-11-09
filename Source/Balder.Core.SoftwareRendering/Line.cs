@@ -3,14 +3,14 @@ using System.Windows.Media;
 #else
 using System.Drawing;
 #endif
+using Balder.Core.Display;
 using Balder.Core.Extensions;
-using Balder.Core.Interfaces;
 
 namespace Balder.Core.SoftwareRendering
 {
 	public static class Shapes
 	{
-		public static void DrawLine(IViewport viewport, IBuffers buffers, int xstart, int ystart, int xend, int yend, Color color)
+		public static void DrawLine(Viewport viewport, IBuffers buffers, int xstart, int ystart, int xend, int yend, Color color)
 		{
 			var colorAsInt = (int)color.ToUInt32();
 

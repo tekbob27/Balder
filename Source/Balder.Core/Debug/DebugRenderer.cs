@@ -3,8 +3,8 @@ using System.Windows.Media;
 #else
 using System.Drawing;
 #endif
+using Balder.Core.Display;
 using Balder.Core.Execution;
-using Balder.Core.Interfaces;
 using Balder.Core.Math;
 using Ninject.Core;
 using Matrix = Balder.Core.Math.Matrix;
@@ -32,7 +32,7 @@ namespace Balder.Core.Debug
 			_boundingSphereDebugShape.Initialize();
 		}
 
-		public void RenderBoundingSphere(BoundingSphere sphere, IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		public void RenderBoundingSphere(BoundingSphere sphere, Viewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
 			var scaleMatrix = Matrix.CreateScale(sphere.Radius);
 			var translationMatrix = Matrix.CreateTranslation(sphere.Center) * world;

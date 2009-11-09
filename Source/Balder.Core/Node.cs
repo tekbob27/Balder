@@ -1,4 +1,4 @@
-﻿using Balder.Core.Interfaces;
+﻿using Balder.Core.Display;
 using Balder.Core.Math;
 using System;
 
@@ -62,7 +62,7 @@ namespace Balder.Core
 		protected Matrix PositionMatrix { get; private set; }
 		protected Matrix ScaleMatrix { get; private set; }
 
-		public virtual void Prepare(IViewport viewport) {}
+		public virtual void Prepare(Viewport viewport) {}
 		public virtual void Update() {}
 
 

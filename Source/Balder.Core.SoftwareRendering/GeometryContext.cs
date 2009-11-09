@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Balder.Core.Execution;
-using Balder.Core.Interfaces;
+using Balder.Core.Display;
 using Balder.Core.Materials;
 using Balder.Core.Math;
 using Balder.Core.Objects.Geometries;
@@ -146,14 +145,14 @@ namespace Balder.Core.SoftwareRendering
 
 		private static ISpanRenderer SpanRenderer = new SimpleSpanRenderer();
 
-		public void Render(IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		public void Render(Viewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
 			TransformAndTranslateVertices(viewport,view,projection,world);
 			RenderFaces(viewport, view, projection, world);
 			RenderLines(viewport, view, projection, world);
 		}
 
-		private void TransformAndTranslateVertex(ref Vertex vertex, IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		private void TransformAndTranslateVertex(ref Vertex vertex, Viewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
 			var matrix = (world*view)*projection;
 			vertex.Transform(world, matrix);
@@ -166,7 +165,7 @@ namespace Balder.Core.SoftwareRendering
 			vertex.Color = viewport.Scene.CalculateColorForVector(viewport, vertex.Vector, vertex.Normal);
 		}
 
-		private void TransformAndTranslateVertices(IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		private void TransformAndTranslateVertices(Viewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
 			for (var vertexIndex = 0; vertexIndex < Vertices.Length; vertexIndex++)
 			{
@@ -176,7 +175,7 @@ namespace Balder.Core.SoftwareRendering
 			}
 		}
 
-		private void RenderFaces(IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		private void RenderFaces(Viewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
 			if( null == Faces )
 			{
@@ -208,7 +207,7 @@ namespace Balder.Core.SoftwareRendering
 			}
 		}
 
-		private void RenderLines(IViewport viewport, Matrix view, Matrix projection, Matrix world)
+		private void RenderLines(Viewport viewport, Matrix view, Matrix projection, Matrix world)
 		{
 			if( null == Lines )
 			{

@@ -1,10 +1,4 @@
-﻿#if(SILVERLIGHT)
-using System.Windows.Media.Imaging;
-#else
-using System.Drawing;
-#endif
-
-namespace Balder.Core.SoftwareRendering
+﻿namespace Balder.Core.SoftwareRendering
 {
 	public interface IFrameBuffer
 	{
@@ -16,11 +10,8 @@ namespace Balder.Core.SoftwareRendering
 		int GreenPosition { get; }
 		int AlphaPosition { get; }
 
-#if(SILVERLIGHT)
-		BitmapSource BitmapSource { get; }
-#endif
-
-		int[] Pixels { get;  }
+		int[] Pixels { get; }
+		int[] BackBuffer { get; }
 
 		void Clear();
 		void Swap();

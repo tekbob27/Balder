@@ -42,6 +42,12 @@ namespace Balder.Core.Execution
 		}
 
 
+		public void WireUpDependencies(object objectToWire)
+		{
+			_kernel.Inject(objectToWire);
+		}
+
+
 		private static Dictionary<string, object> CreateConstructorArgumentsDictionary(IEnumerable<ConstructorArgument> constructorArguments)
 		{
 			var constructorArgumentsDictionary = new Dictionary<string, object>();
@@ -51,5 +57,6 @@ namespace Balder.Core.Execution
 			}
 			return constructorArgumentsDictionary;
 		}
+
 	}
 }

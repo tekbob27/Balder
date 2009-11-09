@@ -1,10 +1,8 @@
-﻿using System;
-#if(SILVERLIGHT)
+﻿#if(SILVERLIGHT)
 using System.Windows.Media;
 #else
 using System.Drawing;
 #endif
-using Balder.Core.Interfaces;
 
 namespace Balder.Core.Display
 {
@@ -12,7 +10,6 @@ namespace Balder.Core.Display
 	{
 		Color BackgroundColor { get; set; }
 
-		IViewport CreateViewport();
-		IViewport CreateViewport(int xpos, int ypos, int width, int height);
+		void Initialize(int width, int height);
 	}
 }

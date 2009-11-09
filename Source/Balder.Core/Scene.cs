@@ -4,8 +4,8 @@ using System.Windows.Media;
 using System.Drawing;
 #endif
 using Balder.Core.Collections;
+using Balder.Core.Display;
 using Balder.Core.Input;
-using Balder.Core.Interfaces;
 using Balder.Core.Lighting;
 using Balder.Core.Math;
 using Balder.Core.Objects.Flat;
@@ -63,7 +63,7 @@ namespace Balder.Core
 		public NodeCollection RenderableNodes { get { return _renderableNodes; } }
 
 
-		public Color CalculateColorForVector(IViewport viewport, Vector vector, Vector normal)
+		public Color CalculateColorForVector(Viewport viewport, Vector vector, Vector normal)
 		{
 			var color = AmbientColor.ToVector();
 
@@ -83,7 +83,7 @@ namespace Balder.Core
 			}
 		}
 
-		public void Render(IViewport viewport, Matrix view, Matrix projection)
+		public void Render(Viewport viewport, Matrix view, Matrix projection)
 		{
 			lock (_renderableNodes)
 			{
@@ -142,7 +142,7 @@ namespace Balder.Core
 			}
 		}
 
-		public void HandleMouseEvents(IViewport viewport, Mouse mouse)
+		public void HandleMouseEvents(Viewport viewport, Mouse mouse)
 		{
 			var objectHit = GetNodeAtScreenCoordinate(viewport, mouse.XPosition, mouse.YPosition);
 			if (null != objectHit)
@@ -156,7 +156,7 @@ namespace Balder.Core
 		}
 
 
-		public RenderableNode GetNodeAtScreenCoordinate(IViewport viewport, int x, int y)
+		public RenderableNode GetNodeAtScreenCoordinate(Viewport viewport, int x, int y)
 		{
 			var nearSource = new Vector((float)x, (float)y, 0f);
 			var farSource = new Vector((float)x, (float)y, 1f);

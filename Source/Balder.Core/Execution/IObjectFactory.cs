@@ -8,5 +8,6 @@ namespace Balder.Core.Execution
 		T Get<T>(params ConstructorArgument[] constructorArguments);
 		object Get(Type type);
 		object Get(Type type, params ConstructorArgument[] constructorArguments);
+		void WireUpDependencies(object objectToWire);
 	}
 }

@@ -23,10 +23,12 @@ namespace Balder.Silverlight.TestApp
 			//TargetDevice.Initialize();
 			RootVisual = new Page();
 
-			var platform = new Platform();
-			Runtime.Initialize(platform);
+			/*
+			Platform.Initialize();
+			
 			var game = Runtime.Instance.CreateGame<MyGame>();
 			Runtime.Instance.RegisterGame(game);
+			 * */
 
 			//MyGame = TargetDevice.Initialize<MyGame>();
 			

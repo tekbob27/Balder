@@ -1,4 +1,4 @@
-﻿using Balder.Core.Interfaces;
+﻿using Balder.Core.Display;
 using Balder.Core.Materials;
 using Balder.Core.Math;
 
@@ -31,7 +31,7 @@ namespace Balder.Core.Objects.Geometries
 
 		void Prepare();
 
-		void Render(IViewport viewport, Matrix view, Matrix projection, Matrix world);
+		void Render(Viewport viewport, Matrix view, Matrix projection, Matrix world);
 		
 	}
 }

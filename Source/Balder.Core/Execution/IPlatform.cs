@@ -1,4 +1,5 @@
-﻿using Balder.Core.Display;
+﻿using System;
+using Balder.Core.Display;
 using Balder.Core.Input;
 
 namespace Balder.Core.Execution
@@ -21,6 +22,11 @@ namespace Balder.Core.Execution
 
 		IDisplayDevice DisplayDevice { get; }
 		IMouseDevice MouseDevice { get; }
+
+		Type FileLoaderType { get; }
+		Type GeometryContextType { get; }
+		Type SpriteContextType { get; }
+		Type ImageContextType { get; }
 
 		PlatformState CurrentState { get; }
 	}

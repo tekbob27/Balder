@@ -1,7 +1,6 @@
-﻿using Balder.Core.Interfaces;
+﻿using Balder.Core.Display;
 using Balder.Core.Math;
 using Balder.Core.Objects.Geometries;
-using Moq;
 using NUnit.Framework;
 
 namespace Balder.Core.Tests
@@ -12,23 +11,18 @@ namespace Balder.Core.Tests
 		[Test]
 		public void GettingObjectAtCenterOfScreenWithSingleObjectAtCenterOfSceneShouldReturnTheObject()
 		{
-			var viewportMock = new Mock<IViewport>();
-			viewportMock.ExpectGet(v => v.Width).Returns(640);
-			viewportMock.ExpectGet(v => v.Height).Returns(480);
+			var viewport = new Viewport {Width = 640, Height = 480};
 			var scene = new Scene();
-			var camera = new Camera();
-			camera.Prepare(viewportMock.Object);
-			viewportMock.ExpectGet(v => v.Camera).Returns(camera);
-
-			camera.Position.Z = -10;
-
+			var camera = new Camera(viewport) {Position = {Z = -10}};
 			camera.Update();
 
-			var node = new Geometry();
-			node.BoundingSphere = new BoundingSphere(Vector.Zero, 10f);
+			var node = new Geometry
+			           	{
+			           		BoundingSphere = new BoundingSphere(Vector.Zero, 10f)
+			           	};
 			scene.AddNode(node);
 
-			var nodeAtCoordinate = scene.GetNodeAtScreenCoordinate(viewportMock.Object, viewportMock.Object.Width / 2, viewportMock.Object.Height / 2);
+			var nodeAtCoordinate = scene.GetNodeAtScreenCoordinate(viewport, viewport.Width / 2, viewport.Height / 2);
 			Assert.That(nodeAtCoordinate, Is.Not.Null);
 			Assert.That(nodeAtCoordinate, Is.EqualTo(node));
 		}
@@ -36,23 +30,21 @@ namespace Balder.Core.Tests
 		[Test]
 		public void GettingObjectAtTopLeftOfScreenWithSingleObjectAtCenterOfSceneShouldReturnTheObject()
 		{
-			var viewportMock = new Mock<IViewport>();
-			viewportMock.ExpectGet(v => v.Width).Returns(640);
-			viewportMock.ExpectGet(v => v.Height).Returns(480);
+			var viewport = new Viewport { Width = 640, Height = 480 };
 			var scene = new Scene();
-			var camera = new Camera();
-			camera.Prepare(viewportMock.Object);
-			viewportMock.ExpectGet(v => v.Camera).Returns(camera);
+			var camera = new Camera(viewport);
 
 			camera.Position.Z = -100;
 
 			camera.Update();
 
-			var node = new Geometry();
-			node.BoundingSphere = new BoundingSphere(Vector.Zero, 10f);
+			var node = new Geometry
+			           	{
+			           		BoundingSphere = new BoundingSphere(Vector.Zero, 10f)
+			           	};
 			scene.AddNode(node);
 
-			var nodeAtCoordinate = scene.GetNodeAtScreenCoordinate(viewportMock.Object, 0, 0);
+			var nodeAtCoordinate = scene.GetNodeAtScreenCoordinate(viewport, 0, 0);
 			Assert.That(nodeAtCoordinate, Is.Null);
 		}
 

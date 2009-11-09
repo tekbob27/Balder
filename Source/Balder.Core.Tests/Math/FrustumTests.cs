@@ -1,6 +1,5 @@
-﻿using Balder.Core.Interfaces;
+﻿using Balder.Core.Display;
 using Balder.Core.Math;
-using Moq;
 using NUnit.Framework;
 
 namespace Balder.Core.Tests.Math
@@ -13,11 +12,9 @@ namespace Balder.Core.Tests.Math
 		[TestFixtureSetUp]
 		public void Setup()
 		{
-			var viewportMock = new Mock<IViewport>();
-			viewportMock.ExpectGet(v => v.Width).Returns(640);
-			viewportMock.ExpectGet(v => v.Height).Returns(480);
-			var camera = new Camera {Target = Vector.Forward, Position = Vector.Zero};
-			camera.Prepare(viewportMock.Object);
+			var viewport = new Viewport { Width = 640, Height = 480 };
+			var camera = new Camera(viewport) { Target = Vector.Forward, Position = Vector.Zero };
+			camera.Prepare(viewport);
 			camera.Update();
 			_frustum = new Frustum();
 			_frustum.SetCameraDefinition(camera);

@@ -1,4 +1,4 @@
-﻿using Balder.Core.Interfaces;
+﻿using Balder.Core.Display;
 using Balder.Core.Math;
 
 namespace Balder.Core.Extensions
@@ -28,7 +28,7 @@ namespace Balder.Core.Extensions
 
 
 
-		public static Vector Unproject(this IViewport viewport, Vector source, Matrix projection, Matrix view, Matrix world)
+		public static Vector Unproject(this Viewport viewport, Vector source, Matrix projection, Matrix view, Matrix world)
 		{
 			var combinedMatrix = (world * view) * projection;
 			var matrix = Matrix.Invert(combinedMatrix);

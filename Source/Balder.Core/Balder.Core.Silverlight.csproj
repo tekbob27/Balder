@@ -96,6 +96,7 @@
     <Compile Include="Debug\IDebugRenderer.cs" />
     <Compile Include="Dimension.cs" />
     <Compile Include="Display\IDisplayDevice.cs" />
+    <Compile Include="Display\Viewport.cs" />
     <Compile Include="Exceptions\AssetNotFoundException.cs" />
     <Compile Include="Exceptions\UnsupportedImageFormatException.cs" />
     <Compile Include="Extensions\ColorExtensions.cs" />
@@ -188,7 +189,6 @@
     <Compile Include="Execution\IStateMachine.cs" />
     <Compile Include="Execution\StateMachine.cs" />
     <Compile Include="Execution\StateMachineManager.cs" />
-    <Compile Include="Interfaces\IViewport.cs" />
     <Compile Include="Utils\AssemblyHelper.cs" />
   </ItemGroup>
   <ItemGroup>

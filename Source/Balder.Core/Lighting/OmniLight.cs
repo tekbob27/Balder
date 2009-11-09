@@ -3,8 +3,8 @@ using System.Windows.Media;
 #else
 using System.Drawing;
 #endif
+using Balder.Core.Display;
 using Balder.Core.Extensions;
-using Balder.Core.Interfaces;
 using Balder.Core.Math;
 
 namespace Balder.Core.Lighting
@@ -26,7 +26,7 @@ namespace Balder.Core.Lighting
             Ambient = true;
 		}
 
-		public override Color Calculate(IViewport viewport, Vector point, Vector normal)
+		public override Color Calculate(Viewport viewport, Vector point, Vector normal)
 		{
             // Use dotproduct for diffuse lighting. Add point functionality as this now is a directional light.
             // Ambient light

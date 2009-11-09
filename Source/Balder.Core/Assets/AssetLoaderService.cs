@@ -45,7 +45,8 @@ namespace Balder.Core.Assets
 			var baseType = typeof(AssetLoader<>);
 
 			var query = from t in types
-			            where t.BaseType.Name.Equals(baseType.Name)
+			            where	null != t.BaseType &&
+								t.BaseType.Name.Equals(baseType.Name)
 			            select t;
 
 			foreach (var type in query)

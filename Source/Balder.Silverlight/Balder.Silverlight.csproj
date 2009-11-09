@@ -84,6 +84,9 @@
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssetLoaders\ImageLoader.cs" />
+    <Compile Include="Controls\BalderControl.cs" />
+    <Compile Include="Controls\Game.cs" />
+    <Compile Include="Converters\StringToTypeConverter.cs" />
     <Compile Include="Display\DisplayDevice.cs" />
     <Compile Include="Execution\Platform.cs" />
     <Compile Include="Extensions\DependencyPropertyExtensions.cs" />
@@ -98,7 +101,6 @@
     <Compile Include="Helpers\DependencyProperty.cs" />
     <Compile Include="Helpers\DependencyPropertyHelper.cs" />
     <Compile Include="Implementation\FileLoader.cs" />
-    <Compile Include="Implementation\Viewport.cs" />
     <Compile Include="Input\MouseDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Display\Display.cs" />

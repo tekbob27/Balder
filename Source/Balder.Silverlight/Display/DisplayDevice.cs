@@ -7,6 +7,9 @@ namespace Balder.Silverlight.Display
 {
 	public class DisplayDevice : IDisplayDevice
 	{
+		public event DisplayEvent Update = (d) => { };
+		public event DisplayEvent Render = (d) => { };
+
 		private List<Display> _displays;
 
 
@@ -14,35 +17,45 @@ namespace Balder.Silverlight.Display
 		{
 			_displays = new List<Display>();
 
-			RenderingManager.Instance.Render += Render;
-			RenderingManager.Instance.Show += Show;
-			RenderingManager.Instance.Clear += Clear;
-			RenderingManager.Instance.Swapped += Swapped;
-			RenderingManager.Instance.Updated += Updated;
+			RenderingManager.Instance.Render += RenderingManagerRender;
+			RenderingManager.Instance.Show += RenderingManagerShow;
+			RenderingManager.Instance.Clear += RenderingManagerClear;
+			RenderingManager.Instance.Swapped += RenderingManagerSwapped;
+			RenderingManager.Instance.Updated += RenderingManagerUpdated;
 
 		}
 
-		private void Render()
+		private void RenderingManagerRender()
 		{
+			foreach( var display in _displays )
+			{
+				display.PrepareRender();
+				Render(display);
+			}
 		}
 
-		private void Clear()
+		private void RenderingManagerClear()
 		{
 			CallMethodOnDisplays(d=>d.Clear());
 		}
 
-		private void Show()
+		private void RenderingManagerShow()
 		{
 			CallMethodOnDisplays(d => d.Show());
 		}
 
-		private void Swapped()
+		private void RenderingManagerSwapped()
 		{
 			CallMethodOnDisplays(d => d.Swap());
 		}
 
-		private void Updated()
+		private void RenderingManagerUpdated()
 		{
+			CallMethodOnDisplays(d => d.Update());
+			foreach (var display in _displays)
+			{
+				Update(display);
+			}
 		}
 		
 

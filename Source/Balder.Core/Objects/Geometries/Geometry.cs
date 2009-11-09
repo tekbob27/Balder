@@ -1,6 +1,6 @@
 ﻿using Balder.Core.Assets;
 using Balder.Core.Debug;
-using Balder.Core.Interfaces;
+using Balder.Core.Display;
 using Balder.Core.Math;
 using Ninject.Core;
 
@@ -56,7 +56,7 @@ namespace Balder.Core.Objects.Geometries
 			BoundingSphere = new BoundingSphere(center, length.Length/2);
 		}
 
-		public override void Render(IViewport viewport, Matrix view, Matrix projection)
+		public override void Render(Viewport viewport, Matrix view, Matrix projection)
 		{
 			/*
 			var xRotation = Matrix.CreateRotationX(XRotation);

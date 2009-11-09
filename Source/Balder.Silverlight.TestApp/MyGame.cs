@@ -1,4 +1,5 @@
 ﻿using Balder.Core.Execution;
+using Balder.Core.Objects.Geometries;
 
 namespace Balder.Silverlight.TestApp
 {
@@ -6,20 +7,16 @@ namespace Balder.Silverlight.TestApp
 	{
 		public override void Initialize()
 		{
-			int i = 0;
-			i++;
 		}
 
 		public override void LoadContent()
 		{
-			int i = 0;
-			i++;
+			var teapot = ContentManager.Load<Mesh>("teapot.ASE");
+			Scene.AddNode(teapot);
 		}
 
 		public override void Update()
 		{
-			int i = 0;
-			i++;
 		}
 	}
 }

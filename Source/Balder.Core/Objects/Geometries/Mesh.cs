@@ -1,7 +1,6 @@
 ﻿using Balder.Core.Assets;
 using Balder.Core.Debug;
-using Balder.Core.Execution;
-using Balder.Core.Interfaces;
+using Balder.Core.Display;
 using Balder.Core.Math;
 
 namespace Balder.Core.Objects.Geometries
@@ -33,7 +32,7 @@ namespace Balder.Core.Objects.Geometries
 			BoundingSphere = boundingSphere;
 		}
 
-		public override void Render(IViewport viewport, Matrix view, Matrix projection)
+		public override void Render(Viewport viewport, Matrix view, Matrix projection)
 		{
 			for( var geometryIndex=0; geometryIndex<_geometries.Length; geometryIndex++ )
 			{

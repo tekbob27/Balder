@@ -24,23 +24,15 @@ namespace Balder.Core.Execution
 			Actors.Add(actor);
 		}
 		
-
+		public virtual void BeforeInitialize() { }
 		public virtual void Initialize() { }
+
 		public virtual void LoadContent() { }
 		public virtual void Loaded() { }
-		public virtual void Update() { }
 		public virtual void Stopped() { }
 
-		public virtual void BeforeUpdate()
-		{
-			/*
-			if( null != MouseManager)
-			{
-				MouseManager.HandleButtonSignals(Mouse);
-				MouseManager.HandlePosition(Mouse);
-			}*/
-		}
-
+		public virtual void BeforeUpdate() { }
+		public virtual void Update() { }
 		public virtual void AfterUpdate() { }
 
 
@@ -63,6 +55,7 @@ namespace Balder.Core.Execution
 
 		internal void OnInitialize()
 		{
+			BeforeInitialize();
 			Initialize();
 			ExecuteActionOnActors(a => a.Initialize());
 			HasInitialized = true;
@@ -77,13 +70,20 @@ namespace Balder.Core.Execution
 
 		internal void OnUpdate()
 		{
+			ExecuteActionOnActors(a => a.BeforeUpdate());
+			ExecuteActionOnActors(a => a.Update());
+			BeforeUpdate();
 			Update();
+			AfterUpdate();
+			ExecuteActionOnActors(a => a.AfterUpdate());
 			HasUpdated = true;
 		}
 
 		
 
 		#region Services
+		[Inject]
+		public IContentManager ContentManager { get; set; }
 
 		/*
 		[Inject]
@@ -98,8 +98,6 @@ namespace Balder.Core.Execution
 		[Inject]
 		public ITargetDevice TargetDevice { get; set; }
 
-		[Inject]
-		public IContentManager ContentManager { get; set; }
 		 * */
 
 		#endregion

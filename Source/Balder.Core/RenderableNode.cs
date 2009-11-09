@@ -1,4 +1,4 @@
-﻿using Balder.Core.Interfaces;
+﻿using Balder.Core.Display;
 using Balder.Core.Math;
 
 namespace Balder.Core
@@ -17,9 +17,9 @@ namespace Balder.Core
 
 		#region Public Abstract Methods
 
-		public abstract void Render(IViewport viewport, Matrix view, Matrix projection);
+		public abstract void Render(Viewport viewport, Matrix view, Matrix projection);
 
-		public virtual void PostRender(IViewport viewport, Matrix renderMatrix, Matrix projectionMatrix)
+		public virtual void PostRender(Viewport viewport, Matrix renderMatrix, Matrix projectionMatrix)
 		{
 		}
 

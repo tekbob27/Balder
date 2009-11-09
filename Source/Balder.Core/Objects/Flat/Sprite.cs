@@ -1,6 +1,6 @@
 ﻿using Balder.Core.Assets;
+using Balder.Core.Display;
 using Balder.Core.Imaging;
-using Balder.Core.Interfaces;
 using Balder.Core.Math;
 
 namespace Balder.Core.Objects.Flat
@@ -24,7 +24,7 @@ namespace Balder.Core.Objects.Flat
 		public Image CurrentFrame { get { return _frames[0]; } }
 
 
-		public override void Render(IViewport viewport, Matrix view, Matrix projection)
+		public override void Render(Viewport viewport, Matrix view, Matrix projection)
 		{
 			/* From DirectX sample
 				w = width passed to D3DXMatrixPerspectiveLH

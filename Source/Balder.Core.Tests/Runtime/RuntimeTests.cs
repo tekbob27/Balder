@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Balder.Core.Assets;
+using Balder.Core.Display;
 using Moq;
 using NUnit.Framework;
 using Balder.Core.Execution;
@@ -35,14 +37,16 @@ namespace Balder.Core.Tests.Runtime
 					eventCalled = true;
 				});
 
-			var runtime = new Core.Runtime(platform, objectFactoryMock.Object);
+			var assetLoaderServiceMock = new Mock<IAssetLoaderService>();
+			var runtime = new Core.Runtime(platform, objectFactoryMock.Object,assetLoaderServiceMock.Object);
 
 			if( changeStateFirst )
 			{
 				platform.ChangeState(state);
 			}
-			
-			runtime.RegisterGame(gameMock.Object);
+
+			var displayMock = new Mock<IDisplay>();
+			runtime.RegisterGame(displayMock.Object, gameMock.Object);
 
 			if( !changeStateFirst )
 			{

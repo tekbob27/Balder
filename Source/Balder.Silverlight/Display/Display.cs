@@ -2,9 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Balder.Core.Display;
-using Balder.Core.Interfaces;
 using Balder.Core.SoftwareRendering;
-using Balder.Silverlight.Implementation;
 using Balder.Silverlight.SoftwareRendering;
 
 namespace Balder.Silverlight.Display
@@ -13,47 +11,55 @@ namespace Balder.Silverlight.Display
 	{
 		public event PropertyChangedEventHandler PropertyChanged = (s, e) => { };
 		private IBuffers _buffers;
+		private bool _initialized;
 
 		public void Initialize(int width, int height)
 		{
 			_buffers = BufferManager.Instance.Create<FrameBuffer>(width, height);
-			FramebufferBitmap = _buffers.FrameBuffer.BitmapSource;
+			FramebufferBitmap = new WriteableBitmap(width, height);
+			_initialized = true;
 		}
 
 		public Color BackgroundColor { get; set; }
-		public BitmapSource FramebufferBitmap { get; private set; }
+		public WriteableBitmap FramebufferBitmap { get; private set; }
 
-		public IViewport CreateViewport()
+		public void PrepareRender()
 		{
-			var viewport = new Viewport();
-			return viewport;
+			BufferManager.Instance.Current = _buffers;
 		}
-
-		public IViewport CreateViewport(int xpos, int ypos, int width, int height)
-		{
-			var viewport = CreateViewport();
-			viewport.XPosition = xpos;
-			viewport.YPosition = ypos;
-			viewport.Width = width;
-			viewport.Height = height;
-			return viewport;
-		}
-
+		
 
 		public void Swap()
 		{
-			_buffers.Swap();
+			if (_initialized)
+			{
+				_buffers.Swap();
+			}
 		}
 
 		public void Clear()
 		{
-			_buffers.Clear();
+			if (_initialized)
+			{
+				_buffers.Clear();
+			}
 		}
 
 		public void Show()
 		{
-			_buffers.Show();
-			FramebufferBitmap = _buffers.FrameBuffer.BitmapSource;
+			if (_initialized)
+			{
+				_buffers.Show();
+				_buffers.FrameBuffer.BackBuffer.CopyTo(FramebufferBitmap.Pixels, 0);
+			}
+		}
+
+		public void Update()
+		{
+			if( _initialized)
+			{
+				FramebufferBitmap.Invalidate();
+			}
 		}
 	}
 }

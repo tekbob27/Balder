@@ -9,14 +9,11 @@ namespace Balder.Silverlight.SoftwareRendering
 		private int[] _clearBuffer;
 		private int[] _showBuffer;
     	private int[] _emptyBuffer;
-
-    	private WriteableBitmap _writeableBitmap;
     	private int _length;
 
     	public void Initialize(int width, int height)
     	{
     		Stride = width;
-			_writeableBitmap = new WriteableBitmap(width, height);
 			_length = width * height;
 
 			_renderbuffer = new int[_length];
@@ -33,8 +30,8 @@ namespace Balder.Silverlight.SoftwareRendering
 		public int BluePosition { get { return 0; } }
 		public int GreenPosition { get { return 1; } }
 		public int AlphaPosition { get { return 3; } }
-		public BitmapSource BitmapSource { get { return _writeableBitmap;  } }
 		public int[] Pixels { get { return _renderbuffer; } }
+		public int[] BackBuffer { get { return _showBuffer;  } }
 
 		public void Swap()
 		{
@@ -57,8 +54,12 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		public void Show()
 		{
-			_showBuffer.CopyTo(_writeableBitmap.Pixels, 0);
-			_writeableBitmap.Invalidate();
+			//_showBuffer.CopyTo(_writeableBitmap.Pixels, 0);
+		}
+
+		public void Update()
+		{
+			//_writeableBitmap.Invalidate();
 		}
 	}
 }

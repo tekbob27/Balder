@@ -1,4 +1,4 @@
-﻿using Balder.Core.Interfaces;
+﻿using Balder.Core.Display;
 using Balder.Core.Math;
 
 namespace Balder.Core
@@ -15,7 +15,7 @@ namespace Balder.Core
 
 
 		#region Constructor(s)
-		public Camera()
+		public Camera(Viewport viewport)
 		{
 			Position = new Vector(0f, -30f, 50f);
 			Target = new Vector(0f, 0f, 0f);
@@ -28,12 +28,14 @@ namespace Balder.Core
 			UpdateDepthDivisor();
 
 			Frustum = new Frustum();
+
+			Viewport = viewport;
 		}
 		#endregion
 
 		#region Public Properties
 
-		public IViewport Viewport { get; private set; }
+		public Viewport Viewport { get; private set; }
 
 		public Frustum Frustum { get; private set; }
 
@@ -151,7 +153,7 @@ namespace Balder.Core
 
 		#region Public Methods
 
-		public override void Prepare(IViewport viewport)
+		public override void Prepare(Viewport viewport)
 		{
 			Viewport = viewport;
 			SetupProjection();

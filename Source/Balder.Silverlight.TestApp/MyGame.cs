@@ -7,6 +7,7 @@ namespace Balder.Silverlight.TestApp
 	{
 		public override void Initialize()
 		{
+			
 		}
 
 		public override void LoadContent()

@@ -3,14 +3,18 @@ using Balder.Core.Display;
 using Balder.Core.Execution;
 using Balder.Core.Input;
 
-namespace Balder.Core.Tests.Runtime
+namespace Balder.Core.Tests.Fakes
 {
 	public class FakePlatform : IPlatform
 	{
 		public event PlatformStateChange BeforeStateChange = (p, s) => { };
 		public event PlatformStateChange StateChanged = (p, s) => { };
-		public event EventHandler Render = (s, e) => { };
-		public event EventHandler Update = (s, e) => { };
+
+
+		public FakePlatform()
+		{
+			DisplayDevice = new FakeDisplayDevice();
+		}
 
 		public IDisplayDevice DisplayDevice { get; set; }
 		public IMouseDevice MouseDevice { get; set; }

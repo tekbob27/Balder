@@ -5,8 +5,8 @@
 	xmlns:local="clr-namespace:Balder.Silverlight.TestApp"
 	Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     >
-	<Grid x:Name="LayoutRoot" HorizontalAlignment="Left" VerticalAlignment="Top">
-		<balder:Game Width="800" Height="600" >
+	<Grid x:Name="LayoutRoot" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Red">
+		<balder:Game Width="800" Height="600">
 			<balder:Game.GameClass>
 				<local:MyGame/>
 			</balder:Game.GameClass>

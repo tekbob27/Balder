@@ -71,6 +71,7 @@
     <Compile Include="Fakes\AssetLoaders\RootAssetLoader.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Fakes\FakeDisplayDevice.cs" />
     <Compile Include="Input\MouseButtonStateTests.cs" />
     <Compile Include="Input\MouseManagerTests.cs" />
     <Compile Include="Math\BoundingSphereTests.cs" />
@@ -83,8 +84,8 @@
       <DependentUpon>Models.resx</DependentUpon>
     </Compile>
     <Compile Include="Runtime\EngineRuntimeTests.cs" />
-    <Compile Include="Runtime\FakePlatform.cs" />
-    <Compile Include="Runtime\RuntimeTests.cs" />
+    <Compile Include="Fakes\FakePlatform.cs" />
+    <Compile Include="RuntimeTests.cs" />
     <Compile Include="SceneTests.cs" />
   </ItemGroup>
   <ItemGroup>

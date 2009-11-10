@@ -37,7 +37,7 @@ namespace Balder.Core.Execution
 			}*/
 		}
 
-		internal void OnRender()
+		public virtual void OnRender()
 		{
 			Camera.Update();
 			Scene.Render(Viewport, Camera.ViewMatrix, Camera.ProjectionMatrix);

@@ -18,6 +18,7 @@ namespace Balder.Silverlight.Display
 			_buffers = BufferManager.Instance.Create<FrameBuffer>(width, height);
 			FramebufferBitmap = new WriteableBitmap(width, height);
 			_initialized = true;
+			BackgroundColor = Color.FromArgb(0xff, 0, 0, 0);
 		}
 
 		public Color BackgroundColor { get; set; }

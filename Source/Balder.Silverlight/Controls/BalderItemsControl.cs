@@ -1,19 +1,19 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using Balder.Core;
 using Balder.Core.Execution;
-using Balder.Silverlight.Execution;
 using Ninject.Core;
 
 namespace Balder.Silverlight.Controls
 {
-	public class BalderControl : ItemsControl
+	public class BalderItemsControl : ItemsControl
 	{
-		public BalderControl()
+		public BalderItemsControl()
 		{
-			Loaded += BalderControlLoaded;
+			Loaded += ControlLoaded;
 		}
 
-		private void BalderControlLoaded(object sender, System.Windows.RoutedEventArgs e)
+		private void ControlLoaded(object sender, RoutedEventArgs e)
 		{
 			if( null == Runtime )
 			{
@@ -22,10 +22,10 @@ namespace Balder.Silverlight.Controls
 			}
 		}
 
-
 		public IRuntime Runtime { get; set; }
 
 		[Inject]
 		public IPlatform Platform { get; set; }
+
 	}
 }

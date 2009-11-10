@@ -171,12 +171,18 @@ namespace Balder.Core
 
 		private void PlatformUpdate(IDisplay display)
 		{
-			CallMethodOnGames(display, g => g.OnUpdate());
+			if( _platform.CurrentState == PlatformState.Run )
+			{
+				CallMethodOnGames(display, g => g.OnUpdate());	
+			}
 		}
 
 		private void PlatformRender(IDisplay display)
 		{
-			CallMethodOnGames(display, g => g.OnRender());
+			if (_platform.CurrentState == PlatformState.Run)
+			{
+				CallMethodOnGames(display, g => g.OnRender());
+			}
 		}
 
 		private void CallMethodOnGames(IDisplay display, Action<Game> action)

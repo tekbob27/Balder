@@ -140,7 +140,6 @@ namespace Balder.Core
 				AspectRatio, 
 				Near, 
 				Far);
-			
 		}
 
 		private void UpdateDepthDivisor()

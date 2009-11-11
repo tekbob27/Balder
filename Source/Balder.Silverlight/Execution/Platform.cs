@@ -13,7 +13,6 @@ namespace Balder.Silverlight.Execution
 	public class Platform : IPlatform
 	{
 		public static IRuntime Runtime;
-		private static readonly EventArgs DefaultEventArgs = new EventArgs();
 
 		public event PlatformStateChange BeforeStateChange = (p, s) => { };
 		public event PlatformStateChange StateChanged = (p, s) => { };
@@ -42,6 +41,7 @@ namespace Balder.Silverlight.Execution
 		{
 			ChangeState(PlatformState.Initialize);
 			ChangeState(PlatformState.Load);
+			ChangeState(PlatformState.Run);
 		}
 
 

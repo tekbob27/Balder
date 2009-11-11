@@ -7,7 +7,7 @@ namespace Balder.Silverlight.TestApp
 	{
 		public override void Initialize()
 		{
-			
+			Camera.Position.Z = -100;
 		}
 
 		public override void LoadContent()

@@ -17,6 +17,8 @@ namespace Balder.Core.Execution
 		{
 			Scene = new Scene();
 			Viewport = new Viewport { Scene = Scene };
+			Viewport.Width = 800;
+			Viewport.Height = 600;
 			Camera = new Camera(Viewport);
 			Camera.Target = Vector.Forward;
 			Camera.Position = Vector.Zero;

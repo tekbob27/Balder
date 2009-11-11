@@ -6,9 +6,9 @@ using Ninject.Core;
 
 namespace Balder.Silverlight.Controls
 {
-	public class BalderItemsControl : ItemsControl
+	public class BalderControl : Grid
 	{
-		public BalderItemsControl()
+		public BalderControl()
 		{
 			Loaded += ControlLoaded;
 		}
@@ -26,6 +26,5 @@ namespace Balder.Silverlight.Controls
 
 		[Inject]
 		public IPlatform Platform { get; set; }
-
 	}
 }

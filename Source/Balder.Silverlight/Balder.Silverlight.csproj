@@ -84,8 +84,7 @@
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AssetLoaders\ImageLoader.cs" />
-    <Compile Include="Controls\BalderContentControl.cs" />
-    <Compile Include="Controls\BalderItemsControl.cs" />
+    <Compile Include="Controls\BalderControl.cs" />
     <Compile Include="Controls\Game.cs" />
     <Compile Include="Converters\StringToTypeConverter.cs" />
     <Compile Include="Display\DisplayDevice.cs" />

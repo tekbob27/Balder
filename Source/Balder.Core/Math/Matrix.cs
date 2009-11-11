@@ -149,7 +149,7 @@ namespace Balder.Core.Math
 
 		public static Matrix CreatePerspectiveFieldOfView(float fieldOfView, float aspectRatio, float nearPlaneDistance, float farPlaneDistance)
 		{
-			Matrix matrix = new Matrix(); //Matrix.Identity);
+			Matrix matrix = new Matrix();// Matrix.Identity; 
 			float num = 1f / (float)System.Math.Tan((double)(fieldOfView * 0.5f));
 			float num9 = num / aspectRatio;
 			matrix[0, 0] = num9;

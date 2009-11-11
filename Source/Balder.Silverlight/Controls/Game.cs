@@ -8,7 +8,7 @@ using Balder.Silverlight.SoftwareRendering;
 
 namespace Balder.Silverlight.Controls
 {
-	public class Game : BalderContentControl
+	public class Game : BalderControl
 	{
 		private Image _image;
 		private Color _previousBackgroundColor;
@@ -16,7 +16,6 @@ namespace Balder.Silverlight.Controls
 		public Game()
 		{
 			Loaded += GameLoaded;
-
 			
 			RenderingManager.Instance.Updated += RenderingManagerUpdated;
 		}
@@ -70,7 +69,7 @@ namespace Balder.Silverlight.Controls
 				         		Source = ((Display.Display) Display).FramebufferBitmap,
 				         		Stretch = Stretch.None
 				         	};
-				Content = _image;
+				Children.Add(_image);
 
 				SetBackgroundColor();
 			}

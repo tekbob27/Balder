@@ -1,4 +1,5 @@
 ﻿using System;
+using Balder.Core.Assets;
 using Balder.Core.Display;
 using Balder.Core.Input;
 
@@ -29,7 +30,9 @@ namespace Balder.Core.Execution
 		Type GeometryContextType { get; }
 		Type SpriteContextType { get; }
 		Type ImageContextType { get; }
+		
 
 		PlatformState CurrentState { get; }
+		void RegisterAssetLoaders(IAssetLoaderService assetLoaderService);
 	}
 }

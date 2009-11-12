@@ -41,6 +41,7 @@ namespace Balder.Core
 			_assetLoaderService = assetLoaderService;
 			InitializePlatformEventHandlers();
 			_assetLoaderService.RegisterAssembly(GetType().Assembly);
+			platform.RegisterAssetLoaders(_assetLoaderService);
 		}
 
 		public static Runtime Instance

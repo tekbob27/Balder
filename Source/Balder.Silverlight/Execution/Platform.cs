@@ -1,5 +1,6 @@
 ﻿using System;
 using Balder.Core;
+using Balder.Core.Assets;
 using Balder.Core.Display;
 using Balder.Core.Execution;
 using Balder.Core.Input;
@@ -64,6 +65,15 @@ namespace Balder.Silverlight.Execution
 			BeforeStateChange(this, platformState);
 			CurrentState = platformState;
 			StateChanged(this, platformState);
+		}
+
+		public void RegisterAssetLoaders(IAssetLoaderService assetLoaderService)
+		{
+			var type = GetType();
+			var assembly = type.Assembly;
+
+			// Todo: Look into the literal below - my enemy number one: Literals
+			assetLoaderService.RegisterNamespace(assembly, "Balder.Silverlight.AssetLoaders");
 		}
 	}
 }

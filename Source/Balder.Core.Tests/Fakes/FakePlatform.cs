@@ -1,4 +1,5 @@
 ﻿using System;
+using Balder.Core.Assets;
 using Balder.Core.Display;
 using Balder.Core.Execution;
 using Balder.Core.Input;
@@ -44,6 +45,10 @@ namespace Balder.Core.Tests.Fakes
 		}
 
 		public PlatformState CurrentState { get; set; }
+		public void RegisterAssetLoaders(IAssetLoaderService assetLoaderService)
+		{
+			
+		}
 
 		public void ChangeState(PlatformState state)
 		{

@@ -8,7 +8,6 @@
 			get { return _isEdge; }
 			set
 			{
-				IsPreviousEdge = _isEdge;
 				_isEdge = value;
 			}
 		}

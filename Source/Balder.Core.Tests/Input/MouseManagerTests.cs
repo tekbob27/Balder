@@ -43,10 +43,10 @@ namespace Balder.Core.Tests.Input
 			var mouseDeviceMock = new Mock<IMouseDevice>();
 			mouseDeviceMock.Expect(m => m.IsButtonPressed(MouseButton.Left)).Returns(true);
 			var mouseManager = new MouseManager(mouseDeviceMock.Object);
-			mouseManager.HandleButtonSignals(mouse);
-			mouseManager.HandleButtonSignals(mouse);
-			mouseManager.HandleButtonSignals(mouse);
-			mouseManager.HandleButtonSignals(mouse);
+			for (var i = 0; i < 10; i++)
+			{
+				mouseManager.HandleButtonSignals(mouse);
+			}
 
 			Assert.That(mouse.LeftButton.IsEdge, Is.False);
 		}

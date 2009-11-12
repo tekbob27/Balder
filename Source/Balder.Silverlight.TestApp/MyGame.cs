@@ -13,7 +13,14 @@ namespace Balder.Silverlight.TestApp
 		public override void LoadContent()
 		{
 			var teapot = ContentManager.Load<Mesh>("teapot.ASE");
+			teapot.Click += new System.EventHandler(teapot_Click);
 			Scene.AddNode(teapot);
+		}
+
+		void teapot_Click(object sender, System.EventArgs e)
+		{
+			int i = 0;
+			i++;
 		}
 
 		public override void Update()

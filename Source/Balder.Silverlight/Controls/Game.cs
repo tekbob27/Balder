@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Balder.Core.Display;
 using Balder.Silverlight.Helpers;
+using Balder.Silverlight.Input;
 using Balder.Silverlight.SoftwareRendering;
 
 namespace Balder.Silverlight.Controls
@@ -58,6 +58,11 @@ namespace Balder.Silverlight.Controls
 			Display = Platform.DisplayDevice.CreateDisplay();
 			Display.Initialize((int)Width,(int)Height);
 			Runtime.RegisterGame(Display, GameClass);
+
+			if( Platform.MouseDevice is MouseDevice )
+			{
+				((MouseDevice)Platform.MouseDevice).Initialize(this);
+			}
 		}
 
 		private void InitializeContent()

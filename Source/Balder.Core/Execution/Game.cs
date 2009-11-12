@@ -16,12 +16,8 @@ namespace Balder.Core.Execution
 		public override void BeforeInitialize()
 		{
 			Scene = new Scene();
-			Viewport = new Viewport { Scene = Scene };
-			Viewport.Width = 800;
-			Viewport.Height = 600;
-			Camera = new Camera(Viewport);
-			Camera.Target = Vector.Forward;
-			Camera.Position = Vector.Zero;
+			Viewport = new Viewport {Scene = Scene, Width = 800, Height = 600};
+			Camera = new Camera(Viewport) {Target = Vector.Forward, Position = Vector.Zero};
 
 			// Todo: bi-directional referencing..  Not a good idea!
 			Viewport.Camera = Camera;
@@ -31,18 +27,18 @@ namespace Balder.Core.Execution
 
 		public override void BeforeUpdate()
 		{
-			/*
 			if( null != MouseManager)
 			{
 				MouseManager.HandleButtonSignals(Mouse);
 				MouseManager.HandlePosition(Mouse);
-			}*/
+			}
 		}
 
 		public virtual void OnRender()
 		{
 			Camera.Update();
 			Scene.Render(Viewport, Camera.ViewMatrix, Camera.ProjectionMatrix);
+			Scene.HandleMouseEvents(Viewport, Mouse);
 		}
 	}
 }

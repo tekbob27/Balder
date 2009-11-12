@@ -1,9 +1,7 @@
 ﻿using Balder.Core.Utils;
-using Ninject.Core;
 
 namespace Balder.Core.Input
 {
-	[Singleton]
 	public class MouseManager : IMouseManager
 	{
 		private readonly IMouseDevice _mouseDevice;
@@ -21,8 +19,16 @@ namespace Balder.Core.Input
 				var mouseButtonState = GetMouseButtonStateObjectFromMouse(mouse, button);
 				if (null != mouseButtonState)
 				{
+
+					/*
+					psInput->vEdge = (~psInput->vPrev) & (psInput->vCurrent);
+					psInput->vRepeat = psInput->vEdge;
+					 * */
+
+					mouseButtonState.IsPreviousEdge = mouseButtonState.IsDown;
 					mouseButtonState.IsDown = _mouseDevice.IsButtonPressed(button);
-					mouseButtonState.IsEdge = mouseButtonState.IsDown & !mouseButtonState.IsPreviousEdge;
+					mouseButtonState.IsEdge = false;
+					mouseButtonState.IsEdge = (mouseButtonState.IsEdge^!mouseButtonState.IsPreviousEdge) & (mouseButtonState.IsDown);
 				}
 			}
 		}

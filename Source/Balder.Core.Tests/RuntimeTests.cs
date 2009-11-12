@@ -12,7 +12,6 @@ namespace Balder.Core.Tests
 	[TestFixture]
 	public class RuntimeTests
 	{
-
 		private static void EventShouldBeCalledForStateDuringRegistration(Expression<Action<Game>> eventExpression, PlatformState state, bool changeStateFirst)
 		{
 			var eventCalled = false;
@@ -82,12 +81,6 @@ namespace Balder.Core.Tests
 		}
 
 		[Test]
-		public void RegisteredGameShouldHaveItsUpdateCalledAfterRunStateChangeOccursOnPlatform()
-		{
-			EventShouldBeCalledForStateDuringRegistration(g => g.Update(), PlatformState.Run, false);
-		}
-
-		[Test]
 		public void OnRenderForGamesShouldNotBeCalledBeforePlatformIsInRunState()
 		{
 			var platform = new FakePlatform();
@@ -105,7 +98,7 @@ namespace Balder.Core.Tests
 		}
 
 		[Test]
-		public void OnRenderForGamesShouldBeCalledWhenPlatformIsInRunState()
+		public void OnRenderForGamesShouldBeCalledWhenPlatformAndGameIsInRunState()
 		{
 			var platform = new FakePlatform();
 			var objectFactoryMock = new Mock<IObjectFactory>();
@@ -118,6 +111,7 @@ namespace Balder.Core.Tests
 			gameMock.Expect(g => g.OnRender()).Callback(() => onRenderCalled = true);
 			runtime.RegisterGame(displayMock.Object, gameMock.Object);
 			platform.ChangeState(PlatformState.Run);
+			gameMock.Object.ChangeState(ActorState.Run);
 			((FakeDisplayDevice)platform.DisplayDevice).FireRenderEvent(displayMock.Object);
 			Assert.That(onRenderCalled, Is.True);
 		}
@@ -140,7 +134,7 @@ namespace Balder.Core.Tests
 		}
 
 		[Test]
-		public void OnUpdateForGamesShouldBeCalledWhenPlatformIsInRunState()
+		public void OnUpdateForGamesShouldBeCalledWhenPlatformAndGameIsInRunState()
 		{
 			var platform = new FakePlatform();
 			var objectFactoryMock = new Mock<IObjectFactory>();
@@ -153,10 +147,59 @@ namespace Balder.Core.Tests
 			gameMock.Expect(g => g.Update()).Callback(() => onUpdateCalled = true);
 			runtime.RegisterGame(displayMock.Object, gameMock.Object);
 			platform.ChangeState(PlatformState.Run);
+			gameMock.Object.ChangeState(ActorState.Run);
 			((FakeDisplayDevice)platform.DisplayDevice).FireUpdateEvent(displayMock.Object);
 			Assert.That(onUpdateCalled, Is.True);
 		}
 
+		[Test]
+		public void OnUpdateForGamesShouldNotBeCalledBeforeGameIsInRunState()
+		{
+			var platform = new FakePlatform();
+			var objectFactoryMock = new Mock<IObjectFactory>();
+			var assetLoaderServiceMock = new Mock<IAssetLoaderService>();
+			var runtime = new Core.Runtime(platform, objectFactoryMock.Object, assetLoaderServiceMock.Object);
+			var displayMock = new Mock<IDisplay>();
+			var gameMock = new Mock<Game>();
+			var onUpdateCalled = false;
+
+			gameMock.Expect(g => g.Update()).Callback(() => onUpdateCalled = true);
+
+			runtime.RegisterGame(displayMock.Object, gameMock.Object);
+			platform.ChangeState(PlatformState.Run);
+
+			((FakeDisplayDevice)platform.DisplayDevice).FireUpdateEvent(displayMock.Object);
+			if( onUpdateCalled )
+			{
+				Assert.That(gameMock.Object.State, Is.EqualTo(ActorState.Run));
+			}
+		}
+
+		[Test]
+		public void OnRenderForGamesShouldNotBeCalledBeforeGameIsInRunState()
+		{
+			var platform = new FakePlatform();
+			var objectFactoryMock = new Mock<IObjectFactory>();
+			var assetLoaderServiceMock = new Mock<IAssetLoaderService>();
+			var runtime = new Core.Runtime(platform, objectFactoryMock.Object, assetLoaderServiceMock.Object);
+			var displayMock = new Mock<IDisplay>();
+			var gameMock = new Mock<Game>();
+			var onRenderCalled = false;
+
+			gameMock.Expect(g => g.OnRender()).Callback(() => onRenderCalled = true);
+
+			runtime.RegisterGame(displayMock.Object, gameMock.Object);
+			platform.ChangeState(PlatformState.Run);
+
+			((FakeDisplayDevice)platform.DisplayDevice).FireUpdateEvent(displayMock.Object);
+			if (onRenderCalled)
+			{
+				Assert.That(gameMock.Object.State, Is.EqualTo(ActorState.Run));
+			}
+		}
+
+
+		/*
 		[Test]
 		public void ActorsWithinGameShouldHaveItsInitializeCalledAfterGamesInitializeIsCalled()
 		{
@@ -174,5 +217,6 @@ namespace Balder.Core.Tests
 		{
 			Assert.Fail();
 		}
+		 * */
 	}
 }

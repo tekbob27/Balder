@@ -2,11 +2,18 @@
 using Balder.Core.Collections;
 using Balder.Core.Content;
 using Balder.Core.Display;
-using Balder.Core.Input;
 using Ninject.Core;
 
 namespace Balder.Core.Execution
 {
+	public enum ActorState
+	{
+		Idle=1,
+		Initialize,
+		Load,
+		Run
+	}
+
 	public class Actor : IActor
 	{
 		protected Actor()
@@ -23,7 +30,9 @@ namespace Balder.Core.Execution
 		{
 			Actors.Add(actor);
 		}
-		
+
+		public ActorState State { get; private set; }
+	
 		public virtual void BeforeInitialize() { }
 		public virtual void Initialize() { }
 
@@ -53,7 +62,7 @@ namespace Balder.Core.Execution
 		}
 
 
-		internal void OnInitialize()
+		private void OnInitialize()
 		{
 			BeforeInitialize();
 			Initialize();
@@ -61,7 +70,7 @@ namespace Balder.Core.Execution
 			HasInitialized = true;
 		}
 
-		internal void OnLoadContent()
+		private void OnLoadContent()
 		{
 			LoadContent();
 			ExecuteActionOnActors(a => a.LoadContent());
@@ -79,11 +88,33 @@ namespace Balder.Core.Execution
 			HasUpdated = true;
 		}
 
+
+		public void ChangeState(ActorState state)
+		{
+			switch( state )
+			{
+				case ActorState.Initialize:
+					{
+						OnInitialize();
+					}
+					break;
+				case ActorState.Load:
+					{
+						OnLoadContent();
+					}
+					break;
+			}
+			State = state;
+		}
 		
 
 		#region Services
 		[Inject]
 		public IContentManager ContentManager { get; set; }
+
+		[Inject]
+		public IDisplay Display { get; set; }
+
 
 		/*
 		[Inject]
@@ -92,8 +123,6 @@ namespace Balder.Core.Execution
 		[Inject]
 		public IMouseManager MouseManager { get; set; }
 
-		[Inject]
-		public IDisplay Display { get; set; }
 
 		[Inject]
 		public ITargetDevice TargetDevice { get; set; }

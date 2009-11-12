@@ -139,13 +139,16 @@ namespace Balder.Core
 		{
 			if( !actor.HasInitialized && HasPlatformInitialized )
 			{
-				actor.OnInitialize();
+				actor.ChangeState(ActorState.Initialize);
 			}
 			if( !actor.HasLoaded && HasPlatformLoaded )
 			{
-				actor.OnLoadContent();
+				actor.ChangeState(ActorState.Load);
+				actor.ChangeState(ActorState.Run);
 			}
-			if( !actor.HasUpdated && HasPlatformRun )
+			if( !actor.HasUpdated && 
+				HasPlatformRun && 
+				actor.State == ActorState.Run )
 			{
 				actor.OnUpdate();
 			}
@@ -173,7 +176,7 @@ namespace Balder.Core
 		{
 			if( _platform.CurrentState == PlatformState.Run )
 			{
-				CallMethodOnGames(display, g => g.OnUpdate());	
+				CallMethodOnGames(display, g => g.OnUpdate(), g => g.State == ActorState.Run);	
 			}
 		}
 
@@ -181,18 +184,27 @@ namespace Balder.Core
 		{
 			if (_platform.CurrentState == PlatformState.Run)
 			{
-				CallMethodOnGames(display, g => g.OnRender());
+				CallMethodOnGames(display, g => g.OnRender(), g => g.State == ActorState.Run);
 			}
 		}
 
-		private void CallMethodOnGames(IDisplay display, Action<Game> action)
+		private void CallMethodOnGames(IDisplay display, Action<Game> action, Func<Game,bool> advice)
 		{
 			if( _gamesPerDisplay.ContainsKey(display))
 			{
 				var games = _gamesPerDisplay[display];
 				foreach (Game game in games)
 				{
-					action(game);
+					if( null != advice )
+					{
+						if( advice(game))
+						{
+							action(game);
+						}
+					} else
+					{
+						action(game);
+					}
 				}
 			}
 		}

@@ -1,4 +1,6 @@
-﻿using Balder.Core.Execution;
+﻿using Balder.Core;
+using Balder.Core.Debug;
+using Balder.Core.Execution;
 using Balder.Core.Objects.Geometries;
 
 namespace Balder.Silverlight.TestApp
@@ -7,17 +9,18 @@ namespace Balder.Silverlight.TestApp
 	{
 		public override void Initialize()
 		{
-			Camera.Position.Z = -100;
+			Runtime.Instance.DebugLevel |= DebugLevel.BoundingSpheres;
+			Camera.Position.Z = -30;
 		}
 
 		public override void LoadContent()
 		{
-			var teapot = ContentManager.Load<Mesh>("audi.ASE");
-			teapot.Click += new System.EventHandler(teapot_Click);
-			Scene.AddNode(teapot);
+			var audi = ContentManager.Load<Mesh>("audi.ASE");
+			audi.Click += audiClick;
+			Scene.AddNode(audi);
 		}
 
-		void teapot_Click(object sender, System.EventArgs e)
+		private void audiClick(object sender, System.EventArgs e)
 		{
 			int i = 0;
 			i++;

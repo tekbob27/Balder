@@ -40,13 +40,11 @@ namespace Balder.Core.Objects.Geometries
 
 				var localWorld = World * geometry.World * PositionMatrix;
 
-				// Todo : Debug Level
-				/*
-				if (EngineRuntime.Instance.DebugLevel.IsBoundingSpheresSet())
+				if (Runtime.Instance.DebugLevel.IsBoundingSpheresSet())
 				{
 					_debugRenderer.RenderBoundingSphere(BoundingSphere, viewport, view, projection, localWorld);
 				}
-				 */
+				
 				geometry.GeometryContext.Render(viewport,view,projection,localWorld);
 			}
 		}

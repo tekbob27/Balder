@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Balder.Core.Assets;
 using Balder.Core.Collections;
+using Balder.Core.Debug;
 using Balder.Core.Display;
 using Balder.Core.Execution;
 using Balder.Core.Imaging;
@@ -9,6 +10,7 @@ using Balder.Core.Input;
 using Balder.Core.Interfaces;
 using Balder.Core.Objects.Flat;
 using Balder.Core.Objects.Geometries;
+using Balder.Core.Rendering;
 using Ninject.Core;
 using Ninject.Core.Activation;
 using Ninject.Core.Behavior;
@@ -65,6 +67,8 @@ namespace Balder.Core
 			_kernel = new AutoKernel(runtimeModule);
 			_kernel.AddBindingResolver<IDisplay>(DisplayBindingResolver);
 		}
+
+		public DebugLevel DebugLevel { get; set; }
 
 		private static IBinding DisplayBindingResolver(IContext context)
 		{
@@ -138,7 +142,8 @@ namespace Balder.Core
 				m => m.Bind<IFileLoader>().To(platform.FileLoaderType).Using<SingletonBehavior>(),
 				m => m.Bind<IGeometryContext>().To(platform.GeometryContextType),
 				m => m.Bind<ISpriteContext>().To(platform.SpriteContextType),
-				m => m.Bind<IImageContext>().To(platform.ImageContextType)
+				m => m.Bind<IImageContext>().To(platform.ImageContextType),
+				m => m.Bind<IShapeContext>().To(platform.ShapeContextType)
 			);
 			return module;
 		}

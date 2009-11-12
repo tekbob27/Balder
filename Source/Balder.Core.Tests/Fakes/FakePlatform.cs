@@ -44,6 +44,11 @@ namespace Balder.Core.Tests.Fakes
 			get { throw new NotImplementedException(); }
 		}
 
+		public Type ShapeContextType
+		{
+			get { throw new NotImplementedException(); }
+		}
+
 		public PlatformState CurrentState { get; set; }
 		public void RegisterAssetLoaders(IAssetLoaderService assetLoaderService)
 		{

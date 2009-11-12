@@ -30,7 +30,7 @@ namespace Balder.Core.Execution
 		Type GeometryContextType { get; }
 		Type SpriteContextType { get; }
 		Type ImageContextType { get; }
-		
+		Type ShapeContextType { get; }
 
 		PlatformState CurrentState { get; }
 		void RegisterAssetLoaders(IAssetLoaderService assetLoaderService);

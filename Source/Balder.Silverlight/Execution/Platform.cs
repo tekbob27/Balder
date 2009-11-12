@@ -5,6 +5,7 @@ using Balder.Core.Display;
 using Balder.Core.Execution;
 using Balder.Core.Input;
 using Balder.Core.SoftwareRendering;
+using Balder.Core.SoftwareRendering.Rendering;
 using Balder.Silverlight.Display;
 using Balder.Silverlight.Implementation;
 using Balder.Silverlight.Input;
@@ -53,10 +54,11 @@ namespace Balder.Silverlight.Execution
 
 		public IDisplayDevice DisplayDevice { get; private set; }
 		public IMouseDevice MouseDevice { get; private set; }
-		public Type FileLoaderType { get { return typeof (FileLoader); } }
-		public Type GeometryContextType { get { return typeof (GeometryContext); } }
-		public Type SpriteContextType { get { return typeof (SpriteContext); } }
-		public Type ImageContextType { get { return typeof (ImageContext); } }
+		public Type FileLoaderType { get { return typeof(FileLoader); } }
+		public Type GeometryContextType { get { return typeof(GeometryContext); } }
+		public Type SpriteContextType { get { return typeof(SpriteContext); } }
+		public Type ImageContextType { get { return typeof(ImageContext); } }
+		public Type ShapeContextType { get { return typeof(ShapeContext); } }
 
 		public PlatformState CurrentState { get; private set; }
 

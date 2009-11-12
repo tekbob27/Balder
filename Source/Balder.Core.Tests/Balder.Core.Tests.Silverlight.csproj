@@ -83,7 +83,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Models.resx</DependentUpon>
     </Compile>
-    <Compile Include="Runtime\EngineRuntimeTests.cs" />
     <Compile Include="Fakes\FakePlatform.cs" />
     <Compile Include="RuntimeTests.cs" />
     <Compile Include="SceneTests.cs" />

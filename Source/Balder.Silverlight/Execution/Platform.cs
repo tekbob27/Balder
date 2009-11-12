@@ -45,6 +45,11 @@ namespace Balder.Silverlight.Execution
 		}
 
 
+		public string PlatformName
+		{
+			get { return "Silverlight"; }
+		}
+
 		public IDisplayDevice DisplayDevice { get; private set; }
 		public IMouseDevice MouseDevice { get; private set; }
 		public Type FileLoaderType { get { return typeof (FileLoader); } }

@@ -16,6 +16,11 @@ namespace Balder.Core.Tests.Fakes
 			DisplayDevice = new FakeDisplayDevice();
 		}
 
+		public string PlatformName
+		{
+			get { return "Fake"; }
+		}
+
 		public IDisplayDevice DisplayDevice { get; set; }
 		public IMouseDevice MouseDevice { get; set; }
 		public Type FileLoaderType

@@ -2,6 +2,7 @@
 using Balder.Core.Collections;
 using Balder.Core.Content;
 using Balder.Core.Display;
+using Balder.Core.Input;
 using Ninject.Core;
 
 namespace Balder.Core.Execution
@@ -115,19 +116,15 @@ namespace Balder.Core.Execution
 		[Inject]
 		public IDisplay Display { get; set; }
 
+		[Inject]
+		public IMouseManager MouseManager { get; set; }
 
-		/*
 		[Inject]
 		public Mouse Mouse { get; set; }
 
 		[Inject]
-		public IMouseManager MouseManager { get; set; }
+		public IPlatform Platform { get; set; }
 
-
-		[Inject]
-		public ITargetDevice TargetDevice { get; set; }
-
-		 * */
 
 		#endregion
 	}

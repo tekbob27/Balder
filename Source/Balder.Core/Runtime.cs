@@ -10,7 +10,10 @@ using Balder.Core.Interfaces;
 using Balder.Core.Objects.Flat;
 using Balder.Core.Objects.Geometries;
 using Ninject.Core;
+using Ninject.Core.Activation;
 using Ninject.Core.Behavior;
+using Ninject.Core.Binding;
+using Ninject.Core.Binding.Syntax;
 
 namespace Balder.Core
 {
@@ -59,6 +62,22 @@ namespace Balder.Core
 		{
 			var runtimeModule = GetRuntimeModule(platform);
 			_kernel = new AutoKernel(runtimeModule);
+			_kernel.AddBindingResolver<IDisplay>(DisplayBindingResolver);
+		}
+
+		private static IBinding DisplayBindingResolver(IContext context)
+		{
+			var binding = new StandardBinding(_kernel, typeof(IDisplay));
+			IBindingTargetSyntax binder = new StandardBindingBuilder(binding);
+
+			if (null != context.ParentContext &&
+				context.ParentContext is DisplayActivationContext)
+			{
+				var display = ((DisplayActivationContext)context.ParentContext).Display;
+				binder.ToConstant(display);
+			}
+
+			return binding;
 		}
 
 		public T CreateGame<T>() where T : Game
@@ -76,7 +95,7 @@ namespace Balder.Core
 
 		public void RegisterGame(IDisplay display, Game game)
 		{
-			WireUpDependencies(game);
+			WireUpGame(display, game);
 			var actorCollection = GetGameCollectionForDisplay(display);
 			actorCollection.Add(game);
 			HandleEventsForActor(game);
@@ -85,6 +104,13 @@ namespace Balder.Core
 		public void WireUpDependencies(object objectToWire)
 		{
 			_objectFactory.WireUpDependencies(objectToWire);
+		}
+
+		private static void WireUpGame(IDisplay display, Game objectToWire)
+		{
+			var displayActivationContext = new DisplayActivationContext(display, _kernel, objectToWire.GetType(),
+			                                                            _kernel.CreateScope());
+			_kernel.Inject(objectToWire,displayActivationContext);
 		}
 
 		private ActorCollection GetGameCollectionForDisplay(IDisplay display)

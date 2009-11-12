@@ -20,6 +20,8 @@ namespace Balder.Core.Execution
 		event PlatformStateChange BeforeStateChange;
 		event PlatformStateChange StateChanged;
 
+		string PlatformName { get; }
+
 		IDisplayDevice DisplayDevice { get; }
 		IMouseDevice MouseDevice { get; }
 

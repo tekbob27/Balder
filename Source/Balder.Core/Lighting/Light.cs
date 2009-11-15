@@ -9,6 +9,6 @@ namespace Balder.Core.Lighting
         public Color Specular;
         public Color Ambient;
 
-		public abstract Color Calculate(Viewport viewport, Vector point, Vector normal, Color vectorAmbient, Color vectorDiffuse, Color vectorSpecular);
+		public abstract Color Calculate(Viewport viewport, Vector point, Vector normal);
 	}
 }

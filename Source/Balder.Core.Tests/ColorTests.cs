@@ -187,5 +187,16 @@ namespace Balder.Core.Tests
 			Assert.That(scaledColor.BlueAsFloat, Is.EqualTo(0.6f));
 			Assert.That(scaledColor.AlphaAsFloat, Is.EqualTo(0.8f));
 		}
+
+		[Test]
+		public void AdditiveColoringShouldBeAnAverageOfTwoColors()
+		{
+			var firstColor = new Color {RedAsFloat = 0.2f };
+			var secondColor = new Color {RedAsFloat = 0.4f };
+
+			var result = firstColor.Additive(secondColor);
+
+			Assert.That(result.RedAsFloat,Is.EqualTo(0.3f));
+		}
 	}
 }

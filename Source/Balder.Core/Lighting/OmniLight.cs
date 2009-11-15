@@ -1,5 +1,4 @@
 ﻿using Balder.Core.Display;
-using Balder.Core.Extensions;
 using Balder.Core.Math;
 
 namespace Balder.Core.Lighting
@@ -15,11 +14,11 @@ namespace Balder.Core.Lighting
             Range = 10.0f;
 		}
 
-		public override Color Calculate(Viewport viewport, Vector point, Vector normal, Color vectorAmbient, Color vectorDiffuse, Color vectorSpecular)
+		public override Color Calculate(Viewport viewport, Vector point, Vector normal)
 		{
-			var actualAmbient = Ambient + vectorAmbient;
-			var actualDiffuse = Diffuse + vectorDiffuse;
-			var actualSpecular = Specular + vectorSpecular;
+			var actualAmbient = Ambient;
+			var actualDiffuse = Diffuse;
+			var actualSpecular = Specular;
 
             // Use dotproduct for diffuse lighting. Add point functionality as this now is a directional light.
             // Ambient light

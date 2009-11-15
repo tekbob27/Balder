@@ -1,5 +1,4 @@
-﻿using Balder.Core.Extensions;
-using Balder.Core.Imaging;
+﻿using Balder.Core.Imaging;
 using Balder.Core.Math;
 using Balder.Core.Objects.Geometries;
 

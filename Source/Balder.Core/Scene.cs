@@ -64,7 +64,7 @@ namespace Balder.Core
 
 		public Color CalculateColorForVector(Viewport viewport, Vector vector, Vector normal, Color vectorAmbient, Color vectorDiffuse, Color vectorSpecular)
 		{
-			var color = AmbientColor + vectorAmbient;
+			var color = AmbientColor.Additive(vectorDiffuse);
 
 			lock (_environmentalNodes)
 			{
@@ -73,7 +73,7 @@ namespace Balder.Core
 					if (node is Light)
 					{
 						var light = node as Light;
-						var currentLightResult = light.Calculate(viewport, vector, normal, vectorAmbient, vectorDiffuse, vectorSpecular);
+						var currentLightResult = light.Calculate(viewport, vector, normal);
 						var currentLightResultAsVector = currentLightResult;
 						color += currentLightResultAsVector;
 					}

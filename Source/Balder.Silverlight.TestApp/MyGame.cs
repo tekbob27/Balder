@@ -21,11 +21,10 @@ namespace Balder.Silverlight.TestApp
 		{
 			_teapot = ContentManager.Load<Mesh>("teapot.ASE");
 			_teapot.Color = Color.FromArgb(0xff,0,0,0xff);
-			_teapot.Click += audiClick;
+			_teapot.Click += teapotClick;
 			Scene.AddNode(_teapot);
 
-			_teapot.Click += new System.EventHandler(_teapot_Click);
-
+			
 			var light = new OmniLight();
 			light.Range = 2.0f;
 			light.Position.X = 0;
@@ -35,18 +34,11 @@ namespace Balder.Silverlight.TestApp
 			light.Specular = Color.FromArgb(0xff, 0xff, 0xff, 0xff);
 			light.Ambient = Color.FromArgb(0xff, 0x7f, 0x3f, 0x10);
 			Scene.AddNode(light);
-
-
 		}
 
-		void _teapot_Click(object sender, System.EventArgs e)
+		void teapotClick(object sender, System.EventArgs e)
 		{
-		}
-
-		private void audiClick(object sender, System.EventArgs e)
-		{
-			int i = 0;
-			i++;
+			_teapot.Color = Color.FromArgb(0xff, 0xff, 0, 0);
 		}
 
 		public override void Update()

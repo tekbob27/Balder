@@ -17,8 +17,8 @@ namespace Balder.Core
 		public byte Red
 		{
 			get { return _red; }
-			set 
-			{ 
+			set
+			{
 				_red = value;
 				_redAsFloat = ConvertToFloat(value);
 			}
@@ -105,12 +105,12 @@ namespace Balder.Core
 		public static Color FromArgb(byte alpha, byte red, byte green, byte blue)
 		{
 			var color = new Color
-			            	{
+							{
 								Red = red,
 								Green = green,
 								Blue = blue,
 								Alpha = alpha
-			            	};
+							};
 			return color;
 		}
 
@@ -118,12 +118,12 @@ namespace Balder.Core
 		public static explicit operator Color(SysColor systemColor)
 		{
 			var color = new Color
-			            	{
-			            		Red = systemColor.R,
-			            		Green = systemColor.G,
-			            		Blue = systemColor.B,
-			            		Alpha = systemColor.A
-			            	};
+							{
+								Red = systemColor.R,
+								Green = systemColor.G,
+								Blue = systemColor.B,
+								Alpha = systemColor.A
+							};
 			return color;
 		}
 
@@ -154,18 +154,18 @@ namespace Balder.Core
 		public static Color operator *(Color color, float scale)
 		{
 			var scaledColor = new Color
-			                  	{
+								{
 									RedAsFloat = color.RedAsFloat * scale,
 									GreenAsFloat = color.GreenAsFloat * scale,
 									BlueAsFloat = color.BlueAsFloat * scale,
 									AlphaAsFloat = color.AlphaAsFloat * scale,
-			                  	};
+								};
 			return scaledColor;
 		}
 
 		public static Color operator *(float scale, Color color)
 		{
-			var scaledColor = color*scale;
+			var scaledColor = color * scale;
 			return scaledColor;
 		}
 
@@ -195,24 +195,36 @@ namespace Balder.Core
 
 		public bool Equals(Color other)
 		{
-			if( other.Red == Red && 
+			if (other.Red == Red &&
 				other.Green == Green &&
 				other.Blue == Blue &&
-				other.Alpha == Alpha )
+				other.Alpha == Alpha)
 			{
 				return true;
 			}
 			return false;
 		}
 
-	
+		public Color Additive(Color secondColor)
+		{
+			var result = new Color
+							{
+								RedAsFloat = (RedAsFloat + secondColor.RedAsFloat) / 2,
+								GreenAsFloat = (GreenAsFloat + secondColor.GreenAsFloat) / 2,
+								BlueAsFloat = (BlueAsFloat + secondColor.BlueAsFloat) / 2,
+								AlphaAsFloat = (AlphaAsFloat + secondColor.AlphaAsFloat) / 2,
+							};
+			return result;
+		}
+
+
 		private static float ClampValue(float value)
 		{
-			if( value > 1f )
+			if (value > 1f)
 			{
 				value = 1f;
 			}
-			if( value < 0f )
+			if (value < 0f)
 			{
 				value = 0f;
 			}

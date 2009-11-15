@@ -1,9 +1,4 @@
-﻿#if(SILVERLIGHT)
-using System.Windows.Media;
-#else
-using System.Drawing;
-#endif
-using Balder.Core.Math;
+﻿using Balder.Core.Math;
 using Matrix = Balder.Core.Math.Matrix;
 
 namespace Balder.Core.Objects.Geometries

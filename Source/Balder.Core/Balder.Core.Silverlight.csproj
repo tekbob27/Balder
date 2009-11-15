@@ -89,6 +89,7 @@
     <Compile Include="Assets\AssetLoaders\XLoader.cs" />
     <Compile Include="Assets\IAssetLoader.cs" />
     <Compile Include="Collections\ActorCollection.cs" />
+    <Compile Include="Color.cs" />
     <Compile Include="Content\ContentCreator.cs" />
     <Compile Include="Debug\BoundingSphereDebugShape.cs" />
     <Compile Include="Debug\DebugRenderer.cs" />
@@ -100,7 +101,6 @@
     <Compile Include="Display\Viewport.cs" />
     <Compile Include="Exceptions\AssetNotFoundException.cs" />
     <Compile Include="Exceptions\UnsupportedImageFormatException.cs" />
-    <Compile Include="Extensions\ColorExtensions.cs" />
     <Compile Include="Extensions\ImageFormatExtensions.cs" />
     <Compile Include="Extensions\ViewportExtensions.cs" />
     <Compile Include="Extensions\WaitHandleExtensions.cs" />
@@ -143,7 +143,6 @@
     <Compile Include="Lighting\Light.cs" />
     <Compile Include="Lighting\OmniLight.cs" />
     <Compile Include="Materials\Material.cs" />
-    <Compile Include="Math\ColorVector.cs" />
     <Compile Include="Objects\Geometries\Box.cs" />
     <Compile Include="ReadableRex\Alternation.cs" />
     <Compile Include="ReadableRex\LazyQuantifier.cs" />

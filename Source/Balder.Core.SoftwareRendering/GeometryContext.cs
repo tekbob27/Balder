@@ -28,8 +28,8 @@ namespace Balder.Core.SoftwareRendering
 
 		public void SetFace(int index, Face face)
 		{
-			var v1 = Vertices[face.B].Vector - Vertices[face.A].Vector;
-			var v2 = Vertices[face.C].Vector - Vertices[face.A].Vector;
+			var v1 = Vertices[face.C].Vector - Vertices[face.A].Vector;
+			var v2 = Vertices[face.B].Vector - Vertices[face.A].Vector;
 
 			var cross = v1.Cross(v2);
 			cross.Normalize();
@@ -145,9 +145,9 @@ namespace Balder.Core.SoftwareRendering
 
 		private static ISpanRenderer SpanRenderer = new SimpleSpanRenderer();
 
-		public void Render(Viewport viewport, Matrix view, Matrix projection, Matrix world)
+		public void Render(Viewport viewport, RenderableNode node, Matrix view, Matrix projection, Matrix world)
 		{
-			TransformAndTranslateVertices(viewport,view,projection,world);
+			TransformAndTranslateVertices(viewport, node,view,projection,world);
 			RenderFaces(viewport, view, projection, world);
 			RenderLines(viewport, view, projection, world);
 		}
@@ -162,17 +162,24 @@ namespace Balder.Core.SoftwareRendering
 			vertex.TransformedVectorNormalized.Normalize();
 			var z = ((vertex.TransformedVector.Z/viewport.Camera.DepthDivisor) + viewport.Camera.DepthZero);
 			vertex.DepthBufferAdjustedZ = z;
-			vertex.Color = viewport.Scene.CalculateColorForVector(viewport, vertex.Vector, vertex.Normal);
+			
 		}
 
-		private void TransformAndTranslateVertices(Viewport viewport, Matrix view, Matrix projection, Matrix world)
+		private void TransformAndTranslateVertices(Viewport viewport, RenderableNode node, Matrix view, Matrix projection, Matrix world)
 		{
 			for (var vertexIndex = 0; vertexIndex < Vertices.Length; vertexIndex++)
 			{
 				var vertex = Vertices[vertexIndex];
 				TransformAndTranslateVertex(ref vertex, viewport, view, projection, world);
+				CalculateColorForVertex(ref vertex, viewport, node);
 				Vertices[vertexIndex] = vertex;
 			}
+		}
+
+
+		private void CalculateColorForVertex(ref Vertex vertex, Viewport viewport, RenderableNode node)
+		{
+			vertex.Color = viewport.Scene.CalculateColorForVector(viewport, vertex.Vector, vertex.Normal, node.Color, node.Color, node.Color);
 		}
 
 		private void RenderFaces(Viewport viewport, Matrix view, Matrix projection, Matrix world)

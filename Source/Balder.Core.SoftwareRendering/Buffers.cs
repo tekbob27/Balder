@@ -1,9 +1,4 @@
 ﻿using System;
-#if(SILVERLIGHT)
-using System.Windows.Media;
-#else
-using System.Drawing;
-#endif
 
 namespace Balder.Core.SoftwareRendering
 {

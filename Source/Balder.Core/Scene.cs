@@ -1,9 +1,4 @@
-﻿#if(SILVERLIGHT)
-using System.Windows.Media;
-#else
-using System.Drawing;
-#endif
-using Balder.Core.Collections;
+﻿using Balder.Core.Collections;
 using Balder.Core.Display;
 using Balder.Core.Input;
 using Balder.Core.Lighting;
@@ -62,10 +57,14 @@ namespace Balder.Core
 
 		public NodeCollection RenderableNodes { get { return _renderableNodes; } }
 
-
 		public Color CalculateColorForVector(Viewport viewport, Vector vector, Vector normal)
 		{
-			var color = AmbientColor.ToVector();
+			return CalculateColorForVector(viewport, vector, normal, Color.Black, Color.Black, Color.Black);
+		}
+
+		public Color CalculateColorForVector(Viewport viewport, Vector vector, Vector normal, Color vectorAmbient, Color vectorDiffuse, Color vectorSpecular)
+		{
+			var color = AmbientColor + vectorAmbient;
 
 			lock (_environmentalNodes)
 			{
@@ -74,12 +73,13 @@ namespace Balder.Core
 					if (node is Light)
 					{
 						var light = node as Light;
-						var currentLightResult = light.Calculate(viewport, vector, normal);
-						var currentLightResultAsVector = currentLightResult.ToVector();
+						var currentLightResult = light.Calculate(viewport, vector, normal, vectorAmbient, vectorDiffuse, vectorSpecular);
+						var currentLightResultAsVector = currentLightResult;
 						color += currentLightResultAsVector;
 					}
 				}
-				return color.ToColorWithClamp();
+				color.Clamp();
+				return color;
 			}
 		}
 

@@ -30,8 +30,8 @@ namespace Balder.Silverlight.Controls
 
 		private void SetBackgroundColor()
 		{
-			Background = new SolidColorBrush(Display.BackgroundColor);
-			_previousBackgroundColor = Display.BackgroundColor;
+			Background = new SolidColorBrush(Display.BackgroundColor.ToSystemColor());
+			_previousBackgroundColor = Display.BackgroundColor.ToSystemColor();
 		}
 
 		private void GameLoaded(object sender, EventArgs e)

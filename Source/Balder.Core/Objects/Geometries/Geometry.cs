@@ -69,7 +69,7 @@ namespace Balder.Core.Objects.Geometries
 			*/
 
 			DebugRenderer.RenderBoundingSphere(BoundingSphere, viewport, view, projection, World);
-			GeometryContext.Render(viewport, view, projection, World);
+			GeometryContext.Render(viewport, this, view, projection, World);
 		}
 
 		public string Name { get; set; }

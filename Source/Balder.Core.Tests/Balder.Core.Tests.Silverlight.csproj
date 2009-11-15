@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AssetLoaderServiceTests.cs" />
+    <Compile Include="ColorTests.cs" />
     <Compile Include="Extensions\ViewportExtensionsTests.cs" />
     <Compile Include="Fakes\AssetLoaders\Nested\NestedAssetLoader.cs">
       <SubType>Code</SubType>

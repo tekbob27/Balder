@@ -31,7 +31,7 @@ namespace Balder.Core.Objects.Geometries
 
 		void Prepare();
 
-		void Render(Viewport viewport, Matrix view, Matrix projection, Matrix world);
+		void Render(Viewport viewport, RenderableNode geometry, Matrix view, Matrix projection, Matrix world);
 		
 	}
 }

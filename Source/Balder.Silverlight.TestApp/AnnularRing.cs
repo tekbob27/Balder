@@ -70,7 +70,7 @@ namespace Balder.Silverlight.TestApp
 
 		public override void Render(Viewport viewport, Matrix view, Matrix projection)
 		{
-			_geometry.GeometryContext.Render(viewport,view,projection,World);
+			_geometry.GeometryContext.Render(viewport,this, view,projection,World);
 		}
 	}
 }

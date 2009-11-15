@@ -1,9 +1,4 @@
-﻿#if(SILVERLIGHT)
-using System.Windows.Media;
-#else
-using System.Drawing;
-#endif
-using Balder.Core.Display;
+﻿using Balder.Core.Display;
 using Balder.Core.Execution;
 using Balder.Core.Math;
 using Ninject.Core;
@@ -14,7 +9,7 @@ namespace Balder.Core.Debug
 	[Singleton]
 	public class DebugRenderer : IDebugRenderer
 	{
-		public static readonly Color DebugInfoColor = Colors.Yellow;
+		public static readonly Color DebugInfoColor = Color.FromArgb(0xFF,0xFF,0xFF,0);
 		private readonly IObjectFactory _objectFactory;
 
 		private DebugShape _boundingSphereDebugShape;

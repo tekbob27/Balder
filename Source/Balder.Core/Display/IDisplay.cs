@@ -1,10 +1,4 @@
-﻿#if(SILVERLIGHT)
-using System.Windows.Media;
-#else
-using System.Drawing;
-#endif
-
-namespace Balder.Core.Display
+﻿namespace Balder.Core.Display
 {
 	public interface IDisplay
 	{

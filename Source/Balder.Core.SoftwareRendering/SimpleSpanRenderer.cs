@@ -1,9 +1,4 @@
 ﻿using System;
-#if(SILVERLIGHT)
-using System.Windows.Media;
-#else
-using Color = System.Drawing.Color;
-#endif
 using Balder.Core.Imaging;
 using Balder.Core.Math;
 using Balder.Core.Extensions;
@@ -17,7 +12,7 @@ namespace Balder.Core.SoftwareRendering
 		private static readonly Interpolator DepthInterpolator;
 		private static readonly Interpolator GouraudInterpolator;
 		private static readonly Interpolator TextureInterpolator;
-		private static ColorVector ColorAsVector;
+		private static Color WorkingColor;
 
 		static SimpleSpanRenderer()
 		{
@@ -79,10 +74,10 @@ namespace Balder.Core.SoftwareRendering
 		{
 			var spreadCount = span.XEnd - span.XStart;
 			GouraudInterpolator.SetPoint(0, span.ZStart, span.ZEnd);
-			GouraudInterpolator.SetPoint(1, span.ColorStart.Red, span.ColorEnd.Red);
-			GouraudInterpolator.SetPoint(2, span.ColorStart.Green, span.ColorEnd.Green);
-			GouraudInterpolator.SetPoint(3, span.ColorStart.Blue, span.ColorEnd.Blue);
-			GouraudInterpolator.SetPoint(4, span.ColorStart.Alpha, span.ColorEnd.Alpha);
+			GouraudInterpolator.SetPoint(1, span.ColorStart.RedAsFloat, span.ColorEnd.RedAsFloat);
+			GouraudInterpolator.SetPoint(2, span.ColorStart.GreenAsFloat, span.ColorEnd.GreenAsFloat);
+			GouraudInterpolator.SetPoint(3, span.ColorStart.BlueAsFloat, span.ColorEnd.BlueAsFloat);
+			GouraudInterpolator.SetPoint(4, span.ColorStart.AlphaAsFloat, span.ColorEnd.AlphaAsFloat);
 
 			var yOffset = buffer.FrameBuffer.Stride * span.Y;
 			var rOffset = buffer.FrameBuffer.RedPosition;
@@ -110,11 +105,12 @@ namespace Balder.Core.SoftwareRendering
 					{
 						buffer.DepthBuffer[depthBufferOffset] = bufferZ;
 
-						ColorAsVector.Red = GouraudInterpolator.Points[1].InterpolatedValues[index];
-						ColorAsVector.Green = GouraudInterpolator.Points[2].InterpolatedValues[index];
-						ColorAsVector.Blue = GouraudInterpolator.Points[3].InterpolatedValues[index];
-						ColorAsVector.Alpha = GouraudInterpolator.Points[4].InterpolatedValues[index];
-						var color = (int)ColorAsVector.ToColor().ToUInt32();
+						WorkingColor.RedAsFloat = GouraudInterpolator.Points[1].InterpolatedValues[index];
+						WorkingColor.GreenAsFloat = GouraudInterpolator.Points[2].InterpolatedValues[index];
+						WorkingColor.BlueAsFloat = GouraudInterpolator.Points[3].InterpolatedValues[index];
+						WorkingColor.AlphaAsFloat = GouraudInterpolator.Points[4].InterpolatedValues[index];
+						WorkingColor.Clamp();
+						var color = (int)WorkingColor.ToUInt32();
 						buffer.FrameBuffer.Pixels[bufferOffset] = color;
 					}
 				}

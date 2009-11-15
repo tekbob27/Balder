@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Balder.Core;
 using Balder.Core.Display;
 using Balder.Core.SoftwareRendering;
 using Balder.Silverlight.SoftwareRendering;

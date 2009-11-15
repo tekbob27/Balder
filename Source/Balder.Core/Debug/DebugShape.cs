@@ -18,7 +18,7 @@ namespace Balder.Core.Debug
 
 		public override void Render(Viewport viewport, Matrix view, Matrix projection)
 		{
-			GeometryContext.Render(viewport, view, projection, World);
+			GeometryContext.Render(viewport, this, view, projection, World);
 		}
 	}
 }

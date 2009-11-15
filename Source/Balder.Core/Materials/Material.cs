@@ -1,9 +1,4 @@
-﻿#if(SILVERLIGHT)
-using System.Windows.Media;
-#else
-using Color=System.Drawing.Color;
-#endif
-using Balder.Core.Imaging;
+﻿using Balder.Core.Imaging;
 
 namespace Balder.Core.Materials
 {

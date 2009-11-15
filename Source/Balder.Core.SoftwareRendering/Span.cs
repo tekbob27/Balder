@@ -19,8 +19,8 @@ namespace Balder.Core.SoftwareRendering
 		public float VStart;
 		public float VEnd;
 
-		public ColorVector ColorStart;
-		public ColorVector ColorEnd;
+		public Color ColorStart;
+		public Color ColorEnd;
 
 		public bool Swap;
 	}

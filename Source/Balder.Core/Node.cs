@@ -1,6 +1,8 @@
-﻿using Balder.Core.Display;
+﻿using System.Windows.Media;
+using Balder.Core.Display;
 using Balder.Core.Math;
 using System;
+using Matrix=Balder.Core.Math.Matrix;
 
 namespace Balder.Core
 {
@@ -55,6 +57,14 @@ namespace Balder.Core
 		/// Get and set wether or not the node is visible
 		/// </summary>
 		public bool IsVisible { get; set; }
+
+		/// <summary>
+		/// Color of the node - this will be used if node supports it
+		/// during lighting calculations. If Node has different ways of defining
+		/// its color, for instance Materialing or similar - this color
+		/// will most likely be overridden
+		/// </summary>
+		public Color Color { get; set; }
 
 		public Scene Scene { get; set; }
 		#endregion

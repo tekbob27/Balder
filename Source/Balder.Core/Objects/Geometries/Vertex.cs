@@ -7,10 +7,11 @@ namespace Balder.Core.Objects.Geometries
 	{
 		public Vertex(float x, float y, float z) : this()
 		{
-			Vector = new Math.Vector(x, y, z);
+			Vector = new Vector(x, y, z);
 			TransformedVector = new Math.Vector(x, y, z);
 			TranslatedVector = new Math.Vector(x, y, z);
-			Normal = new Math.Vector();
+			Normal = Vector.Zero;
+			TranslatedScreenCoordinates = Vector.Zero;
 		}
 
 		public static Vertex Zero = new Vertex(0,0,0);

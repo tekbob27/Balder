@@ -99,6 +99,7 @@
     <Compile Include="DisplayActivationContext.cs" />
     <Compile Include="Display\IDisplayDevice.cs" />
     <Compile Include="Display\Viewport.cs" />
+    <Compile Include="EngineObject.cs" />
     <Compile Include="Exceptions\AssetNotFoundException.cs" />
     <Compile Include="Exceptions\UnsupportedImageFormatException.cs" />
     <Compile Include="Extensions\ImageFormatExtensions.cs" />

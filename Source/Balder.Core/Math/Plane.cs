@@ -69,8 +69,8 @@ namespace Balder.Core.Math
 
 		public PlaneIntersectionType Intersects(BoundingBox box)
 		{
-			Vector vector;
-			Vector vector2;
+			var vector = Vector.Zero;
+			var vector2 = Vector.Zero;
 			vector2.X = (this.Normal.X >= 0f) ? box.Min.X : box.Max.X;
 			vector2.Y = (this.Normal.Y >= 0f) ? box.Min.Y : box.Max.Y;
 			vector2.Z = (this.Normal.Z >= 0f) ? box.Min.Z : box.Max.Z;

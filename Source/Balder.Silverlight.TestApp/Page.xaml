@@ -1,15 +1,31 @@
-﻿<UserControl x:Class="Balder.Silverlight.TestApp.Page"
+﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:balder="clr-namespace:Balder.Silverlight.Controls;assembly=Balder.Silverlight"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:local="clr-namespace:Balder.Silverlight.TestApp"
+	xmlns:Math="clr-namespace:Balder.Silverlight.Controls.Math;assembly=Balder.Silverlight" 
+	x:Class="Balder.Silverlight.TestApp.Page"
 	Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
     >
+	<UserControl.Resources>
+		
+		<Storyboard x:Name="_cameraStoryboard">
+			<!--
+			<DoubleAnimationUsingKeyFrames x:Name="_animation" Storyboard.TargetName="_game" Storyboard.TargetProperty="(Game.Camera).(Node.Position).(Vector.X)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:05" Value="-100"/>
+			</DoubleAnimationUsingKeyFrames>-->
+		</Storyboard>
+	</UserControl.Resources>
 	<Grid x:Name="LayoutRoot" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Red">
-		<balder:Game Width="800" Height="600">
-			<balder:Game.GameClass>
-				<local:MyGame/>
-			</balder:Game.GameClass>
-		</balder:Game>
+		<StackPanel Orientation="Vertical">
+			<balder:Game x:Name="_game" Width="800" Height="600" Background="White">
+				<balder:Game.GameClass>
+					<local:MyGame/>
+				</balder:Game.GameClass>
+				<balder:Mesh x:Name="_teapot" AssetName="teapot.ASE"/>
+			</balder:Game>
+			<Button Content="Click me" Width="50" Height="30" Click="Button_Click"/>
+		</StackPanel>
 	</Grid>
 </UserControl>

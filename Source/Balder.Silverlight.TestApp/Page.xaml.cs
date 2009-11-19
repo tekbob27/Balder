@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 using Balder.Core;
 
 namespace Balder.Silverlight.TestApp
@@ -10,21 +12,28 @@ namespace Balder.Silverlight.TestApp
 			InitializeComponent();
 
 			Loaded += Page_Loaded;
+
 		}
 
 		void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
 		{
+			int i = 0;
+			i++;
+			
+		}
 
-			/*
-			foreach (var node in App.MyGame.Scene.RenderableNodes)
-			{
-				node.Click +=
-					(ss, ee) => Dispatcher.BeginInvoke(() =>
-					                                   	{
-					                                   		_hitObject.Text = string.Format("'{0}' was clicked", ((Node)ss).Name);
-					                                   	});
+		private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+		{
+			//_teapot.Position.X = 50;
 
-			}*/
+			
+			_cameraStoryboard.Begin();
+			
+
+
+
+			//_game.Camera.Position.X = -20;
+
 		}
 	}
 }

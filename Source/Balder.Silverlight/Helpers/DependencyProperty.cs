@@ -8,7 +8,7 @@ using Balder.Silverlight.Extensions;
 namespace Balder.Silverlight.Helpers
 {
 	public class DependencyProperty<T1,T>
-		where T1:FrameworkElement
+		where T1:DependencyObject
 	{
 		public DependencyProperty ActualDependencyProperty { get; private set; }
 		public string PropertyName { get; private set; }
@@ -54,6 +54,7 @@ namespace Balder.Silverlight.Helpers
 		}
 
 
+		/*
 		public System.Windows.Data.Binding SetBinding(T1 obj, string path)
 		{
 			var binding = new System.Windows.Data.Binding(path);
@@ -77,5 +78,6 @@ namespace Balder.Silverlight.Helpers
 			obj.SetBinding(this.ActualDependencyProperty, binding);
 			return binding;
 		}
+		 * */
 	}
 }

@@ -60,6 +60,7 @@ namespace Balder.Silverlight.Extensions
 					};
 		}
 
+
 		public static void SubscribeToChange(this INotifyPropertyChanged objectThatNotifies, Expression<Func<object>> expression, PropertyChangedHandler<INotifyPropertyChanged> handler)
 		{
 			SubscribeToChange<INotifyPropertyChanged>(objectThatNotifies, expression, handler);

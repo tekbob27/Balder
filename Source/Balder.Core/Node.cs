@@ -9,7 +9,7 @@ namespace Balder.Core
 	/// <summary>
 	/// Abstract class representing a node in a scene
 	/// </summary>
-	public abstract class Node
+	public abstract class Node : EngineObject
 	{
 		private static readonly EventArgs DefaultEventArgs = new EventArgs();
 		public event EventHandler Hover = (s, e) => { };
@@ -23,6 +23,7 @@ namespace Balder.Core
 			PositionMatrix = Matrix.Identity;
 			ScaleMatrix = Matrix.Identity;
 			Scale = new Vector(1f,1f,1f);
+			Position = Vector.Zero;
 		}
 		#endregion
 
@@ -58,13 +59,6 @@ namespace Balder.Core
 		/// </summary>
 		public bool IsVisible { get; set; }
 
-		/// <summary>
-		/// Color of the node - this will be used if node supports it
-		/// during lighting calculations. If Node has different ways of defining
-		/// its color, for instance Materialing or similar - this color
-		/// will most likely be overridden
-		/// </summary>
-		public Color Color { get; set; }
 
 		public Scene Scene { get; set; }
 		#endregion

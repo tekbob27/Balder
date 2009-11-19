@@ -2,6 +2,7 @@
 using Balder.Core.Debug;
 using Balder.Core.Execution;
 using Balder.Core.Lighting;
+using Balder.Core.Math;
 using Balder.Core.Objects.Geometries;
 
 namespace Balder.Silverlight.TestApp
@@ -19,12 +20,13 @@ namespace Balder.Silverlight.TestApp
 
 		public override void LoadContent()
 		{
+			/*
 			_teapot = ContentManager.Load<Mesh>("teapot.ASE");
 			_teapot.Color = Color.FromArgb(0xff,0,0,0xff);
 			_teapot.Click += teapotClick;
 			Scene.AddNode(_teapot);
+			 * */
 
-			
 			var light = new OmniLight();
 			light.Range = 2.0f;
 			light.Position.X = 0;
@@ -41,8 +43,14 @@ namespace Balder.Silverlight.TestApp
 			_teapot.Color = Color.FromArgb(0xff, 0xff, 0, 0);
 		}
 
+
+		private double sin = 0;
 		public override void Update()
 		{
+			//Camera.Position.X = (float)(System.Math.Sin(sin) * 100.0);
+			//Camera.Position.Z = (float)(System.Math.Cos(sin) * 100.0);
+
+			sin += 0.1;
 			
 		}
 	}

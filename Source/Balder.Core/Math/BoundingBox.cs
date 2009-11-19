@@ -160,8 +160,8 @@ namespace Balder.Core.Math
 
 		public PlaneIntersectionType Intersects(Plane plane)
 		{
-			Vector vector;
-			Vector vector2;
+			var vector = Vector.Zero;
+			var vector2 = Vector.Zero;
 			vector2.X = (plane.Normal.X >= 0f) ? this.Min.X : this.Max.X;
 			vector2.Y = (plane.Normal.Y >= 0f) ? this.Min.Y : this.Max.Y;
 			vector2.Z = (plane.Normal.Z >= 0f) ? this.Min.Z : this.Max.Z;
@@ -183,8 +183,8 @@ namespace Balder.Core.Math
 
 		public void Intersects(ref Plane plane, out PlaneIntersectionType result)
 		{
-			Vector vector;
-			Vector vector2;
+			var vector = Vector.Zero;
+			var vector2 = Vector.Zero;
 			vector2.X = (plane.Normal.X >= 0f) ? this.Min.X : this.Max.X;
 			vector2.Y = (plane.Normal.Y >= 0f) ? this.Min.Y : this.Max.Y;
 			vector2.Z = (plane.Normal.Z >= 0f) ? this.Min.Z : this.Max.Z;

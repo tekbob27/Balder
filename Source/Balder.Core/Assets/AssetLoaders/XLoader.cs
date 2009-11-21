@@ -1,6 +1,5 @@
 ﻿using System;
 using Balder.Core.Content;
-using Balder.Core.Interfaces;
 using Balder.Core.Objects.Geometries;
 
 namespace Balder.Core.Assets.AssetLoaders

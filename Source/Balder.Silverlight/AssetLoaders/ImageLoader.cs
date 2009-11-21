@@ -4,7 +4,6 @@ using System.Windows.Media.Imaging;
 using Balder.Core.Assets;
 using Balder.Core.Content;
 using Balder.Core.Imaging;
-using Balder.Core.Interfaces;
 
 namespace Balder.Silverlight.AssetLoaders
 {

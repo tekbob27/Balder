@@ -23,8 +23,12 @@ namespace Balder.Core.Execution
 
 		string PlatformName { get; }
 
+		string EntryAssemblyName { get; }
+
+		bool IsInDesignMode { get; }
 		IDisplayDevice DisplayDevice { get; }
 		IMouseDevice MouseDevice { get; }
+
 
 		Type FileLoaderType { get; }
 		Type GeometryContextType { get; }

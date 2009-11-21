@@ -1,6 +1,7 @@
 ﻿using System;
 using Balder.Core.Display;
 using System.Collections.Generic;
+using Balder.Core.Execution;
 using Balder.Silverlight.SoftwareRendering;
 
 namespace Balder.Silverlight.Display
@@ -10,24 +11,33 @@ namespace Balder.Silverlight.Display
 		public event DisplayEvent Update = (d) => { };
 		public event DisplayEvent Render = (d) => { };
 
-		private List<Display> _displays;
+		private readonly List<Display> _displays;
+		private readonly IPlatform _platform;
 
-
-		public DisplayDevice()
+		public DisplayDevice(IPlatform platform)
 		{
+			_platform = platform;
 			_displays = new List<Display>();
-
-			RenderingManager.Instance.Render += RenderingManagerRender;
-			RenderingManager.Instance.Show += RenderingManagerShow;
-			RenderingManager.Instance.Clear += RenderingManagerClear;
-			RenderingManager.Instance.Swapped += RenderingManagerSwapped;
-			RenderingManager.Instance.Updated += RenderingManagerUpdated;
-
+			InitializeRendering();
 		}
+
+		private void InitializeRendering()
+		{
+			if (!_platform.IsInDesignMode)
+			{
+				RenderingManager.Instance.Render += RenderingManagerRender;
+				RenderingManager.Instance.Show += RenderingManagerShow;
+				RenderingManager.Instance.Clear += RenderingManagerClear;
+				RenderingManager.Instance.Swapped += RenderingManagerSwapped;
+				RenderingManager.Instance.Updated += RenderingManagerUpdated;
+				RenderingManager.Instance.Start();
+			}
+		}
+
 
 		private void RenderingManagerRender()
 		{
-			foreach( var display in _displays )
+			foreach (var display in _displays)
 			{
 				display.PrepareRender();
 				Render(display);
@@ -36,7 +46,7 @@ namespace Balder.Silverlight.Display
 
 		private void RenderingManagerClear()
 		{
-			CallMethodOnDisplays(d=>d.Clear());
+			CallMethodOnDisplays(d => d.Clear());
 		}
 
 		private void RenderingManagerShow()
@@ -57,11 +67,10 @@ namespace Balder.Silverlight.Display
 				Update(display);
 			}
 		}
-		
 
 		public IDisplay CreateDisplay()
 		{
-			var display = new Display();
+			var display = new Display(_platform);
 			_displays.Add(display);
 			return display;
 		}
@@ -72,7 +81,17 @@ namespace Balder.Silverlight.Display
 			{
 				displayAction(display);
 			}
-			
+		}
+
+		public void RenderAndShow(Display display)
+		{
+			display.PrepareRender();
+			display.Swap();
+			display.Clear();
+			Render(display);
+			display.Swap();
+			display.Show();
+			display.Update();
 		}
 	}
 }

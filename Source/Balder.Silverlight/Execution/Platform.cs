@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using Balder.Core;
 using Balder.Core.Assets;
 using Balder.Core.Display;
@@ -6,8 +8,8 @@ using Balder.Core.Execution;
 using Balder.Core.Input;
 using Balder.Core.SoftwareRendering;
 using Balder.Core.SoftwareRendering.Rendering;
+using Balder.Silverlight.Content;
 using Balder.Silverlight.Display;
-using Balder.Silverlight.Implementation;
 using Balder.Silverlight.Input;
 
 namespace Balder.Silverlight.Execution
@@ -35,7 +37,7 @@ namespace Balder.Silverlight.Execution
 
 		private void InitializeObjects()
 		{
-			DisplayDevice = new DisplayDevice();
+			DisplayDevice = new DisplayDevice(this);
 			MouseDevice = new MouseDevice();
 		}
 
@@ -50,6 +52,35 @@ namespace Balder.Silverlight.Execution
 		public string PlatformName
 		{
 			get { return "Silverlight"; }
+		}
+
+		public string EntryAssemblyName
+		{
+			get
+			{
+				var fullAssemblyName = Application.Current.GetType().Assembly.FullName;
+				return fullAssemblyName;
+			}
+		}
+
+		public bool IsInDesignMode
+		{
+			get 
+			{
+				var isInDesignMode = DesignerProperties.IsInDesignTool;
+				if( !isInDesignMode )
+				{
+					try
+					{
+						var host = Application.Current.Host.Source;
+						isInDesignMode = false;
+					} catch
+					{
+						isInDesignMode = true;
+					}
+				}
+				return isInDesignMode;
+			}
 		}
 
 		public IDisplayDevice DisplayDevice { get; private set; }

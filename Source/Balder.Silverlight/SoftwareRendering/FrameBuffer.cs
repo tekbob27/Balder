@@ -1,5 +1,4 @@
-﻿using System.Windows.Media.Imaging;
-using Balder.Core.SoftwareRendering;
+﻿using Balder.Core.SoftwareRendering;
 
 namespace Balder.Silverlight.SoftwareRendering
 {
@@ -54,12 +53,10 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		public void Show()
 		{
-			//_showBuffer.CopyTo(_writeableBitmap.Pixels, 0);
 		}
 
 		public void Update()
 		{
-			//_writeableBitmap.Invalidate();
 		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using Balder.Core.Content;
-using Balder.Core.Interfaces;
 
 namespace Balder.Core.Assets
 {

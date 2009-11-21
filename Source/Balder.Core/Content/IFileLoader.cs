@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Balder.Core.Interfaces
+namespace Balder.Core.Content
 {
 	public interface IFileLoader
 	{

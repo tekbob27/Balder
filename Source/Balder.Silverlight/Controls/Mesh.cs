@@ -15,13 +15,11 @@ namespace Balder.Silverlight.Controls
 			}
 		}
 
-		/*
 		protected override void Initialize()
 		{
 			ActualNode = ContentManager.Load<Core.Objects.Geometries.Mesh>(AssetName);
-			//ActualScene.AddNode(ActualNode);
 			base.Initialize();
 		}
-		 * */
+
 	}
 }

@@ -140,7 +140,7 @@
     <Compile Include="PixelFormat.cs" />
     <Compile Include="Content\ContentManager.cs" />
     <Compile Include="Assets\IAssetPart.cs" />
-    <Compile Include="Interfaces\IFileLoader.cs" />
+    <Compile Include="Content\IFileLoader.cs" />
     <Compile Include="Lighting\Light.cs" />
     <Compile Include="Lighting\OmniLight.cs" />
     <Compile Include="Materials\Material.cs" />
@@ -172,7 +172,7 @@
     <Compile Include="Utils\EnumHelper.cs" />
     <Compile Include="EnvironmentalNode.cs" />
     <Compile Include="Animation\IAnimatable.cs" />
-    <Compile Include="Interfaces\ILight.cs" />
+    <Compile Include="Lighting\ILight.cs" />
     <Compile Include="Math\Core.cs" />
     <Compile Include="Math\Frustum.cs" />
     <Compile Include="Math\Matrix.cs" />

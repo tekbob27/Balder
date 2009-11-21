@@ -31,12 +31,9 @@ namespace Balder.Silverlight.SoftwareRendering
 
 		private bool _frameBufferManagerAlive;
 
-
 		private RenderingManager()
 		{
-			Start();
 		}
-
 
 		public void Start()
 		{

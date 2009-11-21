@@ -14,6 +14,7 @@ namespace Balder.Silverlight.Controls
 			Loaded += ControlLoaded;
 		}
 
+
 		private void ControlLoaded(object sender, RoutedEventArgs e)
 		{
 			if( null == Runtime )

@@ -10,7 +10,6 @@ using Balder.Core.Materials;
 using Balder.Core.Objects.Geometries;
 using Balder.Core.ReadableRex;
 using Balder.Core.ReadableRex.LinqToRegex;
-using Balder.Core.Interfaces;
 
 
 namespace Balder.Core.Assets.AssetLoaders

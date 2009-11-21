@@ -2,6 +2,7 @@
 using System.Windows.Media.Imaging;
 using Balder.Core;
 using Balder.Core.Display;
+using Balder.Core.Execution;
 using Balder.Core.SoftwareRendering;
 using Balder.Silverlight.SoftwareRendering;
 
@@ -10,8 +11,15 @@ namespace Balder.Silverlight.Display
 	public class Display : IDisplay, INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged = (s, e) => { };
+
+		private readonly IPlatform _platform;
 		private IBuffers _buffers;
 		private bool _initialized;
+
+		public Display(IPlatform platform)
+		{
+			_platform = platform;
+		}
 
 		public void Initialize(int width, int height)
 		{

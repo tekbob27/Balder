@@ -1,4 +1,4 @@
-﻿namespace Balder.Core.Interfaces
+﻿namespace Balder.Core.Lighting
 {
 	public interface ILight
 	{

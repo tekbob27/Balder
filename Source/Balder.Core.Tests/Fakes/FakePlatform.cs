@@ -22,6 +22,11 @@ namespace Balder.Core.Tests.Fakes
 			get { return "Fake"; }
 		}
 
+		public bool IsInDesignMode
+		{
+			get { return false; }
+		}
+
 		public IDisplayDevice DisplayDevice { get; set; }
 		public IMouseDevice MouseDevice { get; set; }
 		public Type FileLoaderType

@@ -7,7 +7,6 @@ using System.Xml.Linq;
 using Balder.Core.Content;
 using Balder.Core.Exceptions;
 using Balder.Core.Imaging;
-using Balder.Core.Interfaces;
 using Balder.Core.Materials;
 using Balder.Core.Objects.Geometries;
 

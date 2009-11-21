@@ -1,11 +1,10 @@
 ﻿using System.Reflection;
-using System.Windows;
 using Balder.Silverlight.Controls.Math;
 using Balder.Silverlight.Helpers;
 
 namespace Balder.Silverlight.Controls
 {
-	public class Node : FrameworkElement
+	public class Node : BalderControl
 	{
 		public Core.Node ActualNode { get; protected set; }
 

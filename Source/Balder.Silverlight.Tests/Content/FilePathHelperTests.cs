@@ -2,7 +2,6 @@
 using Balder.Core.Execution;
 using Balder.Core.Utils;
 using Balder.Silverlight.Content;
-using CThru.Silverlight;
 using Moq;
 using NUnit.Framework;
 

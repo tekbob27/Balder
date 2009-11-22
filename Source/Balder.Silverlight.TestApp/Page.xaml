@@ -23,7 +23,7 @@
 				<balder:Game.GameClass>
 					<local:MyGame/>
 				</balder:Game.GameClass>
-				<balder:Mesh x:Name="_teapot" AssetName="teapot.ASE"/>
+				<balder:Mesh x:Name="_teapot" AssetName="/Balder.Silverlight.TestApp;component/Assets/teapot.ASE"/>
 			</balder:Game>
 			<Button Content="Click me" Width="50" Height="30" Click="Button_Click"/>
 		</StackPanel>

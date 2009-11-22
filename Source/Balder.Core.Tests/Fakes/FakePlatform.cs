@@ -22,6 +22,11 @@ namespace Balder.Core.Tests.Fakes
 			get { return "Fake"; }
 		}
 
+		public string EntryAssemblyName
+		{
+			get { throw new NotImplementedException(); }
+		}
+
 		public bool IsInDesignMode
 		{
 			get { return false; }

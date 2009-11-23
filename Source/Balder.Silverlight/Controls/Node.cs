@@ -8,26 +8,33 @@ namespace Balder.Silverlight.Controls
 	{
 		public Core.Node ActualNode { get; protected set; }
 
-		public static readonly DependencyProperty<Node, Vector> PositionProperty =
-			DependencyProperty<Node, Vector>.Register(o => o.Position);
+		protected override void OnLoaded()
+		{
+			Children.Add(Position);
+			base.OnLoaded();
+		}
+
+		public static readonly DependencyProperty<Mesh, Vector> PositionProperty =
+			DependencyProperty<Mesh, Vector>.Register(o => o.Position);
 		public Vector Position
 		{
 			get
 			{
 				var vector = PositionProperty.GetValue(this);
-				if( null == vector )
+				if (null == vector)
 				{
 					vector = new Vector();
+					SetupVectorSubscription(vector);
+					PositionProperty.SetValue(this,vector);
 				}
 				return vector;
 			}
-			private set
+			set
 			{
 				SetupVectorSubscription(value);
-				PositionProperty.SetValue(this,value);
+				PositionProperty.SetValue(this, value);
 			}
 		}
-
 
 		private static readonly FieldInfo XField = typeof(Core.Math.Vector).GetField("X");
 		private static readonly FieldInfo YField = typeof(Core.Math.Vector).GetField("Y");
@@ -36,11 +43,11 @@ namespace Balder.Silverlight.Controls
 		public void SetupVectorSubscription(Vector vector)
 		{
 			vector.PropertyChanged += (s, e) =>
-										{
-											ActualNode.Position.X = (float)vector.X;
-											ActualNode.Position.Y = (float)vector.Y;
-											ActualNode.Position.Z = (float)vector.Z;
-										};
+			{
+				ActualNode.Position.X = (float)vector.X;
+				ActualNode.Position.Y = (float)vector.Y;
+				ActualNode.Position.Z = (float)vector.Z;
+			};
 		}
 	}
 }

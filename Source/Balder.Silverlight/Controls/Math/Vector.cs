@@ -5,8 +5,9 @@ using Balder.Silverlight.Helpers;
 
 namespace Balder.Silverlight.Controls.Math
 {
-	public class Vector : DependencyObject, INotifyPropertyChanged
+	public class Vector : FrameworkElement, INotifyPropertyChanged
 	{
+		
 		public static readonly DependencyProperty<Vector, double> XProperty =
 			DependencyProperty<Vector, double>.Register(o => o.X);
 		public double X

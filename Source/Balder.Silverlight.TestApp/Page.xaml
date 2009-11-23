@@ -10,12 +10,25 @@
 	<UserControl.Resources>
 		
 		<Storyboard x:Name="_cameraStoryboard">
-			<!--
-			<DoubleAnimationUsingKeyFrames x:Name="_animation" Storyboard.TargetName="_game" Storyboard.TargetProperty="(Game.Camera).(Node.Position).(Vector.X)">
-				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="00:00:05" Value="-100"/>
-			</DoubleAnimationUsingKeyFrames>-->
+			
+			<DoubleAnimationUsingKeyFrames x:Name="_animation" 
+										   Storyboard.TargetName="_teapot" 
+										   Storyboard.TargetProperty="(Mesh.Position).(Vector.Y)" 
+										   AutoReverse="True" 
+										   RepeatBehavior="Forever">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="15" >
+					<EasingDoubleKeyFrame.EasingFunction>
+						<CircleEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+				<EasingDoubleKeyFrame KeyTime="00:00:02" Value="0" >
+					<EasingDoubleKeyFrame.EasingFunction>
+						<CircleEase EasingMode="EaseIn"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
+		
 	</UserControl.Resources>
 	<Grid x:Name="LayoutRoot" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Red">
 		<StackPanel Orientation="Vertical">

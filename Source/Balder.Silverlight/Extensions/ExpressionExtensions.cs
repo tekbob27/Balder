@@ -21,6 +21,13 @@ namespace Balder.Silverlight.Extensions
 			return memberExpression;
 		}
 
+		public static FieldInfo GetFieldInfo(this Expression expression)
+		{
+			var memberExpression = GetMemberExpression(expression);
+			var fieldInfo = memberExpression.Member as FieldInfo;
+			return fieldInfo;
+		}
+
 		public static PropertyInfo GetPropertyInfo(this Expression expression)
 		{
 			var memberExpression = GetMemberExpression(expression);
@@ -34,7 +41,14 @@ namespace Balder.Silverlight.Extensions
 			var constantExpression = memberExpression.Expression as ConstantExpression;
 			if (null == constantExpression)
 			{
-				constantExpression = ((MemberExpression)memberExpression.Expression).Expression as ConstantExpression;
+				
+				var innerMember = memberExpression.Expression as MemberExpression;
+				constantExpression = innerMember.Expression as ConstantExpression;
+				if( null != innerMember && innerMember.Member is PropertyInfo )
+				{
+					var value = ((PropertyInfo) innerMember.Member).GetValue(constantExpression.Value, null);
+					return value;
+				}
 			}
 			return constantExpression.Value;
 			

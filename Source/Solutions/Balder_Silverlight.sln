@@ -20,6 +20,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{67FF2401
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balder.Silverlight.Tests", "..\Balder.Silverlight.Tests\Balder.Silverlight.Tests.csproj", "{1C1B08C4-56B2-44DC-9E78-A18EBB1D4866}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balder.Silverlight.Design", "..\Balder.Silverlight.Design\Balder.Silverlight.Design.csproj", "{0BD29989-92B0-4EDC-805B-F5078EF89C89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Balder.Silverlight.Design.Controls", "Balder.Silverlight.Design.Controls\Balder.Silverlight.Design.Controls.csproj", "{7B865962-03B3-4BE4-8C33-F9611F94270A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Design", "Design", "{5DE30519-E9D1-4A26-A0B5-24A45C4A2610}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 8
@@ -81,8 +87,20 @@ Global
 		{1C1B08C4-56B2-44DC-9E78-A18EBB1D4866}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C1B08C4-56B2-44DC-9E78-A18EBB1D4866}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C1B08C4-56B2-44DC-9E78-A18EBB1D4866}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD29989-92B0-4EDC-805B-F5078EF89C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD29989-92B0-4EDC-805B-F5078EF89C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD29989-92B0-4EDC-805B-F5078EF89C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD29989-92B0-4EDC-805B-F5078EF89C89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B865962-03B3-4BE4-8C33-F9611F94270A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B865962-03B3-4BE4-8C33-F9611F94270A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B865962-03B3-4BE4-8C33-F9611F94270A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B865962-03B3-4BE4-8C33-F9611F94270A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0BD29989-92B0-4EDC-805B-F5078EF89C89} = {5DE30519-E9D1-4A26-A0B5-24A45C4A2610}
+		{7B865962-03B3-4BE4-8C33-F9611F94270A} = {5DE30519-E9D1-4A26-A0B5-24A45C4A2610}
 	EndGlobalSection
 EndGlobal

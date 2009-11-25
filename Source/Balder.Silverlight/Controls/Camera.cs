@@ -17,9 +17,58 @@
 //
 #endregion
 
+using Balder.Silverlight.Controls.Math;
+using Balder.Silverlight.Helpers;
+
 namespace Balder.Silverlight.Controls
 {
 	public class Camera : Node
 	{
+		public Core.Camera ActualCamera { get { return ActualNode as Core.Camera; } }
+
+		public Camera()
+		{
+		}
+
+		public Camera(Core.Camera camera)
+		{
+			var position = camera.Position;
+			ActualNode = camera;
+			var target = new Vector();
+			
+			Position.X = position.X;
+			Position.Y = position.Y;
+			Position.Z = position.Z;
+
+			target.X = camera.Target.X;
+			target.Y = camera.Target.Y;
+			target.Z = camera.Target.Z;
+
+			Target = target;
+		}
+
+
+		private void InitializeTarget()
+		{
+			Target.SetNativeAction((x, y, z) =>
+			{
+				ActualCamera.Target.X = x;
+				ActualCamera.Target.Y = y;
+				ActualCamera.Target.Z = z;
+			});
+
+		}
+
+		public static readonly DependencyProperty<Camera, Vector> TargetProperty =
+			DependencyProperty<Camera, Vector>.Register(o => o.Target);
+		public Vector Target
+		{
+			get { return TargetProperty.GetValue(this); }
+			set
+			{
+				TargetProperty.SetValue(this, value);
+				InitializeTarget();
+			}
+		}
 	}
 }

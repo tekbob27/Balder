@@ -29,16 +29,7 @@ namespace Balder.Silverlight.TestApp
 
 		private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
-			//_teapot.Position.X = 50;
-
-			
 			_cameraStoryboard.Begin();
-			
-
-
-
-			//_game.Camera.Position.X = -20;
-
 		}
 	}
 }

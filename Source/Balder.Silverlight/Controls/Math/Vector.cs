@@ -21,9 +21,11 @@ using System.ComponentModel;
 using System.Windows;
 using Balder.Silverlight.Extensions;
 using Balder.Silverlight.Helpers;
+using Balder.Silverlight.TypeConverters;
 
 namespace Balder.Silverlight.Controls.Math
 {
+	[TypeConverter(typeof(VectorTypeConverter))]
 	public class Vector : DependencyObject, INotifyPropertyChanged
 	{
 		private Action<float, float, float> _setNativeAction;
@@ -31,12 +33,16 @@ namespace Balder.Silverlight.Controls.Math
 		public void SetNativeAction(Action<float,float,float> setNativeAction)
 		{
 			_setNativeAction = setNativeAction;
-			
+			UpdateNativeVector();
 		}
 
 		private void UpdateNativeVector()
 		{
-			_setNativeAction((float) X, (float) Y, (float) Z);
+			if( null != _setNativeAction)
+			{
+				_setNativeAction((float)X, (float)Y, (float)Z);	
+			}
+			
 		}
 
 

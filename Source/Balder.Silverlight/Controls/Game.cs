@@ -19,9 +19,12 @@
 using System;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Balder.Core;
 using Balder.Core.Display;
+using Balder.Core.Math;
 using Balder.Silverlight.Helpers;
 using Balder.Silverlight.Input;
+using Color=System.Windows.Media.Color;
 
 namespace Balder.Silverlight.Controls
 {
@@ -37,10 +40,8 @@ namespace Balder.Silverlight.Controls
 			Validate();
 
 			Platform.DisplayDevice.Update += DisplayDevice_Update;
-			if (null != GameClass)
-			{
-				InitializeGame();
-			}
+			InitializeFromPlatform();
+			InitializeGame();
 			InitializeContent();
 
 			if( Platform.IsInDesignMode )
@@ -87,12 +88,25 @@ namespace Balder.Silverlight.Controls
 			}
 		}
 
+
+
 		private void InitializeGame()
+		{
+			if( null == GameClass )
+			{
+				GameClass = new InternalGame();
+			}
+			Runtime.RegisterGame(Display, GameClass);
+
+			Viewport = GameClass.Viewport;
+			Scene = GameClass.Scene;
+			Camera = new Camera(GameClass.Camera);
+		}
+
+		private void InitializeFromPlatform()
 		{
 			Display = Platform.DisplayDevice.CreateDisplay();
 			Display.Initialize((int)Width, (int)Height);
-			Runtime.RegisterGame(Display, GameClass);
-
 			if (Platform.MouseDevice is MouseDevice)
 			{
 				((MouseDevice)Platform.MouseDevice).Initialize(this);
@@ -113,7 +127,6 @@ namespace Balder.Silverlight.Controls
 				SetBackgroundColor();
 			}
 
-			Camera = new Camera();
 			AddNodesToScene();
 		}
 
@@ -126,7 +139,7 @@ namespace Balder.Silverlight.Controls
 					var node = element as Node;
 					if (null != node.ActualNode)
 					{
-						GameClass.Scene.AddNode(node.ActualNode);
+						Scene.AddNode(node.ActualNode);
 					}
 				}
 			}
@@ -134,6 +147,8 @@ namespace Balder.Silverlight.Controls
 		}
 
 		public IDisplay Display { get; private set; }
+		public Scene Scene { get; private set; }
+		public Viewport Viewport { get; private set; }
 
 		public DependencyProperty<Game, Core.Execution.Game> GameClassProperty =
 			DependencyProperty<Game, Core.Execution.Game>.Register(g => g.GameClass);
@@ -148,30 +163,8 @@ namespace Balder.Silverlight.Controls
 			DependencyProperty<Game, Camera>.Register(g => g.Camera);
 		public Camera Camera
 		{
-			get
-			{
-				var camera = CameraProperty.GetValue(this);
-				if (null == camera)
-				{
-					camera = new Camera();
-				}
-
-				return camera;
-			}
-			set
-			{
-				/*
-				var previousCamera = value;
-				if( null != previousCamera )
-				{
-					Children.Remove(previousCamera);
-				}
-				 * */
-				CameraProperty.SetValue(this, value);
-				//Children.Add(value);
-			}
+			get { return CameraProperty.GetValue(this); }
+			set { CameraProperty.SetValue(this, value); }
 		}
-
-
 	}
 }

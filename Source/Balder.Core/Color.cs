@@ -133,17 +133,18 @@ namespace Balder.Core
 		}
 
 
-		public static explicit operator Color(SysColor systemColor)
+		public static Color FromSystemColor(SysColor systemColor)
 		{
 			var color = new Color
-							{
-								Red = systemColor.R,
-								Green = systemColor.G,
-								Blue = systemColor.B,
-								Alpha = systemColor.A
-							};
+			{
+				Red = systemColor.R,
+				Green = systemColor.G,
+				Blue = systemColor.B,
+				Alpha = systemColor.A
+			};
 			return color;
 		}
+
 
 		public static Color operator +(Color firstColor, Color secondColor)
 		{

@@ -16,7 +16,6 @@
 // limitations under the License.
 //
 #endregion
-using System.Reflection;
 using Balder.Silverlight.Controls.Math;
 using Balder.Silverlight.Helpers;
 
@@ -31,40 +30,30 @@ namespace Balder.Silverlight.Controls
 			protected set
 			{
 				_actualNode = value;
-				InitializeNativeVector();
+				Position = new Vector();
 			}
 		}
 
-
-		private void InitializeNativeVector()
+		private void InitializePosition()
 		{
-			Position.SetNativeAction((x,y,z) =>
-			                         	{
-			                         		ActualNode.Position.X = x;
-			                         		ActualNode.Position.Y = y;
-			                         		ActualNode.Position.Z = z;
-			                         	});
+			Position.SetNativeAction((x, y, z) =>
+			{
+				ActualNode.Position.X = x;
+				ActualNode.Position.Y = y;
+				ActualNode.Position.Z = z;
+			});
+			
 		}
 
-		public static readonly DependencyProperty<Mesh, Vector> PositionProperty =
-			DependencyProperty<Mesh, Vector>.Register(o => o.Position);
+		public static readonly DependencyProperty<Node, Vector> PositionProperty =
+			DependencyProperty<Node, Vector>.Register(o => o.Position);
 		public Vector Position
 		{
-			get
-			{
-				var vector = PositionProperty.GetValue(this);
-				if (null == vector)
-				{
-					vector = new Vector();
-					PositionProperty.SetValue(this,vector);
-					InitializeNativeVector();
-				}
-				return vector;
-			}
+			get { return PositionProperty.GetValue(this); }
 			set
 			{
 				PositionProperty.SetValue(this, value);
-				InitializeNativeVector();
+				InitializePosition();
 			}
 		}
 	}

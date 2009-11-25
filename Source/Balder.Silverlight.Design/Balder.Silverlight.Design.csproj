@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VectorDefaultInitializer.cs" />
     <Compile Include="VectorEditor.cs" />
     <Compile Include="VectorMetadata.cs" />
   </ItemGroup>
@@ -71,20 +72,14 @@
       <Project>{9F4164D8-6C61-4C4D-B3FF-7AEEE16D9D6B}</Project>
       <Name>Balder.Core.Silverlight</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Balder.Silverlight.Design.Controls\Balder.Silverlight.Design.Controls.csproj">
+      <Project>{7B865962-03B3-4BE4-8C33-F9611F94270A}</Project>
+      <Name>Balder.Silverlight.Design.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Balder.Silverlight\Balder.Silverlight.csproj">
       <Project>{E39B101E-9447-49EE-B849-BA2A9E4664D0}</Project>
       <Name>Balder.Silverlight</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Solutions\Balder.Silverlight.Design.Controls\Balder.Silverlight.Design.Controls.csproj">
-      <Project>{7B865962-03B3-4BE4-8C33-F9611F94270A}</Project>
-      <Name>Balder.Silverlight.Design.Controls</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <CodeAnalysisDictionary Include="DataTemplates.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </CodeAnalysisDictionary>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

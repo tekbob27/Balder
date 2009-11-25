@@ -35,6 +35,7 @@ namespace Balder.Silverlight.TestApp
 			light.Diffuse = Color.FromArgb(0xff, 255, 121, 32);
 			light.Specular = Color.FromArgb(0xff, 0xff, 0xff, 0xff);
 			light.Ambient = Color.FromArgb(0xff, 0x7f, 0x3f, 0x10);
+			
 			Scene.AddNode(light);
 		}
 

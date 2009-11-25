@@ -84,11 +84,15 @@
     <Compile Include="Content\FilePathHelper.cs" />
     <Compile Include="Controls\BalderControl.cs" />
     <Compile Include="Controls\Camera.cs" />
+    <Compile Include="Controls\EnvironmentalNode.cs" />
     <Compile Include="Controls\Game.cs" />
     <Compile Include="Controls\Geometry.cs" />
+    <Compile Include="Controls\InternalGame.cs" />
+    <Compile Include="Controls\Light.cs" />
     <Compile Include="Controls\Math\Vector.cs" />
     <Compile Include="Controls\Mesh.cs" />
     <Compile Include="Controls\Node.cs" />
+    <Compile Include="Controls\OmniLight.cs" />
     <Compile Include="Controls\RenderableNode.cs" />
     <Compile Include="Converters\StringToTypeConverter.cs" />
     <Compile Include="Display\DisplayDevice.cs" />
@@ -111,6 +115,7 @@
     <Compile Include="Services\TargetDevice.cs" />
     <Compile Include="SoftwareRendering\FrameBuffer.cs" />
     <Compile Include="SoftwareRendering\RenderingManager.cs" />
+    <Compile Include="TypeConverters\VectorTypeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

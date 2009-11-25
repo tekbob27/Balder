@@ -22,6 +22,14 @@ namespace Balder.Silverlight.Design.Controls
 		public VectorEditorControl()
 		{
 			InitializeComponent();
+
+			DataContextChanged += new DependencyPropertyChangedEventHandler(VectorEditorControl_DataContextChanged);
+		}
+
+		void VectorEditorControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			int i = 0;
+			i++;
 		}
 	}
 }

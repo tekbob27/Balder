@@ -30,14 +30,8 @@
 	<Grid x:Name="LayoutRoot" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Red">
 		<StackPanel Orientation="Vertical">
 			<balder:Game x:Name="_game" Width="800" Height="600">
-				<!--
-				<balder:Game.GameClass>
-					<local:MyGame/>
-				</balder:Game.GameClass>
-				-->
 				<balder:Mesh x:Name="_teapot" AssetName="/Balder.Silverlight.TestApp;component/Assets/teapot.ASE"/>
 				<balder:OmniLight Range="2" Diffuse="Green" Ambient="Blue" Specular="White" Position="0,0,-130"/>
-				
 			</balder:Game>
 			<Button Content="Click me" Width="50" Height="30" Click="Button_Click"/>
 		</StackPanel>
